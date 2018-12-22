@@ -1,0 +1,52 @@
+{
+  "name": "for-editor",
+  "version": "0.0.1",
+  "description": "react markdown editor",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --config build/webpack.dev.config.js",
+    "dist": "webpack --config build/webpack.dist.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkfor/for-editor.git"
+  },
+  "keywords": [
+    "javascript",
+    "react",
+    "markdown",
+    "editor"
+  ],
+  "author": "kkfor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kkfor/for-editor/issues"
+  },
+  "files": [
+    "dist/",
+    "LICENSE"
+  ],
+  "homepage": "https://github.com/kkfor/for-editor#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "classnames": "^2.2.6",
+    "css-loader": "^2.0.2",
+    "eslint": "^5.10.0",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.28.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "webpack-merge": "^4.1.5"
+  },
+  "dependencies": {
+    "highlight.js": "^9.13.1",
+    "marked": "^0.5.2"
+  }
+}
