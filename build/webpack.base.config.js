@@ -1,6 +1,6 @@
 const path = require('path')
 
-const resolve = (dir) => {
+const resolve = dir => {
   return path.resolve(__dirname, '..', dir)
 }
 
@@ -20,10 +20,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          require.resolve('style-loader'),
-          require.resolve('css-loader')
-        ]
+        use: [require.resolve('style-loader'), require.resolve('css-loader')]
       },
       {
         test: /\.(sass|scss)$/,
@@ -32,6 +29,13 @@ module.exports = {
           require.resolve('css-loader'),
           require.resolve('sass-loader')
         ]
+      },
+      {
+        test: /\.(woff2?|eot|ttf|svg)$/,
+        loader: require.resolve('file-loader'),
+        options: {
+          name: 'static/fonts/[name].[hash:8].[ext]'
+        }
       }
     ]
   }

@@ -7,16 +7,14 @@ const webpack = require('webpack')
 module.exports = merge(webpackBaseConfig, {
   mode: 'development',
   devtool: 'cheap-module-source-map',
-  entry: [
-    './example/index.js'
-  ],
+  entry: ['./example/index.js'],
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'for-editor.js'
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html'
+      template: './example/index.html'
     }),
     new webpack.HotModuleReplacementPlugin()
   ],

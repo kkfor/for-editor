@@ -20,7 +20,16 @@ const renderer = new marked.Renderer()
 // 段落解析
 const paragraphParse = text => `<p>${text}</p>`
 
+// 链接解析
+const linkParse = (href, title, text) => {
+  return `<a href=${href}
+      title=${title || href}
+      target='_blank'
+      }>${text}</a>`
+}
+
 renderer.paragraph = paragraphParse
+renderer.link = linkParse
 
 export default (content, tags) => {
   if (typeof content != 'string') return ''

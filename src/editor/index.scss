@@ -1,4 +1,8 @@
 .for-container {
+  ul {
+    margin: 0;
+    padding: 0;
+  }
   border: 1px solid #ddd;
   border-radius: 4px;
   background: #fff;
@@ -6,19 +10,21 @@
   .for-controlbar {
     display: flex;
     justify-content: space-between;
-    color: #777;
+    padding: 0 6px;
     border-bottom: 1px solid #ddd;
-    ul {
-      margin: 0;
-      padding: 0;
+    color: #333;
+    > ul {
       li {
-        cursor: pointer;
         padding: 2px 6px;
-        margin: 8px;
+        margin: 8px 6px;
         border-radius: 4px;
         display: inline-block;
         &.active{
           background: #ddd;
+        }
+        &:hover {
+          cursor: pointer;
+          background: #d8d8d8;
         }
       }
     }
@@ -76,7 +82,7 @@
   }
   h1,
   h2 {
-    border-bottom: 1px solid #eaecef;
+    border-bottom: 1px solid #e2e2e2;
   }
   h1,
   h2,
@@ -84,10 +90,8 @@
   h4,
   h5,
   h6 {
-
-    padding: 8px 0;
-    margin-top: 12px;
-    margin-bottom: 8px;
+    padding: 0;
+    margin: 0 0 8px;
     font-weight: 600;
 
     text-indent: 0;
@@ -156,7 +160,6 @@
   pre {
     padding: 12px;
     overflow: auto;
-    // font-size: 85%;
     line-height: 1.6;
     background-color: #f0f0f0;
     border-radius: 3px;
@@ -170,7 +173,6 @@
   code {
     padding: 0.2em 0.4em;
     margin: 0;
-    // font-size: 85%;
     background-color: #f0f0f0;
     border-radius: 3px;
   }
@@ -178,7 +180,7 @@
   hr {
     margin-bottom: 8px;
     height: 1px;
-    background: #ccc;
+    background: #dadada;
     border: none;
   }
   img {
