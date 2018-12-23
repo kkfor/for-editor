@@ -1,8 +1,8 @@
 {
   "name": "for-editor",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "react markdown editor",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.config.js",
     "dist": "webpack --config build/webpack.dist.config.js"
