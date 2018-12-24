@@ -36,37 +36,37 @@
     height: 500px;
     color: rgba(0, 0, 0, 0.65);
     border-radius: 0 0 4px 4px;
-    > div {
+    .for-panel {
       height: 100%;
       flex: 1;
-      &.for-panel {
-        width: 50%;
-        .for-preview {
-          overflow: auto;
-          height: 100%;
-          box-sizing: border-box;
-          border-left: 1px solid #ccc;
-          padding: 10px 14px;
-          background: #fcfcfc;
-        }
-      }
-      &.for-preview-hidden {
-        display: none;
+      width: 50%;
+      overflow: hidden;
+      .for-preview {
+        overflow: auto;
+        height: 100%;
+        box-sizing: border-box;
+        border-left: 1px solid #ccc;
+        padding: 10px 14px;
+        background: #fcfcfc;
       }
     }
-    textarea {
-      font-family: inherit;
-      display: block;
-      height: 100%;
-      width: 100%;
-      box-sizing: border-box;
-      padding: 10px 14px;
-      resize: none;
-      border: none;
-      outline: none;
-      font-size: inherit;
-      color: rgba(0, 0, 0, 0.65);
+    .for-preview-hidden {
+      display: none;
     }
+  }
+  textarea {
+    font-family: inherit;
+    display: block;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: inherit;
+    color: rgba(0, 0, 0, 0.65);
+    background: none;
   }
 }
 

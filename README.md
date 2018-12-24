@@ -25,8 +25,7 @@ class App extends Component {
     }
   }
 
-  handleChange(e) {
-    const value = e.target.value
+  handleChange(value) {
     this.setState({
       value
     })
