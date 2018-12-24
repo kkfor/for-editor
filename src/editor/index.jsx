@@ -27,17 +27,27 @@ class MdEditor extends React.Component {
     })
   }
 
+  handleChange(e) {
+    this.props.onChange(e.target.value)
+  }
+
   insert(insertValue) {
     const editorNode = this.state.editorNode
     const value = editorNode.value
     if (editorNode.selectionStart || editorNode.selectionStart === 0) {
       let start = editorNode.selectionStart
       let end = editorNode.selectionEnd
+
+      const restoreTop = editorNode.scrollTop
+
       editorNode.value =
         value.substring(0, start) +
         insertValue +
         value.substring(end, value.length)
       editorNode.focus()
+      if (restoreTop >= 0) {
+        editorNode.scrollTop = restoreTop
+      }
       editorNode.selectionStart = start + insertValue.length
       editorNode.selectionEnd = end + insertValue.length
     }
@@ -93,7 +103,7 @@ class MdEditor extends React.Component {
             <textarea
               ref={this.handleEditorNode}
               value={value}
-              onChange={this.props.onChange}
+              onChange={this.handleChange.bind(this)}
               placeholder="请输入内容..."
             />
           </div>

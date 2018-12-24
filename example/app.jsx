@@ -11,11 +11,13 @@ this is a markdown editor
 
 ## for-editor
 
-this is a [kkfor](kkfor.com)markdown editor
+this is a markdown editor
 
 ### for-editor
 
-this is a markdown editor
+\`\`\`js
+const editor = 'for-editor'
+\`\`\`
 
 - item1
 - item2
@@ -26,10 +28,6 @@ this is a markdown editor
 1. item1
 2. item2
 3. item3
-
-\`\`\`js
-const editor = 'for-editor'
-\`\`\`
 
 `
 
@@ -42,8 +40,7 @@ class App extends Component {
     }
   }
 
-  handleChange(e) {
-    const value = e.target.value
+  handleChange(value) {
     this.setState({
       value
     })
@@ -52,7 +49,7 @@ class App extends Component {
   render() {
     const { value } = this.state
     return (
-      <div style={{width: '70%', margin: '0 auto'}}>
+      <div style={{width: '60%', margin: '50px auto 0'}}>
         <Editor value={value} onChange={this.handleChange.bind(this)} />
       </div>
     )

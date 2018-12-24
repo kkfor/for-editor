@@ -46,3 +46,7 @@ ReactDOM.render(
 )
 
 ```
+
+### 更新日志
+
+- [更新日志](./doc/UPDATELOG.md)

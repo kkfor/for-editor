@@ -1,4 +1,5 @@
 .for-container {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
   ul {
     margin: 0;
     padding: 0;
@@ -54,6 +55,7 @@
       }
     }
     textarea {
+      font-family: inherit;
       display: block;
       height: 100%;
       width: 100%;
