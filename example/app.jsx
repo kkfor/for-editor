@@ -47,10 +47,16 @@ class App extends Component {
   }
 
   render() {
+    const editorStyle = {
+      'box-shadow': '#999 0 0 12px',
+      width: '60%',
+      margin: '50px auto 0',
+      'border-radius': '4px'
+    }
     const { value } = this.state
     return (
-      <div style={{width: '60%', margin: '50px auto 0'}}>
-        <Editor value={value} onChange={this.handleChange.bind(this)} />
+      <div style={editorStyle}>
+        <Editor style={editorStyle} value={value} onChange={this.handleChange.bind(this)} />
       </div>
     )
   }

@@ -1,5 +1,17 @@
 .for-container {
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  &.for-fullscreen {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+  }
   ul {
     margin: 0;
     padding: 0;
@@ -20,7 +32,7 @@
         margin: 8px 6px;
         border-radius: 4px;
         display: inline-block;
-        &.active{
+        &.for-active{
           background: #ddd;
         }
         &:hover {
@@ -33,7 +45,7 @@
   .for-editor {
     display: flex;
     justify-content: space-between;
-    height: 500px;
+    height: 100%;
     color: rgba(0, 0, 0, 0.65);
     border-radius: 0 0 4px 4px;
     .for-panel {

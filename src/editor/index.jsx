@@ -11,7 +11,8 @@ class MdEditor extends React.Component {
 
     this.state = {
       editorNode: null,
-      preview: false
+      preview: false,
+      expand: false
     }
   }
 
@@ -58,9 +59,14 @@ class MdEditor extends React.Component {
       preview: !this.state.preview
     })
   }
+  expand() {
+    this.setState({
+      expand: !this.state.expand
+    })
+  }
 
   render() {
-    const { preview } = this.state
+    const { preview, expand } = this.state
     const previewClass = classNames({
       'for-panel': true,
       'for-preview-hidden': !preview
@@ -69,12 +75,19 @@ class MdEditor extends React.Component {
       'for-panel': true
     })
     const previewActive = classNames({
-      active: preview
+      'for-active': preview
+    })
+    const fullscreen = classNames({
+      'for-container': true,
+      'for-fullscreen': expand
+    })
+    const expandActive = classNames({
+      'for-active': expand
     })
 
     const { value } = this.props
     return (
-      <div className="for-container">
+      <div className={fullscreen}>
         <div className="for-controlbar">
           <ul>
             {/* <li onClick={this.undo.bind(this, '### ')}>撤销</li> */}
@@ -93,6 +106,9 @@ class MdEditor extends React.Component {
             </li>
           </ul>
           <ul>
+            <li className={expandActive} onClick={this.expand.bind(this)}>
+              <i className="foricon for-expand" />
+            </li>
             <li className={previewActive} onClick={this.preview.bind(this)}>
               <i className="foricon for-eye" />
             </li>
