@@ -2,9 +2,12 @@
 
 for-editor is a react markdown editor
 
+- [在线预览](https://md.kkfor.com)
+- [源码地址](https://github.com/kkfor/for-editor)
+
 # Getting Started
 
-## Install
+### Install
 
 ```js
 npm install for-editor -S

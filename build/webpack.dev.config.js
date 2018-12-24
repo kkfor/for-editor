@@ -10,7 +10,7 @@ module.exports = merge(webpackBaseConfig, {
   entry: ['./example/index.js'],
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'for-editor.js'
+    filename: 'index.js'
   },
   plugins: [
     new HtmlWebpackPlugin({

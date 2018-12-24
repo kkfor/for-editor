@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.config.js",
+    "build": "webpack --config build/webpack.prod.config.js",
     "dist": "webpack --config build/webpack.dist.config.js"
   },
   "repository": {
