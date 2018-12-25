@@ -1,6 +1,6 @@
 {
   "name": "for-editor",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "react markdown editor",
   "main": "dist/index.js",
   "scripts": {
@@ -50,6 +50,7 @@
     "react-dom": "^16.7.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.0",
     "webpack": "^4.28.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
