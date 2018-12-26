@@ -2,6 +2,7 @@ import React from 'react'
 import './index.scss'
 import classNames from 'classnames'
 import marked from '../helpers/marked'
+import textInsert from '../helpers/textInsert'
 import 'highlight.js/styles/tomorrow.css'
 import '../fonts/iconfont.css'
 
@@ -35,28 +36,10 @@ class MdEditor extends React.Component {
   }
 
   // 快捷插入
-  insert(insertValue) {
-    const $vm = this.state.$vm
-    const value = $vm.value
-    if ($vm.selectionStart || $vm.selectionStart === 0) {
-      let start = $vm.selectionStart
-      let end = $vm.selectionEnd
-
-      const restoreTop = $vm.scrollTop
-
-      $vm.value =
-        value.substring(0, start) +
-        insertValue +
-        value.substring(end, value.length)
-
-      $vm.focus()
-      if (restoreTop >= 0) {
-        $vm.scrollTop = restoreTop
-      }
-      $vm.selectionStart = start + insertValue.length
-      $vm.selectionEnd = end + insertValue.length
-    }
-
+  insert(e) {
+    const { $vm } = this.state
+    const type = e.currentTarget.getAttribute('data-type')
+    textInsert($vm, type)
     this.saveHistory($vm.value)
   }
 
@@ -156,17 +139,25 @@ class MdEditor extends React.Component {
             <li onClick={this.redo.bind(this, '### ')}>
               <i className="foricon for-redo" />
             </li>
-            <li onClick={this.insert.bind(this, '# ')}>H1</li>
-            <li onClick={this.insert.bind(this, '## ')}>H2</li>
-            <li onClick={this.insert.bind(this, '### ')}>H3</li>
-            <li onClick={this.insert.bind(this, '#### ')}>H4</li>
-            <li onClick={this.insert.bind(this, '![]()')}>
+            <li data-type="h1" onClick={this.insert.bind(this)}>
+              H1
+            </li>
+            <li data-type="h2" onClick={this.insert.bind(this)}>
+              H2
+            </li>
+            <li data-type="h3" onClick={this.insert.bind(this)}>
+              H3
+            </li>
+            <li data-type="h4" onClick={this.insert.bind(this)}>
+              H4
+            </li>
+            <li data-type="image" onClick={this.insert.bind(this)}>
               <i className="foricon for-image" />
             </li>
-            <li onClick={this.insert.bind(this, '[]()')}>
+            <li data-type="link" onClick={this.insert.bind(this)}>
               <i className="foricon for-link" />
             </li>
-            <li onClick={this.insert.bind(this, '```\n\n```')}>
+            <li data-type="code" onClick={this.insert.bind(this)}>
               <i className="foricon for-code" />
             </li>
           </ul>
