@@ -10,55 +10,115 @@ class MdEditor extends React.Component {
     super(props)
 
     this.state = {
-      editorNode: null,
+      $vm: null,
       preview: false,
-      expand: false
+      expand: false,
+      f_history: [],
+      f_history_index: 0
     }
   }
 
-  editorChangeHandle(e) {
+  // 输入框dom
+  handleEditorNode = $vm => {
+    const { f_history } = this.state
+    f_history.push($vm.value)
     this.setState({
-      content: e.target.value
+      $vm,
+      f_history
     })
   }
 
-  handleEditorNode = editorNode => {
-    this.setState({
-      editorNode
-    })
-  }
-
+  // 输入框改变
   handleChange(e) {
-    this.props.onChange(e.target.value)
+    const value = e.target.value
+    this.saveHistory(value)
   }
 
+  // 快捷插入
   insert(insertValue) {
-    const editorNode = this.state.editorNode
-    const value = editorNode.value
-    if (editorNode.selectionStart || editorNode.selectionStart === 0) {
-      let start = editorNode.selectionStart
-      let end = editorNode.selectionEnd
+    const $vm = this.state.$vm
+    const value = $vm.value
+    if ($vm.selectionStart || $vm.selectionStart === 0) {
+      let start = $vm.selectionStart
+      let end = $vm.selectionEnd
 
-      const restoreTop = editorNode.scrollTop
+      const restoreTop = $vm.scrollTop
 
-      editorNode.value =
+      $vm.value =
         value.substring(0, start) +
         insertValue +
         value.substring(end, value.length)
-      editorNode.focus()
+
+      $vm.focus()
       if (restoreTop >= 0) {
-        editorNode.scrollTop = restoreTop
+        $vm.scrollTop = restoreTop
       }
-      editorNode.selectionStart = start + insertValue.length
-      editorNode.selectionEnd = end + insertValue.length
+      $vm.selectionStart = start + insertValue.length
+      $vm.selectionEnd = end + insertValue.length
     }
+
+    this.saveHistory($vm.value)
   }
 
+  // 保存记录
+  saveHistory(value) {
+    let { f_history, f_history_index } = this.state
+    window.clearTimeout(this.currentTimeout)
+    this.currentTimeout = setTimeout(() => {
+      // 撤销后修改，删除当前以后记录
+      if (f_history_index < f_history.length - 1) {
+        f_history.splice(f_history_index + 1)
+      }
+      // 超出记录最多保存数后，滚动储存
+      if (f_history.length >= 20) {
+        f_history.shift()
+      }
+      // 记录当前位置
+      f_history_index = f_history.length
+      f_history.push(value)
+      this.setState({
+        f_history,
+        f_history_index
+      })
+    }, 500)
+    // 将值传递给父组件
+    this.props.onChange(value)
+  }
+
+  undo() {
+    const { f_history } = this.state
+    let { f_history_index } = this.state
+    f_history_index = f_history_index - 1
+    if (f_history_index < 0) return
+    this.setState({
+      f_history_index
+    })
+    const value = f_history[f_history_index]
+    // 将值传递给父组件
+    this.props.onChange(value)
+  }
+
+  redo() {
+    const { f_history } = this.state
+    let { f_history_index } = this.state
+    f_history_index = f_history_index + 1
+    if (f_history_index >= f_history.length) return
+    this.setState({
+      f_history_index
+    })
+    const value = f_history[f_history_index]
+    // 将值传递给父组件
+    this.props.onChange(value)
+  }
+
+  // 预览
   preview() {
     this.setState({
       preview: !this.state.preview
     })
   }
+
+  // 全屏
   expand() {
     this.setState({
       expand: !this.state.expand
@@ -90,7 +150,12 @@ class MdEditor extends React.Component {
       <div className={fullscreen}>
         <div className="for-controlbar">
           <ul>
-            {/* <li onClick={this.undo.bind(this, '### ')}>撤销</li> */}
+            <li onClick={this.undo.bind(this, '### ')}>
+              <i className="foricon for-undo" />
+            </li>
+            <li onClick={this.redo.bind(this, '### ')}>
+              <i className="foricon for-redo" />
+            </li>
             <li onClick={this.insert.bind(this, '# ')}>H1</li>
             <li onClick={this.insert.bind(this, '## ')}>H2</li>
             <li onClick={this.insert.bind(this, '### ')}>H3</li>

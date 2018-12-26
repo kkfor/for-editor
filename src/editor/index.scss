@@ -26,12 +26,13 @@
     padding: 0 6px;
     border-bottom: 1px solid #ddd;
     color: #333;
+    user-select: none;
     > ul {
       li {
-        padding: 2px 6px;
-        margin: 8px 6px;
-        border-radius: 4px;
         display: inline-block;
+        padding: 4px 6px;
+        margin: 8px 4px;
+        border-radius: 4px;
         &.for-active{
           background: #ddd;
         }
@@ -39,6 +40,9 @@
           cursor: pointer;
           background: #d8d8d8;
         }
+        // i {
+        //   font-size: 1.2em;
+        // }
       }
     }
   }
