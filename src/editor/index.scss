@@ -28,8 +28,10 @@
     color: #333;
     user-select: none;
     > ul {
+      display: flex;
       li {
-        display: inline-block;
+        display: flex;
+        align-items: center;
         padding: 4px 6px;
         margin: 8px 4px;
         border-radius: 4px;
@@ -40,9 +42,9 @@
           cursor: pointer;
           background: #d8d8d8;
         }
-        // i {
-        //   font-size: 1.2em;
-        // }
+        i {
+          font-size: 1.2em;
+        }
       }
     }
   }
