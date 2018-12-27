@@ -19,7 +19,8 @@ class MdEditor extends React.Component {
       preview: false,
       expand: false,
       f_history: [],
-      f_history_index: 0
+      f_history_index: 0,
+      line_index: 1
     }
   }
 
@@ -30,10 +31,12 @@ class MdEditor extends React.Component {
   componentDidMount() {
     // 编辑框回显内容支持撤销
     const { f_history, $vm } = this.state
+    const value = $vm.value
     f_history.push($vm.value)
     this.setState({
       f_history
     })
+    this.handleLineIndex(value)
   }
 
   // 输入框改变
@@ -73,6 +76,14 @@ class MdEditor extends React.Component {
     }, 500)
     // 将值传递给父组件
     this.props.onChange(value)
+    this.handleLineIndex(value)
+  }
+
+  handleLineIndex(value) {
+    const line_index = value.split('\n').length
+    this.setState({
+      line_index
+    })
   }
 
   undo() {
@@ -116,7 +127,8 @@ class MdEditor extends React.Component {
   }
 
   render() {
-    const { preview, expand } = this.state
+    const { preview, expand, line_index } = this.state
+    const { value } = this.props
     const previewClass = classNames({
       'for-panel': true,
       'for-preview-hidden': !preview
@@ -135,7 +147,14 @@ class MdEditor extends React.Component {
       'for-active': expand
     })
 
-    const { value } = this.props
+    const lineNum = function() {
+      const list = []
+      for (let i = 0; i < line_index; i++) {
+        list.push(<li key={i + 1}>{i + 1}</li>)
+      }
+      return <ul className="for-line-num">{list}</ul>
+    }
+
     return (
       <div className={fullscreen}>
         <div className="for-controlbar">

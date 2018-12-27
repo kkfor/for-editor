@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import Editor from '../src/main'
 // import Editor from '../dist'
 
-const value = `
-> \`for-editor\` is a markdown editor
+const value = `> \`for-editor\` is a markdown editor
 
 # for-editor
 
@@ -28,7 +27,6 @@ const editor = 'for-editor'
 1. item1
 2. item2
 3. item3
-
 `
 
 
