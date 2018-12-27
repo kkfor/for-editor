@@ -10,6 +10,10 @@ class MdEditor extends React.Component {
   constructor(props) {
     super(props)
 
+    this.handleEditorRef = $vm => {
+      this.state.$vm = $vm
+    }
+
     this.state = {
       $vm: null,
       preview: false,
@@ -19,12 +23,15 @@ class MdEditor extends React.Component {
     }
   }
 
-  // 输入框dom
-  handleEditorNode = $vm => {
-    const { f_history } = this.state
+  static defaultProps = {
+    placeholder: '请输入内容...'
+  }
+
+  componentDidMount() {
+    // 编辑框回显内容支持撤销
+    const { f_history, $vm } = this.state
     f_history.push($vm.value)
     this.setState({
-      $vm,
       f_history
     })
   }
@@ -173,10 +180,10 @@ class MdEditor extends React.Component {
         <div className="for-editor">
           <div className={editorClass}>
             <textarea
-              ref={this.handleEditorNode}
+              ref={this.handleEditorRef}
               value={value}
               onChange={this.handleChange.bind(this)}
-              placeholder="请输入内容..."
+              placeholder={this.props.placeholder}
             />
           </div>
           <div className={previewClass}>
