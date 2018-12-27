@@ -49,6 +49,18 @@ ReactDOM.render(
 
 ```
 
-### 更新日志
+### Api
 
-- [更新日志](./doc/UPDATELOG.md)
+#### props
+
+
+| name | type | default | description |
+| - | - | - | -|
+| placeholder | String | 请输入内容... | 占位文本 |
+| value | String| - |输入框内容 |
+| onChange | function(e) | - | 内容改变时回调 |
+
+
+### Update
+
+- [Update Log](./doc/UPDATELOG.md)
