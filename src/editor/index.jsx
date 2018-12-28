@@ -10,12 +10,12 @@ class MdEditor extends React.Component {
   constructor(props) {
     super(props)
 
+    this.$vm = null
     this.handleEditorRef = $vm => {
-      this.state.$vm = $vm
+      this.$vm = $vm
     }
 
     this.state = {
-      $vm: null,
       preview: false,
       expand: false,
       f_history: [],
@@ -29,14 +29,8 @@ class MdEditor extends React.Component {
   }
 
   componentDidMount() {
-    // 编辑框回显内容支持撤销
-    const { f_history, $vm } = this.state
-    const value = $vm.value
-    f_history.push($vm.value)
-    this.setState({
-      f_history
-    })
-    this.handleLineIndex(value)
+    // 编辑框回显
+    this.saveHistory(this.$vm.value)
   }
 
   // 输入框改变
@@ -47,7 +41,7 @@ class MdEditor extends React.Component {
 
   // 快捷插入
   insert(e) {
-    const { $vm } = this.state
+    const { $vm } = this
     const type = e.currentTarget.getAttribute('data-type')
     textInsert($vm, type)
     this.saveHistory($vm.value)
@@ -198,12 +192,22 @@ class MdEditor extends React.Component {
         </div>
         <div className="for-editor">
           <div className={editorClass}>
-            <textarea
-              ref={this.handleEditorRef}
-              value={value}
-              onChange={this.handleChange.bind(this)}
-              placeholder={this.props.placeholder}
-            />
+            <div className="for-editor-wrapper">
+              <div className="for-editor-wrapper-in">
+                <div className="for-editor-block">
+                  {lineNum()}
+                  <div className="for-editor-content">
+                    <pre> {value} </pre>
+                    <textarea
+                      ref={this.handleEditorRef}
+                      value={value}
+                      onChange={this.handleChange.bind(this)}
+                      placeholder={this.props.placeholder}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className={previewClass}>
             <div

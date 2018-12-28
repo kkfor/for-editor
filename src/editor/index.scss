@@ -1,8 +1,16 @@
 .for-container {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  * {
+    box-sizing: border-box;
+  }
+
+  font-family: 'Source Sans Pro',
+  'Helvetica Neue',
+  Arial,
+  sans-serif;
   display: flex;
   flex-direction: column;
   height: 600px;
+
   &.for-fullscreen {
     position: fixed;
     z-index: 99999;
@@ -12,14 +20,17 @@
     left: 0;
     height: 100%;
   }
+
   ul {
     margin: 0;
     padding: 0;
   }
+
   border: 1px solid #ddd;
   border-radius: 4px;
   background: #fff;
   font-size: 14px;
+
   .for-controlbar {
     display: flex;
     justify-content: space-between;
@@ -27,27 +38,33 @@
     border-bottom: 1px solid #ddd;
     color: #333;
     user-select: none;
-    > ul {
+
+    >ul {
       display: flex;
+
       li {
         display: flex;
         align-items: center;
         padding: 4px 6px;
         margin: 8px 4px;
         border-radius: 4px;
-        &.for-active{
+
+        &.for-active {
           background: #ddd;
         }
+
         &:hover {
           cursor: pointer;
           background: #d8d8d8;
         }
+
         i {
           font-size: 1.2em;
         }
       }
     }
   }
+
   .for-editor {
     display: flex;
     justify-content: space-between;
@@ -55,44 +72,96 @@
     color: rgba(0, 0, 0, 0.65);
     border-radius: 0 0 4px 4px;
     overflow: hidden;
+
     .for-panel {
       height: 100%;
       flex: 1;
       width: 50%;
       overflow: hidden;
+
       .for-preview {
         overflow: auto;
         height: 100%;
-        box-sizing: border-box;
         border-left: 1px solid #ccc;
         padding: 10px 14px;
         background: #fcfcfc;
       }
     }
+
     .for-preview-hidden {
       display: none;
     }
+
+    // 编辑区域
+    .for-editor-wrapper {
+      display: flex;
+      overflow: auto;
+      height: 100%;
+      line-height: 1.6;
+
+      .for-editor-content-in {
+        width: 100%;
+      }
+
+      .for-editor-block {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .for-line-num {
+        list-style: none;
+        background: #eee;
+        padding: 8px 0;
+        margin-right: 4px;
+        min-width: 30px;
+        text-align: center;
+
+        li {
+          list-style: none;
+        }
+
+      }
+
+      .for-editor-content {
+        height: 100%;
+        position: relative;
+        flex: 1;
+
+        pre {
+          display: block;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+          visibility: hidden;
+          margin: 0;
+        }
+      }
+    }
   }
+
   textarea {
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    padding: 0;
     font-family: inherit;
     display: block;
     height: 100%;
     width: 100%;
-    box-sizing: border-box;
-    padding: 10px 14px;
+    overflow: hidden;
     resize: none;
     border: none;
     outline: none;
     font-size: inherit;
     color: rgba(0, 0, 0, 0.65);
     background: none;
-    line-height: 1.6;
+    line-height: inherit;
   }
 }
 
 .for-markdown-preview {
   line-height: 2;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+
   p,
   blockquote,
   ul,
@@ -102,10 +171,12 @@
     margin-top: 0;
     margin-bottom: 8px;
   }
+
   h1,
   h2 {
     border-bottom: 1px solid #e2e2e2;
   }
+
   h1,
   h2,
   h3,
@@ -126,6 +197,7 @@
   a {
     color: #0366d6;
     text-decoration: none;
+
     &:hover {
       text-decoration: underline;
     }
@@ -135,16 +207,16 @@
   ol {
     padding-left: 2rem;
 
-    > li {
+    >li {
       line-height: 1.4rem;
       padding: 0.5rem;
       list-style-type: disc;
 
-      > p {
+      >p {
         text-indent: 0;
       }
 
-      > ul {
+      >ul {
         li {
           list-style-type: circle;
         }
@@ -156,7 +228,7 @@
     }
   }
 
-  ol > li {
+  ol>li {
     list-style-type: decimal;
   }
 
@@ -173,6 +245,7 @@
       &:first-child {
         margin-top: 0;
       }
+
       &:last-child {
         margin-bottom: 0;
       }
@@ -185,6 +258,7 @@
     line-height: 1.6;
     background-color: #f0f0f0;
     border-radius: 3px;
+
     code {
       padding: 0;
       margin: 0;
@@ -192,6 +266,7 @@
       background: transparent;
     }
   }
+
   code {
     padding: 0.2em 0.4em;
     margin: 0;
@@ -205,6 +280,7 @@
     background: #dadada;
     border: none;
   }
+
   img {
     display: block;
     margin: 0 auto;
