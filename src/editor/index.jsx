@@ -29,15 +29,22 @@ class MdEditor extends React.Component {
     lineNum: true
   }
 
-  componentDidMount() {
-    // 编辑框回显
-    this.saveHistory(this.$vm.value)
+  componentWillUpdate(props, state) {
+    const { f_history } = this.state
+    if (props.value && state.f_history.length === 0) {
+      f_history.push(props.value)
+      this.setState({
+        f_history
+      })
+      this.handleLineIndex(props.value)
+    }
   }
 
   // 输入框改变
   handleChange(e) {
     const value = e.target.value
     this.saveHistory(value)
+    this.props.onChange(value)
   }
 
   // 快捷插入
@@ -45,6 +52,7 @@ class MdEditor extends React.Component {
     const { $vm } = this
     const type = e.currentTarget.getAttribute('data-type')
     textInsert($vm, type)
+    this.props.onChange($vm.value)
     this.saveHistory($vm.value)
   }
 
@@ -70,12 +78,12 @@ class MdEditor extends React.Component {
       })
     }, 500)
     // 将值传递给父组件
-    this.props.onChange(value)
+    // this.props.onChange(value)
     this.handleLineIndex(value)
   }
 
   handleLineIndex(value) {
-    const line_index = value.split('\n').length
+    const line_index = value ? value.split('\n').length : 1
     this.setState({
       line_index
     })
@@ -92,6 +100,7 @@ class MdEditor extends React.Component {
     const value = f_history[f_history_index]
     // 将值传递给父组件
     this.props.onChange(value)
+    this.handleLineIndex(value)
   }
 
   redo() {
@@ -105,6 +114,7 @@ class MdEditor extends React.Component {
     const value = f_history[f_history_index]
     // 将值传递给父组件
     this.props.onChange(value)
+    this.handleLineIndex(value)
   }
 
   // 预览

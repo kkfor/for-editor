@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
-// import Editor from '../src/main'
-import Editor from '../dist'
+import Editor from '../src/main'
+// import Editor from '../dist'
 
-const value = `> \`for-editor\` is a markdown editor
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      value: ''
+    }
+  }
+
+  componentDidMount() {
+    const value = `> \`for-editor\` is a markdown editor
 
 # for-editor
 
@@ -29,13 +38,11 @@ const editor = 'for-editor'
 3. item3
 `
 
-
-class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      value: value
-    }
+    setTimeout(() => {
+      this.setState({
+        value
+      })
+    }, 200)
   }
 
   handleChange(value) {
@@ -54,7 +61,11 @@ class App extends Component {
     const { value } = this.state
     return (
       <div style={editorStyle}>
-        <Editor style={editorStyle} value={value} onChange={this.handleChange.bind(this)} />
+        <Editor
+          style={editorStyle}
+          value={value}
+          onChange={this.handleChange.bind(this)}
+        />
       </div>
     )
   }
