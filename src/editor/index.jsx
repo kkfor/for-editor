@@ -25,7 +25,8 @@ class MdEditor extends React.Component {
   }
 
   static defaultProps = {
-    placeholder: '请输入内容...'
+    placeholder: '请输入内容...',
+    lineNum: true
   }
 
   componentDidMount() {
@@ -140,13 +141,17 @@ class MdEditor extends React.Component {
     const expandActive = classNames({
       'for-active': expand
     })
+    const lineNumStyles = classNames({
+      'for-line-num': true,
+      hidden: !this.props.lineNum
+    })
 
     const lineNum = function() {
       const list = []
       for (let i = 0; i < line_index; i++) {
         list.push(<li key={i + 1}>{i + 1}</li>)
       }
-      return <ul className="for-line-num">{list}</ul>
+      return <ul className={lineNumStyles}>{list}</ul>
     }
 
     return (

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Editor from '../src/main'
-// import Editor from '../dist'
+// import Editor from '../src/main'
+import Editor from '../dist'
 
 const value = `> \`for-editor\` is a markdown editor
 

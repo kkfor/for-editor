@@ -99,23 +99,25 @@
       height: 100%;
       line-height: 1.6;
 
-      .for-editor-content-in {
+      .for-editor-wrapper-in {
         width: 100%;
       }
 
       .for-editor-block {
         display: flex;
         justify-content: space-between;
+        min-height: 100%;
       }
 
       .for-line-num {
         list-style: none;
         background: #eee;
-        padding: 8px 0;
-        margin-right: 4px;
+        padding: 8px 0 40%;
         min-width: 30px;
         text-align: center;
-
+        &.hidden {
+          display: none;
+        }
         li {
           list-style: none;
         }
@@ -123,11 +125,13 @@
       }
 
       .for-editor-content {
-        height: 100%;
-        position: relative;
         flex: 1;
+        position: relative;
+        height: 100%;
+        margin-left: 10px;
 
         pre {
+          padding: 8px 0;
           display: block;
           white-space: pre-wrap;
           word-wrap: break-word;
@@ -140,9 +144,9 @@
 
   textarea {
     position: absolute;
-    top: 8px;
-    bottom: 8px;
-    padding: 0;
+    top: 0;
+    bottom: 0;
+    padding: 8px 0;
     font-family: inherit;
     display: block;
     height: 100%;
