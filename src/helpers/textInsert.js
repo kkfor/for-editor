@@ -1,6 +1,5 @@
 function insert($vm, prefix, hint, subfix = '') {
   const value = $vm.value
-  console.log($vm.selectionStart, $vm.selectionEnd, 'xxx')
   if ($vm.selectionStart || $vm.selectionStart === 0) {
     let start = $vm.selectionStart
     let end = $vm.selectionEnd

@@ -41,14 +41,14 @@ class MdEditor extends React.Component {
   }
 
   // 输入框改变
-  handleChange(e) {
+  handleChange = e => {
     const value = e.target.value
     this.saveHistory(value)
     this.props.onChange(value)
   }
 
   // 快捷插入
-  insert(e) {
+  insert = e => {
     const { $vm } = this
     const type = e.currentTarget.getAttribute('data-type')
     textInsert($vm, type)
@@ -89,7 +89,7 @@ class MdEditor extends React.Component {
     })
   }
 
-  undo() {
+  undo = () => {
     const { f_history } = this.state
     let { f_history_index } = this.state
     f_history_index = f_history_index - 1
@@ -103,7 +103,7 @@ class MdEditor extends React.Component {
     this.handleLineIndex(value)
   }
 
-  redo() {
+  redo = () => {
     const { f_history } = this.state
     let { f_history_index } = this.state
     f_history_index = f_history_index + 1
@@ -118,14 +118,14 @@ class MdEditor extends React.Component {
   }
 
   // 预览
-  preview() {
+  preview = () => {
     this.setState({
       preview: !this.state.preview
     })
   }
 
   // 全屏
-  expand() {
+  expand = () => {
     this.setState({
       expand: !this.state.expand
     })
@@ -168,39 +168,39 @@ class MdEditor extends React.Component {
       <div className={fullscreen}>
         <div className="for-controlbar">
           <ul>
-            <li onClick={this.undo.bind(this, '### ')}>
+            <li onClick={this.undo}>
               <i className="foricon for-undo" />
             </li>
-            <li onClick={this.redo.bind(this, '### ')}>
+            <li onClick={this.redo}>
               <i className="foricon for-redo" />
             </li>
-            <li data-type="h1" onClick={this.insert.bind(this)}>
+            <li data-type="h1" onClick={this.insert}>
               H1
             </li>
-            <li data-type="h2" onClick={this.insert.bind(this)}>
+            <li data-type="h2" onClick={this.insert}>
               H2
             </li>
-            <li data-type="h3" onClick={this.insert.bind(this)}>
+            <li data-type="h3" onClick={this.insert}>
               H3
             </li>
-            <li data-type="h4" onClick={this.insert.bind(this)}>
+            <li data-type="h4" onClick={this.insert}>
               H4
             </li>
-            <li data-type="image" onClick={this.insert.bind(this)}>
+            <li data-type="image" onClick={this.insert}>
               <i className="foricon for-image" />
             </li>
-            <li data-type="link" onClick={this.insert.bind(this)}>
+            <li data-type="link" onClick={this.insert}>
               <i className="foricon for-link" />
             </li>
-            <li data-type="code" onClick={this.insert.bind(this)}>
+            <li data-type="code" onClick={this.insert}>
               <i className="foricon for-code" />
             </li>
           </ul>
           <ul>
-            <li className={expandActive} onClick={this.expand.bind(this)}>
+            <li className={expandActive} onClick={this.expand}>
               <i className="foricon for-expand" />
             </li>
-            <li className={previewActive} onClick={this.preview.bind(this)}>
+            <li className={previewActive} onClick={this.preview}>
               <i className="foricon for-eye" />
             </li>
           </ul>
@@ -216,7 +216,7 @@ class MdEditor extends React.Component {
                     <textarea
                       ref={this.handleEditorRef}
                       value={value}
-                      onChange={this.handleChange.bind(this)}
+                      onChange={this.handleChange}
                       placeholder={this.props.placeholder}
                     />
                   </div>
