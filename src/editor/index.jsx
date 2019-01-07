@@ -3,7 +3,7 @@ import './index.scss'
 import classNames from 'classnames'
 import marked from '../helpers/marked'
 import textInsert from '../helpers/insertText'
-import keydownListen from '../helpers/keydown_listen'
+import keydownListen from '../helpers/keydownListen'
 import 'highlight.js/styles/tomorrow.css'
 import '../fonts/iconfont.css'
 
@@ -136,6 +136,11 @@ class MdEditor extends React.Component {
     })
   }
 
+  // 保存
+  save = () => {
+    this.props.onSave()
+  }
+
   render() {
     const { preview, expand, line_index } = this.state
     const { value } = this.props
@@ -200,13 +205,24 @@ class MdEditor extends React.Component {
             <li data-type="code" onClick={this.insert} title="代码块">
               <i className="foricon for-code" />
             </li>
+            <li data-type="code" onClick={this.save} title="保存 (ctrl+s)">
+              <i className="foricon for-save" />
+            </li>
           </ul>
           <ul>
             <li className={expandActive} onClick={this.expand}>
-              <i className="foricon for-expand" />
+              {expandActive ? (
+                <i className="foricon for-contract" />
+              ) : (
+                <i className="foricon for-expand" />
+              )}
             </li>
             <li className={previewActive} onClick={this.preview}>
-              <i className="foricon for-eye" />
+              {previewActive ? (
+                <i className="foricon for-eye-off" />
+              ) : (
+                <i className="foricon for-eye" />
+              )}
             </li>
           </ul>
         </div>

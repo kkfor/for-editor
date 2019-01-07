@@ -66,12 +66,12 @@ export default ins => {
           ins.redo()
           break
         }
-        // case KEY_CODE.: {
-        //   // Y
-        //   e.preventDefault()
-        //   ins.redo()
-        //   break
-        // }
+        case KEY_CODE.S: {
+          // S
+          e.preventDefault()
+          ins.save()
+          break
+        }
         default: {
         }
       }
