@@ -3,6 +3,7 @@ import './index.scss'
 import classNames from 'classnames'
 import marked from '../helpers/marked'
 import textInsert from '../helpers/textInsert'
+import keydownListen from '../helpers/keydown_listen'
 import 'highlight.js/styles/tomorrow.css'
 import '../fonts/iconfont.css'
 
@@ -27,6 +28,10 @@ class MdEditor extends React.Component {
   static defaultProps = {
     placeholder: '请输入内容...',
     lineNum: true
+  }
+
+  componentDidMount() {
+    keydownListen(this)
   }
 
   componentWillUpdate(props, state) {
@@ -168,31 +173,31 @@ class MdEditor extends React.Component {
       <div className={fullscreen}>
         <div className="for-controlbar">
           <ul>
-            <li onClick={this.undo}>
+            <li onClick={this.undo} title="上一步 (ctrl+z)">
               <i className="foricon for-undo" />
             </li>
-            <li onClick={this.redo}>
+            <li onClick={this.redo} title="下一步 (ctrl+y)">
               <i className="foricon for-redo" />
             </li>
-            <li data-type="h1" onClick={this.insert}>
+            <li data-type="h1" onClick={this.insert} title="一级标题">
               H1
             </li>
-            <li data-type="h2" onClick={this.insert}>
+            <li data-type="h2" onClick={this.insert} title="二级标题">
               H2
             </li>
-            <li data-type="h3" onClick={this.insert}>
+            <li data-type="h3" onClick={this.insert} title="三级标题">
               H3
             </li>
-            <li data-type="h4" onClick={this.insert}>
+            <li data-type="h4" onClick={this.insert} title="四级标题">
               H4
             </li>
-            <li data-type="image" onClick={this.insert}>
+            <li data-type="image" onClick={this.insert} title="图片">
               <i className="foricon for-image" />
             </li>
-            <li data-type="link" onClick={this.insert}>
+            <li data-type="link" onClick={this.insert} title="超链接">
               <i className="foricon for-link" />
             </li>
-            <li data-type="code" onClick={this.insert}>
+            <li data-type="code" onClick={this.insert} title="代码块">
               <i className="foricon for-code" />
             </li>
           </ul>
