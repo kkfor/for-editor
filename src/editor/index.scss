@@ -3,10 +3,7 @@
     box-sizing: border-box;
   }
 
-  font-family: 'Source Sans Pro',
-  'Helvetica Neue',
-  Arial,
-  sans-serif;
+  font-family: 'Consolas','Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
   display: flex;
   flex-direction: column;
   height: 600px;
@@ -32,6 +29,7 @@
   font-size: 14px;
 
   .for-controlbar {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
     display: flex;
     justify-content: space-between;
     padding: 0 6px;
@@ -138,6 +136,7 @@
           word-wrap: break-word;
           visibility: hidden;
           margin: 0;
+          font-family: inherit;
         }
       }
     }

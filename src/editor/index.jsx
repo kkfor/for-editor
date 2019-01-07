@@ -2,7 +2,7 @@ import React from 'react'
 import './index.scss'
 import classNames from 'classnames'
 import marked from '../helpers/marked'
-import textInsert from '../helpers/textInsert'
+import textInsert from '../helpers/insertText'
 import keydownListen from '../helpers/keydown_listen'
 import 'highlight.js/styles/tomorrow.css'
 import '../fonts/iconfont.css'
@@ -217,7 +217,7 @@ class MdEditor extends React.Component {
                 <div className="for-editor-block">
                   {lineNum()}
                   <div className="for-editor-content">
-                    <pre> {value} </pre>
+                    <pre>{value} </pre>
                     <textarea
                       ref={this.handleEditorRef}
                       value={value}

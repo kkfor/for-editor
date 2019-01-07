@@ -1,4 +1,4 @@
-function insert($vm, prefix, hint, subfix = '') {
+function insert($vm, prefix, hint = '', subfix = '') {
   const value = $vm.value
   if ($vm.selectionStart || $vm.selectionStart === 0) {
     let start = $vm.selectionStart
@@ -34,9 +34,6 @@ function insert($vm, prefix, hint, subfix = '') {
 }
 
 const toolbar = {
-  code($vm) {
-    insert($vm, '```', 'language', '\n\n```')
-  },
   h1($vm) {
     insert($vm, '# ', '一级标题')
   },
@@ -54,6 +51,12 @@ const toolbar = {
   },
   link($vm) {
     insert($vm, '[title](', 'url', ')')
+  },
+  code($vm) {
+    insert($vm, '```', 'language', '\n\n```')
+  },
+  tab($vm) {
+    insert($vm, '  ')
   }
 }
 

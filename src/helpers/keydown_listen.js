@@ -1,3 +1,5 @@
+import insertText from './insertText'
+
 const KEY_CODE = {
   F8: 119,
   F9: 120,
@@ -37,8 +39,19 @@ const KEY_CODE = {
 }
 
 export default ins => {
-  ins.$vm.addEventListener('keydown', e => {
-    if ((e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey) {
+  const $vm = ins.$vm
+  $vm.addEventListener('keydown', e => {
+    if (!(e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey) {
+      switch (e.keyCode) {
+        case KEY_CODE.TAB: {
+          e.preventDefault()
+          insertText($vm, 'tab')
+          break
+        }
+        default: {
+        }
+      }
+    } else if ((e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey) {
       // ctrl +
       switch (e.keyCode) {
         case KEY_CODE.Z: {
@@ -53,6 +66,12 @@ export default ins => {
           ins.redo()
           break
         }
+        // case KEY_CODE.: {
+        //   // Y
+        //   e.preventDefault()
+        //   ins.redo()
+        //   break
+        // }
         default: {
         }
       }
