@@ -45,7 +45,7 @@ export default ins => {
       switch (e.keyCode) {
         case KEY_CODE.TAB: {
           e.preventDefault()
-          insertText($vm, 'tab')
+          ins.insert('tab')
           break
         }
         default: {
@@ -55,7 +55,7 @@ export default ins => {
       // ctrl +
       switch (e.keyCode) {
         case KEY_CODE.Z: {
-          // B
+          // Z
           e.preventDefault()
           ins.undo()
           break

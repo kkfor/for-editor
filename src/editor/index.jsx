@@ -55,7 +55,7 @@ class MdEditor extends React.Component {
   // 快捷插入
   insert = e => {
     const { $vm } = this
-    const type = e.currentTarget.getAttribute('data-type')
+    const type = e.currentTarget ? e.currentTarget.getAttribute('data-type') : e
     textInsert($vm, type)
     this.props.onChange($vm.value)
     this.saveHistory($vm.value)
