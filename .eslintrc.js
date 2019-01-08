@@ -4,15 +4,30 @@ module.exports = {
     browser: true,
     node: true
   },
+  parser: 'babel-eslint',
   parserOptions: {
-    parser: 'babel-eslint'
+    ecmaFeatures: {
+      jsx: true,
+      modules: true
+    },
+  },
+  settings: {
+    react: {
+      pragma: "React", // Pragma to use, default to "React"
+      version: "detect", // React version. "detect" automatically picks the version you have installed.
+      // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
+    }
   },
   extends: [
-    'react-app',
+    'eslint:recommended',
+    'plugin:react/recommended',
     'plugin:prettier/recommended'
   ],
   plugins: [
     'react',
     'prettier'
   ],
+  rules: {
+    'react/prop-types': 0
+  }
 }

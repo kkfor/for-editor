@@ -1,5 +1,3 @@
-import insertText from './insertText'
-
 const KEY_CODE = {
   F8: 119,
   F9: 120,
@@ -48,8 +46,6 @@ export default ins => {
           ins.insert('tab')
           break
         }
-        default: {
-        }
       }
     } else if ((e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey) {
       // ctrl +
@@ -71,8 +67,6 @@ export default ins => {
           e.preventDefault()
           ins.save()
           break
-        }
-        default: {
         }
       }
     }

@@ -31,7 +31,7 @@ const linkParse = (href, title, text) => {
 renderer.paragraph = paragraphParse
 renderer.link = linkParse
 
-export default (content, tags) => {
+export default content => {
   if (typeof content != 'string') return ''
 
   return marked(content, { renderer })
