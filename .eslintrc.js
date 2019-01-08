@@ -2,7 +2,8 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true
+    node: true,
+    "jest/globals": true
   },
   parser: 'babel-eslint',
   parserOptions: {
@@ -24,10 +25,12 @@ module.exports = {
     'plugin:prettier/recommended'
   ],
   plugins: [
+    'jest',
     'react',
     'prettier'
   ],
   rules: {
-    'react/prop-types': 0
+    'react/prop-types': 0,
+    'no-console': 0
   }
 }
