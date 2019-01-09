@@ -24,9 +24,24 @@ module.exports = {
       },
       {
         test: /\.(sass|scss)$/,
+        exclude: /\.module\.(sass|scss)$/,
         use: [
           require.resolve('style-loader'),
           require.resolve('css-loader'),
+          require.resolve('sass-loader')
+        ]
+      },
+      {
+        test: /\.module\.(sass|scss)$/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+              modules: true
+            }
+          },
           require.resolve('sass-loader')
         ]
       },

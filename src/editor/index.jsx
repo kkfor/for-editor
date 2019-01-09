@@ -27,7 +27,8 @@ class MdEditor extends React.Component {
 
   static defaultProps = {
     placeholder: '请输入内容...',
-    lineNum: true
+    lineNum: true,
+    height: '600px'
   }
 
   componentDidMount() {
@@ -174,7 +175,7 @@ class MdEditor extends React.Component {
     }
 
     return (
-      <div className={fullscreen}>
+      <div className={fullscreen} style={{ height: this.props.height }}>
         <div className="for-controlbar">
           <ul>
             <li onClick={this.undo} title="上一步 (ctrl+z)">
@@ -228,20 +229,20 @@ class MdEditor extends React.Component {
         <div className="for-editor">
           <div className={editorClass}>
             <div className="for-editor-wrapper">
-              <div className="for-editor-wrapper-in">
-                <div className="for-editor-block">
-                  {lineNum()}
-                  <div className="for-editor-content">
-                    <pre>{value} </pre>
-                    <textarea
-                      ref={this.handleEditorRef}
-                      value={value}
-                      onChange={this.handleChange}
-                      placeholder={this.props.placeholder}
-                    />
-                  </div>
+              {/* <div className="for-editor-wrapper-in"> */}
+              <div className="for-editor-block">
+                {lineNum()}
+                <div className="for-editor-content">
+                  <pre>{value} </pre>
+                  <textarea
+                    ref={this.handleEditorRef}
+                    value={value}
+                    onChange={this.handleChange}
+                    placeholder={this.props.placeholder}
+                  />
                 </div>
               </div>
+              {/* </div> */}
             </div>
           </div>
           <div className={previewClass}>

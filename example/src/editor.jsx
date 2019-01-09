@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Editor from '../src/main'
+import Editor from '../../src/main'
 // import Editor from '../dist'
 
-class App extends Component {
+class Main extends Component {
   constructor() {
     super()
     this.state = {
@@ -56,17 +56,16 @@ const editor = 'for-editor'
   }
 
   render() {
+    const { value } = this.state
+
     const editorStyle = {
       boxShadow: '#999 0 0 12px',
-      width: '60%',
-      margin: '50px auto 0',
       borderRadius: '4px'
     }
-    const { value } = this.state
+
     return (
       <div style={editorStyle}>
         <Editor
-          style={editorStyle}
           value={value}
           onChange={this.handleChange}
           onSave={this.handleSave}
@@ -76,4 +75,4 @@ const editor = 'for-editor'
   }
 }
 
-export default App
+export default Main

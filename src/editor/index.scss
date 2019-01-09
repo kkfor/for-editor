@@ -76,7 +76,8 @@
       height: 100%;
       flex: 1;
       width: 50%;
-      overflow: hidden;
+      // overflow: hidden;
+      overflow: auto;
 
       .for-preview {
         overflow: auto;
@@ -93,14 +94,7 @@
 
     // 编辑区域
     .for-editor-wrapper {
-      display: flex;
-      overflow: auto;
-      height: 100%;
       line-height: 1.6;
-
-      .for-editor-wrapper-in {
-        width: 100%;
-      }
 
       .for-editor-block {
         display: flex;
@@ -111,7 +105,7 @@
       .for-line-num {
         list-style: none;
         background: #eee;
-        padding: 8px 0 40%;
+        padding: 8px 0 20%;
         min-width: 30px;
         text-align: center;
         &.hidden {

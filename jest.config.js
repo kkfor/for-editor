@@ -1,9 +1,6 @@
 module.exports = {
-  setupFiles: [
-    // './test/setup.js',
-  ],
   moduleFileExtensions: ['js', 'jsx', 'scss'],
-  setupTestFrameworkScriptFile: '<rootDir>/setupTests.js',
+  setupTestFrameworkScriptFile: '<rootDir>/test/setupTests.js',
   testPathIgnorePatterns: ['/node_modules/'],
   collectCoverageFrom: ['src/**/*.{js}', 'src/**/*.{jsx}'],
   moduleNameMapper: {
