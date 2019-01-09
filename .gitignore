@@ -1,6 +1,6 @@
 node_modules/
-demo/
 dist/
+playground/
 .DS_Store
 
 coverage
