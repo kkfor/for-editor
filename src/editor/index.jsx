@@ -82,8 +82,7 @@ class MdEditor extends React.Component {
         f_history_index
       })
     }, 500)
-    // 将值传递给父组件
-    // this.props.onChange(value)
+    // 行号
     this.handleLineIndex(value)
   }
 
