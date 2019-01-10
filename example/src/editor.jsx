@@ -28,6 +28,9 @@ const editor = 'for-editor'
 \`\`\`
 
 - item1
+  - subitem1
+  - subitem2
+  - subitem3
 - item2
 - item3
 
@@ -36,6 +39,14 @@ const editor = 'for-editor'
 1. item1
 2. item2
 3. item3
+
+### table
+
+| title | description |
+| - | - |
+| for-editor | markdown editor |
+
+
 `
 
     setTimeout(() => {

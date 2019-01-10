@@ -1,8 +1,4 @@
 .for-container {
-  * {
-    box-sizing: border-box;
-  }
-
   font-family: 'Consolas','Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
   display: flex;
   flex-direction: column;
@@ -18,7 +14,7 @@
     height: 100%;
   }
 
-  ul {
+  ul, ol, li,  {
     margin: 0;
     padding: 0;
   }
@@ -76,12 +72,9 @@
       height: 100%;
       flex: 1;
       width: 50%;
-      // overflow: hidden;
       overflow: auto;
 
       .for-preview {
-        overflow: auto;
-        height: 100%;
         border-left: 1px solid #ccc;
         padding: 10px 14px;
         background: #fcfcfc;
@@ -167,7 +160,7 @@
   dl,
   pre {
     margin-top: 0;
-    margin-bottom: 8px;
+    margin-bottom: .6em;
   }
 
   h1,
@@ -182,7 +175,7 @@
   h5,
   h6 {
     padding: 0;
-    margin: 0 0 8px;
+    margin: 0 0 .6em;
     font-weight: 600;
 
     text-indent: 0;
@@ -201,20 +194,22 @@
     }
   }
 
+  
   ul,
   ol {
-    padding-left: 2rem;
+    padding: .2em .8em;
 
-    >li {
-      line-height: 1.4rem;
-      padding: 0.5rem;
+    > li {
+      line-height: 2;
+      padding-left: .2em;
+      margin-left: .2em;
       list-style-type: disc;
 
-      >p {
+      > p {
         text-indent: 0;
       }
 
-      >ul {
+      > ul {
         li {
           list-style-type: circle;
         }
@@ -225,20 +220,24 @@
       }
     }
   }
+  
+  > ul, ol {
+    padding: 0 20px;
+  }
 
-  ol>li {
+  ol > li {
     list-style-type: decimal;
   }
 
   blockquote {
     margin: 0;
-    margin-bottom: 8px;
+    margin-bottom: .6em;
     padding: 0 1em;
     color: #6a737d;
     border-left: 0.25em solid #dfe2e5;
 
     p {
-      text-indent: 0em;
+      text-indent: 0;
 
       &:first-child {
         margin-top: 0;
@@ -251,7 +250,7 @@
   }
 
   pre {
-    padding: 12px;
+    padding: .6em;
     overflow: auto;
     line-height: 1.6;
     background-color: #f0f0f0;
@@ -273,17 +272,28 @@
   }
 
   hr {
-    margin-bottom: 8px;
+    margin-bottom: .6em;
     height: 1px;
     background: #dadada;
     border: none;
+  }
+
+  table {
+    width: 100%;
+    border: 1px solid #ddd;
+    margin-bottom: .6em;
+    border-collapse: collapse;
+    text-align: left;
+    th, td {
+      padding: .1em .4em;
+      border: 1px solid #ddd;
+    }
   }
 
   img {
     display: block;
     margin: 0 auto;
     max-width: 100%;
-    border: 5px solid #ddd;
-    margin-bottom: 8px;
+    margin-bottom: .6em;
   }
 }
