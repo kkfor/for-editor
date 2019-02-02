@@ -204,7 +204,7 @@ class MdEditor extends React.Component {
             <li data-type="code" onClick={this.insert} title="代码块">
               <i className="foricon for-code" />
             </li>
-            <li data-type="code" onClick={this.save} title="保存 (ctrl+s)">
+            <li onClick={this.save} title="保存 (ctrl+s)">
               <i className="foricon for-save" />
             </li>
           </ul>
