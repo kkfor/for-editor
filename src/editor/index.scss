@@ -1,5 +1,5 @@
 .for-container {
-  font-family: 'Consolas','Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
   display: flex;
   flex-direction: column;
   height: 600px;
@@ -130,6 +130,7 @@
   }
 
   textarea {
+    font-family: 'Consolas', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -151,7 +152,6 @@
 
 .for-markdown-preview {
   line-height: 2;
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
 
   p,
   blockquote,
