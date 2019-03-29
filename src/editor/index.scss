@@ -75,10 +75,12 @@
       overflow: auto;
 
       .for-preview {
-        border-left: 1px solid #ccc;
         padding: 10px 14px;
         background: #fcfcfc;
       }
+    }
+    .for-panel:last-child {
+      border-left: 1px solid #ccc;
     }
 
     .for-preview-hidden {
@@ -88,6 +90,7 @@
     // 编辑区域
     .for-editor-wrapper {
       line-height: 1.6;
+      height: 100%;
 
       .for-editor-block {
         display: flex;
