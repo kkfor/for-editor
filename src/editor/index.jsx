@@ -140,6 +140,12 @@ class MdEditor extends React.Component {
     this.props.onSave()
   }
 
+  // 左侧空白区点击后，textarea聚焦
+  focusText = () => {
+    const { $vm } = this
+    $vm.focus()
+  }
+
   render() {
     const { preview, expand, line_index } = this.state
     const { value } = this.props
@@ -226,7 +232,7 @@ class MdEditor extends React.Component {
           </ul>
         </div>
         <div className="for-editor">
-          <div className={editorClass}>
+          <div className={editorClass} tabIndex="-1" onFocus={this.focusText}>
             <div className="for-editor-wrapper">
               <div className="for-editor-block">
                 {lineNum()}
