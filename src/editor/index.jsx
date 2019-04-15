@@ -32,6 +32,9 @@ class MdEditor extends React.Component {
 
   componentDidMount() {
     keydownListen(this)
+    if (this.props.onRef) {
+      this.props.onRef(this)
+    }
   }
 
   componentWillUpdate(props, state) {
@@ -57,6 +60,13 @@ class MdEditor extends React.Component {
     const { $vm } = this
     const type = e.currentTarget ? e.currentTarget.getAttribute('data-type') : e
     textInsert($vm, type)
+    this.props.onChange($vm.value)
+    this.saveHistory($vm.value)
+  }
+
+  insertContent = value => {
+    const { $vm } = this
+    textInsert($vm, 'text', value)
     this.props.onChange($vm.value)
     this.saveHistory($vm.value)
   }
