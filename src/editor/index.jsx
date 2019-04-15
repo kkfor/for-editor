@@ -32,6 +32,9 @@ class MdEditor extends React.Component {
 
   componentDidMount() {
     keydownListen(this)
+    if (this.props.onRef) {
+      this.props.onRef(this)
+    }
   }
 
   componentWillUpdate(props, state) {
@@ -63,6 +66,13 @@ class MdEditor extends React.Component {
     const { $vm } = this
     const type = e.currentTarget ? e.currentTarget.getAttribute('data-type') : e
     textInsert($vm, type)
+    this.props.onChange($vm.value)
+    this.saveHistory($vm.value)
+  }
+
+  insertContent = value => {
+    const { $vm } = this
+    textInsert($vm, 'text', value)
     this.props.onChange($vm.value)
     this.saveHistory($vm.value)
   }
@@ -144,6 +154,12 @@ class MdEditor extends React.Component {
   // 保存
   save = () => {
     this.props.onSave()
+  }
+
+  // 左侧空白区点击后，textarea聚焦
+  focusText = () => {
+    const { $vm } = this
+    $vm.focus()
   }
 
   render() {
@@ -232,7 +248,7 @@ class MdEditor extends React.Component {
           </ul>
         </div>
         <div className="for-editor">
-          <div className={editorClass}>
+          <div className={editorClass} tabIndex="-1" onFocus={this.focusText}>
             <div className="for-editor-wrapper">
               <div className="for-editor-block">
                 {lineNum()}
