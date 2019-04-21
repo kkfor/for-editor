@@ -57,12 +57,9 @@ const toolbar = {
   },
   tab($vm) {
     insert($vm, '  ')
-  },
-  text($vm, content) {
-    insert($vm, content)
   }
 }
 
-export default ($vm, type, content) => {
-  return toolbar[type]($vm, content)
+export default ($vm, type) => {
+  return toolbar[type]($vm)
 }
