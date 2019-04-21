@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Editor from '../../src/main'
-// import Editor from '../dist'
+// import Editor from '../../dist'
 
 class Main extends Component {
   constructor() {

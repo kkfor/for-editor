@@ -43,8 +43,8 @@ class App extends Component {
 }
 
 ReactDOM.render(
-  <Editor />,
-  document.getElementById('container')
+  <App />,
+  document.getElementById('root')
 )
 
 ```
