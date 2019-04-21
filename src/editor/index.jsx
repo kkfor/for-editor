@@ -48,12 +48,6 @@ class MdEditor extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.handleLineIndex(nextProps.value)
-    }
-  }
-
   // 输入框改变
   handleChange = e => {
     const value = e.target.value
