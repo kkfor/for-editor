@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import './index.scss'
 import classNames from 'classnames'
 import marked from '../helpers/marked'
@@ -7,7 +7,16 @@ import keydownListen from '../helpers/keydownListen'
 import 'highlight.js/styles/tomorrow.css'
 import '../fonts/iconfont.css'
 
-class MdEditor extends React.Component {
+interface P {
+
+}
+
+interface S {
+  
+}
+
+
+class MdEditor extends React.Component<P, S> {
   constructor(props) {
     super(props)
 

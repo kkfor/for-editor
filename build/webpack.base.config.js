@@ -1,57 +1,90 @@
-const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const resolve = dir => {
-  return path.resolve(__dirname, '..', dir)
-}
+// const isProd = process.env.NODE_ENV === 'production'
+const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
+  entry: './example/index.tsx',
+  devtool: isDev && 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx'],
-    alias: {
-      '@': resolve('src')
-    }
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: resolve('node_modules'),
-        use: require.resolve('babel-loader')
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: ['@babel/plugin-proposal-class-properties']
+          }
+        }
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'ts-loader'
+        }
       },
       {
         test: /\.css$/,
-        use: [require.resolve('style-loader'), require.resolve('css-loader')]
-      },
-      {
-        test: /\.(sass|scss)$/,
-        exclude: /\.module\.(sass|scss)$/,
         use: [
-          require.resolve('style-loader'),
-          require.resolve('css-loader'),
-          require.resolve('sass-loader')
-        ]
-      },
-      {
-        test: /\.module\.(sass|scss)$/,
-        use: [
-          require.resolve('style-loader'),
           {
-            loader: require.resolve('css-loader'),
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
             options: {
-              importLoaders: 1,
-              modules: true
+              sourceMap: isDev,
+              importLoaders: 1
             }
           },
-          require.resolve('sass-loader')
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')],
+              sourceMap: isDev
+            }
+          }
         ]
       },
       {
-        test: /\.(woff2?|eot|ttf|svg)$/,
-        loader: require.resolve('file-loader'),
-        options: {
-          name: 'static/fonts/[name].[hash:8].[ext]'
-        }
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: isDev
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')],
+              sourceMap: isDev
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: isDev
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(svg)$/,
+        use: 'url-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './example/index.html'
+    })
+  ]
 }

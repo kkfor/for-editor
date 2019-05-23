@@ -7,7 +7,7 @@ const webpack = require('webpack')
 
 module.exports = merge(webpackBaseConfig, {
   mode: 'development',
-  entry: ['./example/index.js'],
+  entry: ['./example/index.tsx'],
   output: {
     path: path.resolve(__dirname, '../playground'),
     filename: 'index.js',
