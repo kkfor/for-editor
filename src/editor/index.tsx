@@ -8,23 +8,26 @@ import 'highlight.js/styles/tomorrow.css'
 import '../fonts/iconfont.css'
 
 interface P {
-
+  value: string
+  height: String
+  lineNum: Number
+  onChange: (value: String) => void
+  onSave: () => void
 }
 
 interface S {
-  
+  preview: Boolean
+  expand: Boolean
+  f_history: Array<String>
+  f_history_index: Number
+  line_index: Number
 }
 
 
 class MdEditor extends React.Component<P, S> {
-  constructor(props) {
+  constructor(props: P) {
     super(props)
-
-    this.$vm = null
-    this.handleEditorRef = $vm => {
-      this.$vm = $vm
-    }
-
+    
     this.state = {
       preview: false,
       expand: false,
@@ -33,6 +36,8 @@ class MdEditor extends React.Component<P, S> {
       line_index: 1
     }
   }
+  private $vm: HTMLTextAreaElement
+  private currentTimeout: number
 
   static defaultProps = {
     placeholder: '请输入内容...',
@@ -40,7 +45,8 @@ class MdEditor extends React.Component<P, S> {
   }
 
   componentDidMount() {
-    keydownListen(this)
+    // keydownListen(this)
+    console.log(this.$vm)
   }
 
   componentWillUpdate(props, state) {
@@ -254,7 +260,7 @@ class MdEditor extends React.Component<P, S> {
                 <div className="for-editor-content">
                   <pre>{value} </pre>
                   <textarea
-                    ref={this.handleEditorRef}
+                    ref={$vm => this.$vm = $vm}
                     value={value}
                     onChange={this.handleChange}
                     placeholder={this.props.placeholder}
