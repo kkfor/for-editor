@@ -9,18 +9,19 @@ import '../fonts/iconfont.css'
 
 interface P {
   value: string
-  height: String
-  lineNum: Number
-  onChange: (value: String) => void
+  height: string
+  lineNum: number
+  onChange: (value: string) => void
   onSave: () => void
+  placeholder: string
 }
 
 interface S {
-  preview: Boolean
-  expand: Boolean
-  f_history: Array<String>
-  f_history_index: Number
-  line_index: Number
+  preview: boolean
+  expand: boolean
+  f_history: string[]
+  f_history_index: number
+  line_index: number
 }
 
 
@@ -37,7 +38,7 @@ class MdEditor extends React.Component<P, S> {
     }
   }
   private $vm: HTMLTextAreaElement
-  private currentTimeout: number
+  private currentTimeout: null | number | NodeJS.Timer
 
   static defaultProps = {
     placeholder: '请输入内容...',
@@ -85,7 +86,7 @@ class MdEditor extends React.Component<P, S> {
   // 保存记录
   saveHistory(value) {
     let { f_history, f_history_index } = this.state
-    window.clearTimeout(this.currentTimeout)
+    window.clearTimeout(Number(this.currentTimeout))
     this.currentTimeout = setTimeout(() => {
       // 撤销后修改，删除当前以后记录
       if (f_history_index < f_history.length - 1) {
@@ -253,7 +254,7 @@ class MdEditor extends React.Component<P, S> {
           </ul>
         </div>
         <div className="for-editor">
-          <div className={editorClass} tabIndex="-1" onFocus={this.focusText}>
+          <div className={editorClass} onFocus={this.focusText}>
             <div className="for-editor-wrapper">
               <div className="for-editor-block">
                 {lineNum()}
