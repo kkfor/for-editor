@@ -2,7 +2,7 @@
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  height: 600px;
+  height: 100%;
 
   &.for-fullscreen {
     position: fixed;
@@ -14,7 +14,9 @@
     height: 100%;
   }
 
-  ul, ol, li,  {
+  ul,
+  ol,
+  li {
     margin: 0;
     padding: 0;
   }
@@ -33,7 +35,7 @@
     color: #555;
     user-select: none;
 
-    >ul {
+    > ul {
       display: flex;
 
       li {
@@ -110,7 +112,6 @@
         li {
           list-style: none;
         }
-
       }
 
       .for-editor-content {
@@ -133,7 +134,8 @@
   }
 
   textarea {
-    font-family: 'Consolas', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Consolas', 'Source Sans Pro', 'Helvetica Neue', Arial,
+      sans-serif;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -162,7 +164,7 @@
   dl,
   pre {
     margin-top: 0;
-    margin-bottom: .6em;
+    margin-bottom: 0.6em;
   }
 
   h1,
@@ -177,7 +179,7 @@
   h5,
   h6 {
     padding: 0;
-    margin: 0 0 .6em;
+    margin: 0 0 0.6em;
     font-weight: 600;
 
     text-indent: 0;
@@ -196,15 +198,14 @@
     }
   }
 
-  
   ul,
   ol {
-    padding: .2em .8em;
+    padding: 0.2em 0.8em;
 
     > li {
       line-height: 2;
-      padding-left: .2em;
-      margin-left: .2em;
+      padding-left: 0.2em;
+      margin-left: 0.2em;
       list-style-type: disc;
 
       > p {
@@ -222,8 +223,9 @@
       }
     }
   }
-  
-  > ul, ol {
+
+  > ul,
+  ol {
     padding: 0 20px;
   }
 
@@ -233,7 +235,7 @@
 
   blockquote {
     margin: 0;
-    margin-bottom: .6em;
+    margin-bottom: 0.6em;
     padding: 0 1em;
     color: #6a737d;
     border-left: 0.25em solid #dfe2e5;
@@ -252,7 +254,7 @@
   }
 
   pre {
-    padding: .6em;
+    padding: 0.6em;
     overflow: auto;
     line-height: 1.6;
     background-color: #f0f0f0;
@@ -274,7 +276,7 @@
   }
 
   hr {
-    margin-bottom: .6em;
+    margin-bottom: 0.6em;
     height: 1px;
     background: #dadada;
     border: none;
@@ -283,11 +285,12 @@
   table {
     width: 100%;
     border: 1px solid #ddd;
-    margin-bottom: .6em;
+    margin-bottom: 0.6em;
     border-collapse: collapse;
     text-align: left;
-    th, td {
-      padding: .1em .4em;
+    th,
+    td {
+      padding: 0.1em 0.4em;
       border: 1px solid #ddd;
     }
   }
@@ -296,6 +299,6 @@
     display: block;
     margin: 0 auto;
     max-width: 100%;
-    margin-bottom: .6em;
+    margin-bottom: 0.6em;
   }
 }

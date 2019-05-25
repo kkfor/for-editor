@@ -1,14 +1,19 @@
+html {
+  height: 100%;
+}
 body {
+  height: 100%;
   margin: 0;
 }
 
-:global{
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-}
-
 .editor {
-  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  
+  > div {
+    height: 80%;
+    width: 960px;
+  }
 }

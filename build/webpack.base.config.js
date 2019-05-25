@@ -53,6 +53,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        exclude: /\.module\.(sass|scss)$/,
         use: [
           'style-loader',
           {
@@ -74,6 +75,27 @@ module.exports = {
               sourceMap: isDev
             }
           }
+        ]
+      },
+      {
+        test: /\.module\.(sass|scss)$/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 2,
+              modules: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')],
+              sourceMap: isDev
+            }
+          },
+          require.resolve('sass-loader')
         ]
       },
       {
