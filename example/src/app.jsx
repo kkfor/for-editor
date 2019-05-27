@@ -46,8 +46,6 @@ const editor = 'for-editor'
 | title | description |
 | - | - |
 | for-editor | markdown editor |
-
-
 `
 
     setTimeout(() => {

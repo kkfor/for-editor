@@ -81,7 +81,7 @@
         background: #fcfcfc;
       }
     }
-    .for-panel:last-child {
+    .for-editor-preview {
       border-left: 1px solid #ccc;
     }
 
@@ -90,13 +90,12 @@
     }
 
     // 编辑区域
-    .for-editor-wrapper {
+    .for-editor-edit {
       line-height: 1.6;
       height: 100%;
 
       .for-editor-block {
         display: flex;
-        justify-content: space-between;
         min-height: 100%;
       }
 

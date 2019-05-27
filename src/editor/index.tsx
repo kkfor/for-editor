@@ -28,7 +28,7 @@ interface S {
 class MdEditor extends React.Component<P, S> {
   constructor(props: P) {
     super(props)
-    
+
     this.state = {
       preview: false,
       expand: false,
@@ -173,9 +173,11 @@ class MdEditor extends React.Component<P, S> {
     const { value } = this.props
     const previewClass = classNames({
       'for-panel': true,
+      'for-editor-preview': true,
       'for-preview-hidden': !preview
     })
     const editorClass = classNames({
+      'for-editor-edit': true,
       'for-panel': true
     })
     const previewActive = classNames({
@@ -193,7 +195,7 @@ class MdEditor extends React.Component<P, S> {
       hidden: !this.props.lineNum
     })
 
-    const lineNum = function() {
+    const lineNum = function () {
       const list = []
       for (let i = 0; i < line_index; i++) {
         list.push(<li key={i + 1}>{i + 1}</li>)
@@ -241,32 +243,30 @@ class MdEditor extends React.Component<P, S> {
               {expandActive ? (
                 <i className="foricon for-contract" />
               ) : (
-                <i className="foricon for-expand" />
-              )}
+                  <i className="foricon for-expand" />
+                )}
             </li>
             <li className={previewActive} onClick={this.preview}>
               {previewActive ? (
                 <i className="foricon for-eye-off" />
               ) : (
-                <i className="foricon for-eye" />
-              )}
+                  <i className="foricon for-eye" />
+                )}
             </li>
           </ul>
         </div>
         <div className="for-editor">
           <div className={editorClass} onFocus={this.focusText}>
-            <div className="for-editor-wrapper">
-              <div className="for-editor-block">
-                {lineNum()}
-                <div className="for-editor-content">
-                  <pre>{value} </pre>
-                  <textarea
-                    ref={$vm => this.$vm = $vm}
-                    value={value}
-                    onChange={this.handleChange}
-                    placeholder={this.props.placeholder}
-                  />
-                </div>
+            <div className="for-editor-block">
+              {lineNum()}
+              <div className="for-editor-content">
+                <pre>{value} </pre>
+                <textarea
+                  ref={$vm => this.$vm = $vm}
+                  value={value}
+                  onChange={this.handleChange}
+                  placeholder={this.props.placeholder}
+                />
               </div>
             </div>
           </div>
