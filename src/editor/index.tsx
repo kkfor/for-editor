@@ -12,7 +12,7 @@ interface P {
   height: string
   lineNum: number
   onChange: (value: string) => void
-  onSave: () => void
+  onSave: (value: string) => void
   placeholder: string
 }
 
@@ -21,7 +21,8 @@ interface S {
   expand: boolean
   f_history: string[]
   f_history_index: number
-  line_index: number
+  line_index: number,
+  value: string
 }
 
 
@@ -34,7 +35,8 @@ class MdEditor extends React.Component<P, S> {
       expand: false,
       f_history: [],
       f_history_index: 0,
-      line_index: 1
+      line_index: 1,
+      value: props.value
     }
   }
   private $vm: HTMLTextAreaElement
@@ -47,7 +49,6 @@ class MdEditor extends React.Component<P, S> {
 
   componentDidMount() {
     // keydownListen(this)
-    console.log(this.$vm)
   }
 
   componentWillUpdate(props, state) {
@@ -70,8 +71,18 @@ class MdEditor extends React.Component<P, S> {
   // 输入框改变
   handleChange = e => {
     const value = e.target.value
+    this.setState({
+      value
+    })
     this.saveHistory(value)
+    this.toPropsChange(value)
+  }
+  
+  toPropsChange(value) {
     this.props.onChange(value)
+    this.setState({
+      value
+    })
   }
 
   // 快捷插入
@@ -79,7 +90,7 @@ class MdEditor extends React.Component<P, S> {
     const { $vm } = this
     const type = e.currentTarget ? e.currentTarget.getAttribute('data-type') : e
     textInsert($vm, type)
-    this.props.onChange($vm.value)
+    this.toPropsChange($vm.value)
     this.saveHistory($vm.value)
   }
 
@@ -159,7 +170,8 @@ class MdEditor extends React.Component<P, S> {
 
   // 保存
   save = () => {
-    this.props.onSave()
+    const { value } = this.state
+    this.props.onSave(value)
   }
 
   // 左侧空白区点击后，textarea聚焦

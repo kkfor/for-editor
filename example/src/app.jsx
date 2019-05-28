@@ -55,14 +55,14 @@ const editor = 'for-editor'
     }, 200)
   }
 
-  handleChange = value => {
+  handleChange(value) {
     this.setState({
       value
     })
   }
 
-  handleSave = () => {
-    console.log('触发保存事件')
+  handleSave(value) {
+    console.log('触发保存事件', value)
   }
 
   render() {
@@ -73,8 +73,8 @@ const editor = 'for-editor'
         <div>
           <Editor
             value={value}
-            onChange={this.handleChange}
-            onSave={this.handleSave}
+            onChange={value => this.handleChange(value)}
+            onSave={value => this.handleSave(value)}
           />
         </div>
       </div>
