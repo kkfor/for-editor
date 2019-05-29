@@ -170,8 +170,7 @@ class MdEditor extends React.Component<P, S> {
 
   // 保存
   save = () => {
-    const { value } = this.state
-    this.props.onSave(value)
+    this.props.onSave(this.$vm.value)
   }
 
   // 左侧空白区点击后，textarea聚焦
