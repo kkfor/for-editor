@@ -16,6 +16,7 @@ interface P {
   placeholder: string
   fontSize: string
   disabled: boolean
+  toolbars: object
 }
 
 interface S {
@@ -224,6 +225,7 @@ class MdEditor extends React.Component<P, S> {
 
     return (
       <div className={fullscreen}>
+        {/* <Toolbar /> */}
         <div className="for-controlbar">
           <ul>
             <li onClick={this.undo} title="上一步 (ctrl+z)">
