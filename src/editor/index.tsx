@@ -8,8 +8,8 @@ import 'highlight.js/styles/tomorrow.css'
 import '../fonts/iconfont.css'
 
 interface P {
+  defaultValue: string
   value: string
-  height: string
   lineNum: number
   onChange: (value: string) => void
   onSave: (value: string) => void
@@ -44,7 +44,9 @@ class MdEditor extends React.Component<P, S> {
 
   static defaultProps = {
     placeholder: '请输入内容...',
-    lineNum: true
+    lineNum: true,
+    onChange: () => {},
+    onSave: () => {}
   }
 
   componentDidMount() {
@@ -77,7 +79,7 @@ class MdEditor extends React.Component<P, S> {
     this.saveHistory(value)
     this.toPropsChange(value)
   }
-  
+
   toPropsChange(value) {
     this.props.onChange(value)
     this.setState({
@@ -181,7 +183,7 @@ class MdEditor extends React.Component<P, S> {
 
   render() {
     const { preview, expand, line_index } = this.state
-    const { value, placeholder } = this.props
+    const { value, placeholder, defaultValue } = this.props
     const previewClass = classNames({
       'for-panel': true,
       'for-editor-preview': true,
@@ -215,7 +217,7 @@ class MdEditor extends React.Component<P, S> {
     }
 
     return (
-      <div className={fullscreen} style={{ height: this.props.height }}>
+      <div className={fullscreen}>
         <div className="for-controlbar">
           <ul>
             <li onClick={this.undo} title="上一步 (ctrl+z)">
@@ -274,6 +276,7 @@ class MdEditor extends React.Component<P, S> {
                 <pre>{value} </pre>
                 <textarea
                   ref={$vm => this.$vm = $vm}
+                  defaultValue={defaultValue}
                   value={value}
                   onChange={e => this.handleChange(e)}
                   placeholder={placeholder}
