@@ -15,6 +15,7 @@ interface P {
   onSave: (value: string, render: string) => void
   placeholder: string
   fontSize: string
+  disabled: boolean
 }
 
 interface S {
@@ -46,14 +47,15 @@ class MdEditor extends React.Component<P, S> {
   static defaultProps = {
     placeholder: '请输入内容...',
     lineNum: true,
-    onChange: () => {},
-    onSave: () => {},
-    fontSize: '14px'
+    onChange: () => { },
+    onSave: () => { },
+    fontSize: '14px',
+    disabled: false
   }
 
   componentDidMount() {
     keydownListen(this)
-    
+
   }
 
   componentWillUpdate(props, state) {
@@ -174,7 +176,7 @@ class MdEditor extends React.Component<P, S> {
   }
 
   // 保存
-  save(){
+  save() {
     const value = this.$vm.value
     this.props.onSave(this.$vm.value, marked(value))
   }
@@ -187,7 +189,7 @@ class MdEditor extends React.Component<P, S> {
 
   render() {
     const { preview, expand, line_index } = this.state
-    const { value, placeholder, defaultValue, fontSize } = this.props
+    const { value, placeholder, defaultValue, fontSize, disabled } = this.props
     const previewClass = classNames({
       'for-panel': true,
       'for-editor-preview': true,
@@ -272,7 +274,7 @@ class MdEditor extends React.Component<P, S> {
             </li>
           </ul>
         </div>
-        <div className="for-editor" style={{fontSize}}>
+        <div className="for-editor" style={{ fontSize }}>
           <div className={editorClass} onFocus={() => this.focusText()}>
             <div className="for-editor-block">
               {lineNum()}
@@ -280,7 +282,10 @@ class MdEditor extends React.Component<P, S> {
                 <pre>{value} </pre>
                 <textarea
                   ref={$vm => this.$vm = $vm}
+                  defaultValue={defaultValue}
+                  readOnly={!!defaultValue}
                   value={value}
+                  disabled={disabled}
                   onChange={e => this.handleChange(e)}
                   placeholder={placeholder}
                 />
@@ -288,10 +293,17 @@ class MdEditor extends React.Component<P, S> {
             </div>
           </div>
           <div className={previewClass}>
-            <div
-              className="for-preview for-markdown-preview"
-              dangerouslySetInnerHTML={{ __html: marked(value) }}
-            />
+            {
+              defaultValue ?
+                <div
+                  className="for-preview for-markdown-preview"
+                  dangerouslySetInnerHTML={{ __html: marked(defaultValue) }}
+                /> :
+                <div
+                  className="for-preview for-markdown-preview"
+                  dangerouslySetInnerHTML={{ __html: marked(value) }}
+                />
+            }
           </div>
         </div>
       </div>
