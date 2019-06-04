@@ -11,9 +11,10 @@ interface P {
   defaultValue: string
   value: string
   lineNum: number
-  onChange: (value: string) => void
-  onSave: (value: string) => void
+  onChange: (value: string, render: string) => void
+  onSave: (value: string, render: string) => void
   placeholder: string
+  fontSize: string
 }
 
 interface S {
@@ -46,11 +47,13 @@ class MdEditor extends React.Component<P, S> {
     placeholder: '请输入内容...',
     lineNum: true,
     onChange: () => {},
-    onSave: () => {}
+    onSave: () => {},
+    fontSize: '14px'
   }
 
   componentDidMount() {
     keydownListen(this)
+    
   }
 
   componentWillUpdate(props, state) {
@@ -71,7 +74,7 @@ class MdEditor extends React.Component<P, S> {
   }
 
   // 输入框改变
-  handleChange = e => {
+  handleChange(e) {
     const value = e.target.value
     this.setState({
       value
@@ -81,7 +84,7 @@ class MdEditor extends React.Component<P, S> {
   }
 
   toPropsChange(value) {
-    this.props.onChange(value)
+    this.props.onChange(value, marked(value))
     this.setState({
       value
     })
@@ -138,7 +141,7 @@ class MdEditor extends React.Component<P, S> {
     })
     const value = f_history[f_history_index]
     // 将值传递给父组件
-    this.props.onChange(value)
+    this.props.onChange(value, marked(value))
     this.handleLineIndex(value)
   }
 
@@ -152,7 +155,7 @@ class MdEditor extends React.Component<P, S> {
     })
     const value = f_history[f_history_index]
     // 将值传递给父组件
-    this.props.onChange(value)
+    this.props.onChange(value, marked(value))
     this.handleLineIndex(value)
   }
 
@@ -171,8 +174,9 @@ class MdEditor extends React.Component<P, S> {
   }
 
   // 保存
-  save = () => {
-    this.props.onSave(this.$vm.value)
+  save(){
+    const value = this.$vm.value
+    this.props.onSave(this.$vm.value, marked(value))
   }
 
   // 左侧空白区点击后，textarea聚焦
@@ -183,7 +187,7 @@ class MdEditor extends React.Component<P, S> {
 
   render() {
     const { preview, expand, line_index } = this.state
-    const { value, placeholder, defaultValue } = this.props
+    const { value, placeholder, defaultValue, fontSize } = this.props
     const previewClass = classNames({
       'for-panel': true,
       'for-editor-preview': true,
@@ -268,7 +272,7 @@ class MdEditor extends React.Component<P, S> {
             </li>
           </ul>
         </div>
-        <div className="for-editor">
+        <div className="for-editor" style={{fontSize}}>
           <div className={editorClass} onFocus={() => this.focusText()}>
             <div className="for-editor-block">
               {lineNum()}
@@ -276,7 +280,6 @@ class MdEditor extends React.Component<P, S> {
                 <pre>{value} </pre>
                 <textarea
                   ref={$vm => this.$vm = $vm}
-                  defaultValue={defaultValue}
                   value={value}
                   onChange={e => this.handleChange(e)}
                   placeholder={placeholder}
