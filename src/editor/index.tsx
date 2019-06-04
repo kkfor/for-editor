@@ -48,7 +48,7 @@ class MdEditor extends React.Component<P, S> {
   }
 
   componentDidMount() {
-    // keydownListen(this)
+    keydownListen(this)
   }
 
   componentWillUpdate(props, state) {
@@ -174,14 +174,14 @@ class MdEditor extends React.Component<P, S> {
   }
 
   // 左侧空白区点击后，textarea聚焦
-  focusText = () => {
+  focusText() {
     const { $vm } = this
     $vm.focus()
   }
 
   render() {
     const { preview, expand, line_index } = this.state
-    const { value } = this.props
+    const { value, placeholder } = this.props
     const previewClass = classNames({
       'for-panel': true,
       'for-editor-preview': true,
@@ -224,25 +224,25 @@ class MdEditor extends React.Component<P, S> {
             <li onClick={this.redo} title="下一步 (ctrl+y)">
               <i className="foricon for-redo" />
             </li>
-            <li data-type="h1" onClick={this.insert} title="一级标题">
+            <li data-type="h1" onClick={e => this.insert(e)} title="一级标题">
               H1
             </li>
-            <li data-type="h2" onClick={this.insert} title="二级标题">
+            <li data-type="h2" onClick={e => this.insert(e)} title="二级标题">
               H2
             </li>
-            <li data-type="h3" onClick={this.insert} title="三级标题">
+            <li data-type="h3" onClick={e => this.insert(e)} title="三级标题">
               H3
             </li>
-            <li data-type="h4" onClick={this.insert} title="四级标题">
+            <li data-type="h4" onClick={e => this.insert(e)} title="四级标题">
               H4
             </li>
-            <li data-type="image" onClick={this.insert} title="图片">
+            <li data-type="image" onClick={e => this.insert(e)} title="图片">
               <i className="foricon for-image" />
             </li>
-            <li data-type="link" onClick={this.insert} title="超链接">
+            <li data-type="link" onClick={e => this.insert(e)} title="超链接">
               <i className="foricon for-link" />
             </li>
-            <li data-type="code" onClick={this.insert} title="代码块">
+            <li data-type="code" onClick={e => this.insert(e)} title="代码块">
               <i className="foricon for-code" />
             </li>
             <li onClick={this.save} title="保存 (ctrl+s)">
@@ -250,14 +250,14 @@ class MdEditor extends React.Component<P, S> {
             </li>
           </ul>
           <ul>
-            <li className={expandActive} onClick={this.expand}>
+            <li className={expandActive} onClick={() => this.expand()}>
               {expandActive ? (
                 <i className="foricon for-contract" />
               ) : (
                   <i className="foricon for-expand" />
                 )}
             </li>
-            <li className={previewActive} onClick={this.preview}>
+            <li className={previewActive} onClick={() => this.preview()}>
               {previewActive ? (
                 <i className="foricon for-eye-off" />
               ) : (
@@ -267,7 +267,7 @@ class MdEditor extends React.Component<P, S> {
           </ul>
         </div>
         <div className="for-editor">
-          <div className={editorClass} onFocus={this.focusText}>
+          <div className={editorClass} onFocus={() => this.focusText()}>
             <div className="for-editor-block">
               {lineNum()}
               <div className="for-editor-content">
@@ -275,8 +275,8 @@ class MdEditor extends React.Component<P, S> {
                 <textarea
                   ref={$vm => this.$vm = $vm}
                   value={value}
-                  onChange={this.handleChange}
-                  placeholder={this.props.placeholder}
+                  onChange={e => this.handleChange(e)}
+                  placeholder={placeholder}
                 />
               </div>
             </div>
