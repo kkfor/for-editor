@@ -69,6 +69,6 @@
   },
   "dependencies": {
     "highlight.js": "^9.13.1",
-    "marked": "^0.5.2"
+    "marked": "^0.6.2"
   }
 }
