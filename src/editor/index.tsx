@@ -6,6 +6,7 @@ import textInsert from '../helpers/insertText'
 import keydownListen from '../helpers/keydownListen'
 import 'highlight.js/styles/tomorrow.css'
 import '../fonts/iconfont.css'
+import Toolbar from './toolbar'
 
 interface P {
   defaultValue: string
@@ -225,8 +226,8 @@ class MdEditor extends React.Component<P, S> {
 
     return (
       <div className={fullscreen}>
-        {/* <Toolbar /> */}
-        <div className="for-controlbar">
+        <Toolbar />
+        {/* <div className="for-controlbar">
           <ul>
             <li onClick={this.undo} title="上一步 (ctrl+z)">
               <i className="foricon for-undo" />
@@ -275,7 +276,7 @@ class MdEditor extends React.Component<P, S> {
                 )}
             </li>
           </ul>
-        </div>
+        </div> */}
         <div className="for-editor" style={{ fontSize }}>
           <div className={editorClass} onFocus={() => this.focusText()}>
             <div className="for-editor-block">
