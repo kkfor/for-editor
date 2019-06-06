@@ -6,7 +6,8 @@ import textInsert from '../helpers/insertText'
 import keydownListen from '../helpers/keydownListen'
 import 'highlight.js/styles/tomorrow.css'
 import '../fonts/iconfont.css'
-import Toolbar from './toolbar'
+import ToolbarLeft from './toolbar_left'
+import ToolbarRight from './toolbar_right'
 
 interface P {
   defaultValue: string
@@ -201,15 +202,9 @@ class MdEditor extends React.Component<P, S> {
       'for-editor-edit': true,
       'for-panel': true
     })
-    const previewActive = classNames({
-      'for-active': preview
-    })
     const fullscreen = classNames({
       'for-container': true,
       'for-fullscreen': expand
-    })
-    const expandActive = classNames({
-      'for-active': expand
     })
     const lineNumStyles = classNames({
       'for-line-num': true,
@@ -226,7 +221,10 @@ class MdEditor extends React.Component<P, S> {
 
     return (
       <div className={fullscreen}>
-        <Toolbar />
+        <div className="for-controlbar">
+          <ToolbarLeft />
+          <ToolbarRight preview={preview} expand={expand} />
+        </div>
         {/* <div className="for-controlbar">
           <ul>
             <li onClick={this.undo} title="上一步 (ctrl+z)">
