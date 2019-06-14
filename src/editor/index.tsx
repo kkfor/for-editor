@@ -102,7 +102,6 @@ class MdEditor extends React.Component<P, S> {
   insert = e => {
     const { $vm } = this
     const type = e.currentTarget ? e.currentTarget.getAttribute('data-type') : e
-    textInsert($vm, type)
     this.toPropsChange($vm.value)
     this.saveHistory($vm.value)
   }
