@@ -6,8 +6,9 @@ import textInsert from '../helpers/insertText'
 import keydownListen from '../helpers/keydownListen'
 import 'highlight.js/styles/tomorrow.css'
 import '../fonts/iconfont.css'
-import ToolbarLeft from './toolbar_left'
-import ToolbarRight from './toolbar_right'
+import ToolbarLeft from '../toolbar/toolbar_left'
+import ToolbarRight from '../toolbar/toolbar_right'
+import { toolbar_right_click } from '../toolbar/toolbar_right_click'
 
 interface P {
   defaultValue: string
@@ -22,11 +23,11 @@ interface P {
 }
 
 interface S {
-  preview: boolean
+  preview_switch: boolean
   expand: boolean
   f_history: string[]
   f_history_index: number
-  line_index: number,
+  line_index: number
   value: string
 }
 
@@ -36,7 +37,7 @@ class MdEditor extends React.Component<P, S> {
     super(props)
 
     this.state = {
-      preview: false,
+      preview_switch: false,
       expand: false,
       f_history: [],
       f_history_index: 0,
@@ -53,7 +54,8 @@ class MdEditor extends React.Component<P, S> {
     onChange: () => { },
     onSave: () => { },
     fontSize: '14px',
-    disabled: false
+    disabled: false,
+    preview_switch: false
   }
 
   componentDidMount() {
@@ -165,10 +167,10 @@ class MdEditor extends React.Component<P, S> {
   }
 
   // 预览
-  preview = () => {
-    this.setState({
-      preview: !this.state.preview
-    })
+  preview() {
+    // this.setState({
+    //   preview_switch: !this.state.preview
+    // })
   }
 
   // 全屏
@@ -190,13 +192,21 @@ class MdEditor extends React.Component<P, S> {
     $vm.focus()
   }
 
+  toolBarLeftClick(type) {
+    // toolbar_right_click(type)
+  }
+
+  toolBarRightClick(type) {
+    toolbar_right_click(type, this)
+  }
+
   render() {
-    const { preview, expand, line_index } = this.state
+    const { preview_switch, expand, line_index } = this.state
     const { value, placeholder, defaultValue, fontSize, disabled } = this.props
     const previewClass = classNames({
       'for-panel': true,
       'for-editor-preview': true,
-      'for-preview-hidden': !preview
+      'for-preview-hidden': !preview_switch
     })
     const editorClass = classNames({
       'for-editor-edit': true,
@@ -222,59 +232,9 @@ class MdEditor extends React.Component<P, S> {
     return (
       <div className={fullscreen}>
         <div className="for-controlbar">
-          <ToolbarLeft />
-          <ToolbarRight preview={preview} expand={expand} />
+          <ToolbarLeft onClick={type => this.toolBarLeftClick(type)} />
+          <ToolbarRight preview={preview_switch} expand={expand} onClick={type => this.toolBarRightClick(type)} />
         </div>
-        {/* <div className="for-controlbar">
-          <ul>
-            <li onClick={this.undo} title="上一步 (ctrl+z)">
-              <i className="foricon for-undo" />
-            </li>
-            <li onClick={this.redo} title="下一步 (ctrl+y)">
-              <i className="foricon for-redo" />
-            </li>
-            <li data-type="h1" onClick={e => this.insert(e)} title="一级标题">
-              H1
-            </li>
-            <li data-type="h2" onClick={e => this.insert(e)} title="二级标题">
-              H2
-            </li>
-            <li data-type="h3" onClick={e => this.insert(e)} title="三级标题">
-              H3
-            </li>
-            <li data-type="h4" onClick={e => this.insert(e)} title="四级标题">
-              H4
-            </li>
-            <li data-type="image" onClick={e => this.insert(e)} title="图片">
-              <i className="foricon for-image" />
-            </li>
-            <li data-type="link" onClick={e => this.insert(e)} title="超链接">
-              <i className="foricon for-link" />
-            </li>
-            <li data-type="code" onClick={e => this.insert(e)} title="代码块">
-              <i className="foricon for-code" />
-            </li>
-            <li onClick={this.save} title="保存 (ctrl+s)">
-              <i className="foricon for-save" />
-            </li>
-          </ul>
-          <ul>
-            <li className={expandActive} onClick={() => this.expand()}>
-              {expandActive ? (
-                <i className="foricon for-contract" />
-              ) : (
-                  <i className="foricon for-expand" />
-                )}
-            </li>
-            <li className={previewActive} onClick={() => this.preview()}>
-              {previewActive ? (
-                <i className="foricon for-eye-off" />
-              ) : (
-                  <i className="foricon for-eye" />
-                )}
-            </li>
-          </ul>
-        </div> */}
         <div className="for-editor" style={{ fontSize }}>
           <div className={editorClass} onFocus={() => this.focusText()}>
             <div className="for-editor-block">

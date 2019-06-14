@@ -1,5 +1,4 @@
 import * as React from 'react'
-import './index.scss'
 import classNames from 'classnames'
 import 'highlight.js/styles/tomorrow.css'
 import '../fonts/iconfont.css'
