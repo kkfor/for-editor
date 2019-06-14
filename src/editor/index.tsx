@@ -9,6 +9,7 @@ import '../fonts/iconfont.css'
 import ToolbarLeft from '../toolbar/toolbar_left'
 import ToolbarRight from '../toolbar/toolbar_right'
 import { toolbar_right_click } from '../toolbar/toolbar_right_click'
+import { toolbar_left_click } from '../toolbar/toolbar_left_click'
 
 interface P {
   defaultValue: string
@@ -24,7 +25,7 @@ interface P {
 
 interface S {
   preview_switch: boolean
-  expand: boolean
+  expand_switch: boolean
   f_history: string[]
   f_history_index: number
   line_index: number
@@ -38,7 +39,7 @@ class MdEditor extends React.Component<P, S> {
 
     this.state = {
       preview_switch: false,
-      expand: false,
+      expand_switch: false,
       f_history: [],
       f_history_index: 0,
       line_index: 1,
@@ -166,20 +167,6 @@ class MdEditor extends React.Component<P, S> {
     this.handleLineIndex(value)
   }
 
-  // 预览
-  preview() {
-    // this.setState({
-    //   preview_switch: !this.state.preview
-    // })
-  }
-
-  // 全屏
-  expand = () => {
-    this.setState({
-      expand: !this.state.expand
-    })
-  }
-
   // 保存
   save() {
     const value = this.$vm.value
@@ -193,7 +180,7 @@ class MdEditor extends React.Component<P, S> {
   }
 
   toolBarLeftClick(type) {
-    // toolbar_right_click(type)
+    toolbar_left_click(type, this)
   }
 
   toolBarRightClick(type) {
@@ -201,7 +188,7 @@ class MdEditor extends React.Component<P, S> {
   }
 
   render() {
-    const { preview_switch, expand, line_index } = this.state
+    const { preview_switch, expand_switch, line_index } = this.state
     const { value, placeholder, defaultValue, fontSize, disabled } = this.props
     const previewClass = classNames({
       'for-panel': true,
@@ -214,7 +201,7 @@ class MdEditor extends React.Component<P, S> {
     })
     const fullscreen = classNames({
       'for-container': true,
-      'for-fullscreen': expand
+      'for-fullscreen': expand_switch
     })
     const lineNumStyles = classNames({
       'for-line-num': true,
@@ -233,7 +220,7 @@ class MdEditor extends React.Component<P, S> {
       <div className={fullscreen}>
         <div className="for-controlbar">
           <ToolbarLeft onClick={type => this.toolBarLeftClick(type)} />
-          <ToolbarRight preview={preview_switch} expand={expand} onClick={type => this.toolBarRightClick(type)} />
+          <ToolbarRight preview={preview_switch} expand={expand_switch} onClick={type => this.toolBarRightClick(type)} />
         </div>
         <div className="for-editor" style={{ fontSize }}>
           <div className={editorClass} onFocus={() => this.focusText()}>
