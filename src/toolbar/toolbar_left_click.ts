@@ -2,11 +2,22 @@ import insert from '../helpers/insertText.js'
 
 function toolbar_left_undo_click($vm) {
   let { f_history, f_history_index } = $vm.state
-  
+  f_history_index = f_history_index - 1
+  if (f_history_index < 0) return
+  $vm.props.onChange(f_history[f_history_index])
+  $vm.setState({
+    f_history_index
+  })
 }
 
 function toolbar_left_redo_click($vm) {
-
+  let { f_history, f_history_index } = $vm.state
+  f_history_index = f_history_index + 1
+  if (f_history_index >= f_history.length) return
+  $vm.props.onChange(f_history[f_history_index])
+  $vm.setState({
+    f_history_index
+  })
 }
 
 function toolbar_left_h1_click($vm) {

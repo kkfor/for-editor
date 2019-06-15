@@ -62,14 +62,16 @@ class MdEditor extends React.Component<P, S> {
     keydownListen(this)
   }
 
-  componentDidUpdate(preProps, preState) {
-    if (preProps.value !== this.props.value) this.setState({ value: this.props.value })
-    if (preState.value !== this.state.value) {
-      this.props.onChange(this.state.value)
-      this.reLineNum(this.state.value)
+  componentDidUpdate(preProps) {
+    const { value } = this.props
+    const { f_history, f_history_index } = this.state
+    if (preProps.value !== value) {
+      this.reLineNum(value)
+    }
+    if (value !== f_history[f_history_index]) {
       window.clearTimeout(Number(this.currentTimeout))
       this.currentTimeout = setTimeout(() => {
-        this.saveHistory(this.state.value)
+        this.saveHistory(value)
       }, 500);
     }
   }
@@ -77,9 +79,7 @@ class MdEditor extends React.Component<P, S> {
   // 输入框改变
   handleChange(e) {
     const value = e.target.value
-    this.setState({
-      value
-    })
+    this.props.onChange(value)
   }
 
   // 保存记录
@@ -123,9 +123,13 @@ class MdEditor extends React.Component<P, S> {
     toolbar_right_click(type, this)
   }
 
+  focusText() {
+    this.$vm.focus()
+  }
+
   render() {
-    const { value, preview_switch, expand_switch, line_index } = this.state
-    const { placeholder, fontSize, disabled } = this.props
+    const { preview_switch, expand_switch, line_index } = this.state
+    const { value, placeholder, fontSize, disabled } = this.props
     const previewClass = classNames({
       'for-panel': true,
       'for-editor-preview': true,
@@ -163,12 +167,13 @@ class MdEditor extends React.Component<P, S> {
         {/* 内容区 */}
         <div className="for-editor" style={{ fontSize }}>
           {/* 编辑区 */}
-          <div className={editorClass}>
+          <div className={editorClass} onClick={() => this.focusText()}>
             <div className="for-editor-block">
               {lineNum()}
               <div className="for-editor-content">
                 <pre>{value} </pre>
                 <textarea
+                  // defaultValue={defalutValue}
                   ref={$vm => this.$vm = $vm}
                   value={value}
                   disabled={disabled}
