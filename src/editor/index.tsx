@@ -2,7 +2,6 @@ import * as React from 'react'
 import './index.scss'
 import classNames from 'classnames'
 import marked from '../helpers/marked'
-import textInsert from '../helpers/insertText'
 import keydownListen from '../helpers/keydownListen'
 import 'highlight.js/styles/tomorrow.css'
 import '../fonts/iconfont.css'
@@ -16,11 +15,12 @@ interface P {
   value: string
   lineNum: number
   onChange: (value: string, render: string) => void
-  onSave: (value: string, render: string) => void
+  onSave: (value: string) => void
   placeholder: string
   fontSize: string
   disabled: boolean
   toolbars: object
+  preview_switch: boolean
 }
 
 interface S {
@@ -38,7 +38,7 @@ class MdEditor extends React.Component<P, S> {
     super(props)
 
     this.state = {
-      preview_switch: false,
+      preview_switch: props.preview_switch,
       expand_switch: false,
       f_history: [],
       f_history_index: 0,
@@ -48,6 +48,8 @@ class MdEditor extends React.Component<P, S> {
   }
   private $vm: HTMLTextAreaElement
   private currentTimeout: null | number | NodeJS.Timer
+  private f_history: string[] = []
+  private f_history_index: number = 0
 
   static defaultProps = {
     placeholder: '请输入内容...',
@@ -64,118 +66,36 @@ class MdEditor extends React.Component<P, S> {
 
   }
 
-  componentWillUpdate(props, state) {
-    const { f_history } = this.state
-    if (props.value && state.f_history.length === 0) {
-      f_history.push(props.value)
-      this.setState({
-        f_history
-      })
-      this.handleLineIndex(props.value)
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.handleLineIndex(nextProps.value)
-    }
+  componentDidUpdate(props, state) {
+    // console.log(props)
+    // console.log(this.props)
+    // console.log(state)
+    // console.log(this.state)
+    if(props.value === this.props.value) return 
+    window.clearTimeout(Number(this.currentTimeout))
+    this.currentTimeout = setTimeout(() => {
+      this.saveHistory(this.props.value)
+    }, 500);
   }
 
   // 输入框改变
   handleChange(e) {
     const value = e.target.value
-    this.setState({
-      value
-    })
-    this.saveHistory(value)
-    this.toPropsChange(value)
-  }
-
-  toPropsChange(value) {
     this.props.onChange(value, marked(value))
-    this.setState({
-      value
-    })
-  }
-
-  // 快捷插入
-  insert = e => {
-    const { $vm } = this
-    const type = e.currentTarget ? e.currentTarget.getAttribute('data-type') : e
-    this.toPropsChange($vm.value)
-    this.saveHistory($vm.value)
   }
 
   // 保存记录
   saveHistory(value) {
     let { f_history, f_history_index } = this.state
-    window.clearTimeout(Number(this.currentTimeout))
-    this.currentTimeout = setTimeout(() => {
-      // 撤销后修改，删除当前以后记录
-      if (f_history_index < f_history.length - 1) {
-        f_history.splice(f_history_index + 1)
-      }
-      // 超出记录最多保存数后，滚动储存
-      if (f_history.length >= 20) {
-        f_history.shift()
-      }
-      // 记录当前位置
-      f_history_index = f_history.length
-      f_history.push(value)
-      this.setState({
-        f_history,
-        f_history_index
-      })
-    }, 500)
-    // 行号
-    this.handleLineIndex(value)
-  }
-
-  handleLineIndex(value) {
-    const line_index = value ? value.split('\n').length : 1
+    // 撤销后修改，删除当前以后记录
+    f_history.splice(f_history_index + 1, f_history.length)
+    // 记录当前位置
+    f_history_index = f_history.length
+    f_history.push(value)
     this.setState({
-      line_index
-    })
-  }
-
-  undo = () => {
-    const { f_history } = this.state
-    let { f_history_index } = this.state
-    f_history_index = f_history_index - 1
-    if (f_history_index < 0) return
-    this.setState({
+      f_history,
       f_history_index
     })
-    const value = f_history[f_history_index]
-    // 将值传递给父组件
-    this.props.onChange(value, marked(value))
-    this.handleLineIndex(value)
-  }
-
-  redo = () => {
-    const { f_history } = this.state
-    let { f_history_index } = this.state
-    f_history_index = f_history_index + 1
-    if (f_history_index >= f_history.length) return
-    this.setState({
-      f_history_index
-    })
-    const value = f_history[f_history_index]
-    // 将值传递给父组件
-    this.props.onChange(value, marked(value))
-    this.handleLineIndex(value)
-  }
-
-  // 保存
-  save() {
-    const value = this.$vm.value
-    this.props.onSave(this.$vm.value, marked(value))
-  }
-
-  // 左侧空白区点击后，textarea聚焦
-  focusText() {
-    const { $vm } = this
-    $vm.focus()
   }
 
   toolBarLeftClick(type) {
@@ -184,6 +104,10 @@ class MdEditor extends React.Component<P, S> {
 
   toolBarRightClick(type) {
     toolbar_right_click(type, this)
+  }
+
+  reRender() {
+
   }
 
   render() {
@@ -207,7 +131,8 @@ class MdEditor extends React.Component<P, S> {
       hidden: !this.props.lineNum
     })
 
-    const lineNum = function () {
+    // 行号
+    function lineNum() {
       const list = []
       for (let i = 0; i < line_index; i++) {
         list.push(<li key={i + 1}>{i + 1}</li>)
@@ -217,12 +142,15 @@ class MdEditor extends React.Component<P, S> {
 
     return (
       <div className={fullscreen}>
+        {/* 菜单栏 */}
         <div className="for-controlbar">
           <ToolbarLeft onClick={type => this.toolBarLeftClick(type)} />
           <ToolbarRight preview={preview_switch} expand={expand_switch} onClick={type => this.toolBarRightClick(type)} />
         </div>
+        {/* 内容区 */}
         <div className="for-editor" style={{ fontSize }}>
-          <div className={editorClass} onFocus={() => this.focusText()}>
+          {/* 编辑区 */}
+          <div className={editorClass}>
             <div className="for-editor-block">
               {lineNum()}
               <div className="for-editor-content">
@@ -239,18 +167,12 @@ class MdEditor extends React.Component<P, S> {
               </div>
             </div>
           </div>
+          {/* 预览区 */}
           <div className={previewClass}>
-            {
-              defaultValue ?
-                <div
-                  className="for-preview for-markdown-preview"
-                  dangerouslySetInnerHTML={{ __html: marked(defaultValue) }}
-                /> :
-                <div
-                  className="for-preview for-markdown-preview"
-                  dangerouslySetInnerHTML={{ __html: marked(value) }}
-                />
-            }
+            <div
+              className="for-preview for-markdown-preview"
+              dangerouslySetInnerHTML={{ __html: marked(value) }}
+            />
           </div>
         </div>
       </div>
