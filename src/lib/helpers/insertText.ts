@@ -27,9 +27,7 @@ function insert(that, prefix, hint = '', subfix = '') {
       $vm.selectionEnd = end + prefix.length
     }
 
-    that.setState({
-      value: $vm.value
-    })
+    that.props.onChange($vm.value)
 
     $vm.focus()
     if (restoreTop >= 0) {
