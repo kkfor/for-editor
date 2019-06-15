@@ -43,7 +43,7 @@ export default ins => {
       switch (e.keyCode) {
         case KEY_CODE.TAB: {
           e.preventDefault()
-          ins.insert('tab')
+          ins.toolBarLeftClick('tab')
           break
         }
       }
@@ -53,19 +53,19 @@ export default ins => {
         case KEY_CODE.Z: {
           // Z
           e.preventDefault()
-          ins.undo()
+          ins.toolBarLeftClick('undo')
           break
         }
         case KEY_CODE.Y: {
           // Y
           e.preventDefault()
-          ins.redo()
+          ins.toolBarLeftClick('redo')
           break
         }
         case KEY_CODE.S: {
           // S
           e.preventDefault()
-          ins.save()
+          ins.toolBarLeftClick('save')
           break
         }
       }

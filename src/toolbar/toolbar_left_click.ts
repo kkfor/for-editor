@@ -1,7 +1,8 @@
 import insert from '../helpers/insertText.js'
 
 function toolbar_left_undo_click($vm) {
-
+  let { f_history, f_history_index } = $vm.state
+  
 }
 
 function toolbar_left_redo_click($vm) {
@@ -37,7 +38,11 @@ function toolbar_left_code_click($vm) {
 }
 
 function toolbar_left_save_click($vm) {
+  $vm.save()
+}
 
+function toolbar_left_tab_click($vm) {
+  insert($vm, '  ')
 }
 
 export const toolbar_left_click = (type, $vm) => {

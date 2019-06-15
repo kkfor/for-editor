@@ -11,10 +11,9 @@ import { toolbar_right_click } from '../toolbar/toolbar_right_click'
 import { toolbar_left_click } from '../toolbar/toolbar_left_click'
 
 interface P {
-  defaultValue: string
   value: string
   lineNum: number
-  onChange: (value: string, render: string) => void
+  onChange: (value: string) => void
   onSave: (value: string) => void
   placeholder: string
   fontSize: string
@@ -48,8 +47,6 @@ class MdEditor extends React.Component<P, S> {
   }
   private $vm: HTMLTextAreaElement
   private currentTimeout: null | number | NodeJS.Timer
-  private f_history: string[] = []
-  private f_history_index: number = 0
 
   static defaultProps = {
     placeholder: '请输入内容...',
@@ -63,25 +60,26 @@ class MdEditor extends React.Component<P, S> {
 
   componentDidMount() {
     keydownListen(this)
-
   }
 
-  componentDidUpdate(props, state) {
-    // console.log(props)
-    // console.log(this.props)
-    // console.log(state)
-    // console.log(this.state)
-    if(props.value === this.props.value) return 
-    window.clearTimeout(Number(this.currentTimeout))
-    this.currentTimeout = setTimeout(() => {
-      this.saveHistory(this.props.value)
-    }, 500);
+  componentDidUpdate(preProps, preState) {
+    if (preProps.value !== this.props.value) this.setState({ value: this.props.value })
+    if (preState.value !== this.state.value) {
+      this.props.onChange(this.state.value)
+      this.reLineNum(this.state.value)
+      window.clearTimeout(Number(this.currentTimeout))
+      this.currentTimeout = setTimeout(() => {
+        this.saveHistory(this.state.value)
+      }, 500);
+    }
   }
 
   // 输入框改变
   handleChange(e) {
     const value = e.target.value
-    this.props.onChange(value, marked(value))
+    this.setState({
+      value
+    })
   }
 
   // 保存记录
@@ -89,15 +87,34 @@ class MdEditor extends React.Component<P, S> {
     let { f_history, f_history_index } = this.state
     // 撤销后修改，删除当前以后记录
     f_history.splice(f_history_index + 1, f_history.length)
+    if (f_history.length >= 20) {
+      f_history.shift()
+    }
     // 记录当前位置
     f_history_index = f_history.length
     f_history.push(value)
     this.setState({
       f_history,
       f_history_index
+    }, () => {
+      console.log(this.state.f_history)
     })
   }
 
+  // 重新计算行号
+  reLineNum(value) {
+    const line_index = value ? value.split('\n').length : 1
+    this.setState({
+      line_index
+    })
+  }
+
+  // 保存
+  save() {
+    this.props.onSave(this.$vm.value)
+  }
+
+  // 菜单点击
   toolBarLeftClick(type) {
     toolbar_left_click(type, this)
   }
@@ -106,13 +123,9 @@ class MdEditor extends React.Component<P, S> {
     toolbar_right_click(type, this)
   }
 
-  reRender() {
-
-  }
-
   render() {
-    const { preview_switch, expand_switch, line_index } = this.state
-    const { value, placeholder, defaultValue, fontSize, disabled } = this.props
+    const { value, preview_switch, expand_switch, line_index } = this.state
+    const { placeholder, fontSize, disabled } = this.props
     const previewClass = classNames({
       'for-panel': true,
       'for-editor-preview': true,
@@ -157,8 +170,6 @@ class MdEditor extends React.Component<P, S> {
                 <pre>{value} </pre>
                 <textarea
                   ref={$vm => this.$vm = $vm}
-                  defaultValue={defaultValue}
-                  readOnly={!!defaultValue}
                   value={value}
                   disabled={disabled}
                   onChange={e => this.handleChange(e)}

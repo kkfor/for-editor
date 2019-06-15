@@ -1,5 +1,5 @@
-function insert($vm, prefix, hint = '', subfix = '') {
-  $vm = $vm.$vm
+function insert(that, prefix, hint = '', subfix = '') {
+  const $vm = that.$vm
   const value = $vm.value
   if ($vm.selectionStart || $vm.selectionStart === 0) {
     let start = $vm.selectionStart
@@ -26,6 +26,10 @@ function insert($vm, prefix, hint = '', subfix = '') {
       $vm.selectionStart = start + prefix.length
       $vm.selectionEnd = end + prefix.length
     }
+
+    that.setState({
+      value: $vm.value
+    })
 
     $vm.focus()
     if (restoreTop >= 0) {
