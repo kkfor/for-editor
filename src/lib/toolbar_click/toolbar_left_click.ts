@@ -1,4 +1,4 @@
-import insert from '../helpers/insertText.js'
+import insert from '../helpers/insertText'
 
 function toolbar_left_undo_click($vm) {
   let { f_history, f_history_index } = $vm.state

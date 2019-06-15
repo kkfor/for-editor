@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Editor from '../../src/main'
+import Editor from '../../src/index'
 // import Editor from '../../dist'
 import styles from './app.module.scss'
 

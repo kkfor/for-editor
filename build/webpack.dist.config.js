@@ -4,7 +4,7 @@ const path = require('path')
 
 module.exports = merge(webpackBaseConfig, {
   mode: 'production',
-  entry: './src/main.tsx',
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'index.js',

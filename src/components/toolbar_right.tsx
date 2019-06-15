@@ -1,7 +1,5 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import 'highlight.js/styles/tomorrow.css'
-import '../fonts/iconfont.css'
 
 interface P {
   onClick: (type: string) => void

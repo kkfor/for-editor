@@ -1,14 +1,14 @@
 import * as React from 'react'
-import './index.scss'
 import classNames from 'classnames'
-import marked from '../helpers/marked'
-import keydownListen from '../helpers/keydownListen'
+import marked from './lib/helpers/marked'
+import keydownListen from './lib/helpers/keydownListen'
 import 'highlight.js/styles/tomorrow.css'
-import '../fonts/iconfont.css'
-import ToolbarLeft from '../toolbar/toolbar_left'
-import ToolbarRight from '../toolbar/toolbar_right'
-import { toolbar_right_click } from '../toolbar/toolbar_right_click'
-import { toolbar_left_click } from '../toolbar/toolbar_left_click'
+import './lib/fonts/iconfont.css'
+import './lib/css/index.scss'
+import ToolbarLeft from './components/toolbar_left'
+import ToolbarRight from './components/toolbar_right'
+import { toolbar_right_click } from './lib/toolbar_click/toolbar_right_click'
+import { toolbar_left_click } from './lib/toolbar_click/toolbar_left_click'
 
 interface P {
   value: string
@@ -96,8 +96,6 @@ class MdEditor extends React.Component<P, S> {
     this.setState({
       f_history,
       f_history_index
-    }, () => {
-      console.log(this.state.f_history)
     })
   }
 
