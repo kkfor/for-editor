@@ -1,5 +1,3 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-
 // const isProd = process.env.NODE_ENV === 'production'
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -99,14 +97,12 @@ module.exports = {
         ]
       },
       {
-        test: /\.(svg|eot|ttf|woff|woff2)$/,
-        use: 'url-loader'
+        test: /\.(woff2?|eot|ttf|svg)$/,
+        loader: require.resolve('file-loader'),
+        options: {
+          name: 'static/fonts/[name].[hash:8].[ext]'
+        }
       }
     ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './example/index.html'
-    })
-  ]
+  }
 }

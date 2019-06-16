@@ -2,6 +2,7 @@ const webpackBaseConfig = require('./webpack.base.config')
 const merge = require('webpack-merge')
 const path = require('path')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = merge(webpackBaseConfig, {
   mode: 'development',
@@ -11,7 +12,12 @@ module.exports = merge(webpackBaseConfig, {
     path: path.resolve(__dirname, '../dist'),
     filename: 'index.js'
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './example/index.html'
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ],
   devServer: {
     historyApiFallback: true,
     disableHostCheck: true,
