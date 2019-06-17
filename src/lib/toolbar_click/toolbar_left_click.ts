@@ -1,4 +1,4 @@
-import insert from '../helpers/insertText'
+import { insertText } from '../helpers/function'
 
 function toolbar_left_undo_click($vm) {
   let { f_history, f_history_index } = $vm.state
@@ -21,31 +21,31 @@ function toolbar_left_redo_click($vm) {
 }
 
 function toolbar_left_h1_click($vm) {
-  insert($vm, '# ', '一级标题')
+  insertText($vm, '# ', '一级标题')
 }
 
 function toolbar_left_h2_click($vm) {
-  insert($vm, '## ', '二级标题')
+  insertText($vm, '## ', '二级标题')
 }
 
 function toolbar_left_h3_click($vm) {
-  insert($vm, '### ', '三级标题')
+  insertText($vm, '### ', '三级标题')
 }
 
 function toolbar_left_h4_click($vm) {
-  insert($vm, '#### ', '四级标题')
+  insertText($vm, '#### ', '四级标题')
 }
 
 function toolbar_left_img_click($vm) {
-  insert($vm, '![alt](', 'url', ')')
+  insertText($vm, '![alt](', 'url', ')')
 }
 
 function toolbar_left_link_click($vm) {
-  insert($vm, '[title](', 'url', ')')
+  insertText($vm, '[title](', 'url', ')')
 }
 
 function toolbar_left_code_click($vm) {
-  insert($vm, '```', 'language', '\n\n```')
+  insertText($vm, '```', 'language', '\n\n```')
 }
 
 function toolbar_left_save_click($vm) {
@@ -53,7 +53,7 @@ function toolbar_left_save_click($vm) {
 }
 
 function toolbar_left_tab_click($vm) {
-  insert($vm, '  ')
+  insertText($vm, '  ')
 }
 
 export const toolbar_left_click = (type, $vm) => {

@@ -1,4 +1,4 @@
-function insert(that, prefix, hint = '', subfix = '') {
+function insertText(that, prefix, hint = '', subfix = '') {
   const $vm = that.$vm
   const value = $vm.value
   if ($vm.selectionStart || $vm.selectionStart === 0) {
@@ -36,4 +36,10 @@ function insert(that, prefix, hint = '', subfix = '') {
   }
 }
 
-export default insert
+function srcoll($vm) {
+  
+}
+
+export {
+  insertText
+}

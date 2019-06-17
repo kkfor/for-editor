@@ -49,6 +49,10 @@ class MdEditor extends React.Component<P, S> {
     }
   }
   private $vm: HTMLTextAreaElement
+  private $scrollEdit: HTMLDivElement
+  private $scrollPreview: HTMLDivElement
+  private $blockEdit: HTMLDivElement
+  private $blockPreview: HTMLDivElement
   private currentTimeout: null | number | NodeJS.Timer
 
   static defaultProps = {
@@ -130,6 +134,11 @@ class MdEditor extends React.Component<P, S> {
     this.$vm.focus()
   }
 
+  handleScoll(e) {
+    const radio = this.$blockEdit.scrollTop / (this.$scrollEdit.offsetHeight - e.target.offsetHeight)
+    this.$blockPreview.scrollTop = (this.$scrollPreview.scrollHeight - this.$blockPreview.offsetHeight) * radio
+  }
+
   render() {
     const { preview_switch, expand_switch, line_index } = this.state
     const { value, placeholder, fontSize, disabled, height, style } = this.props
@@ -170,8 +179,8 @@ class MdEditor extends React.Component<P, S> {
         {/* 内容区 */}
         <div className="for-editor" style={{ fontSize }}>
           {/* 编辑区 */}
-          <div className={editorClass} onClick={() => this.focusText()}>
-            <div className="for-editor-block">
+          <div className={editorClass} ref={$v => this.$blockEdit = $v} onScroll={e => this.handleScoll(e)} onClick={() => this.focusText()}>
+            <div className="for-editor-block" ref={$v => this.$scrollEdit = $v}>
               {lineNum()}
               <div className="for-editor-content">
                 <pre>{value} </pre>
@@ -187,8 +196,9 @@ class MdEditor extends React.Component<P, S> {
             </div>
           </div>
           {/* 预览区 */}
-          <div className={previewClass}>
+          <div className={previewClass} ref={$v => this.$blockPreview = $v}>
             <div
+              ref={$v => this.$scrollPreview = $v}
               className="for-preview for-markdown-preview"
               dangerouslySetInnerHTML={{ __html: marked(value) }}
             />
