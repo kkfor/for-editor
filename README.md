@@ -55,9 +55,12 @@ ReactDOM.render(
 
 | name | type | default | description |
 | - | - | - | - |
-| placeholder | String | 请输入内容... | 占位文本 |
 | value | String| - |输入框内容 |
+| placeholder | String | 请输入内容... | 占位文本 |
 | lineNum | Boolean| true | 是否显示行号
+| height | String | 600px | 编辑器高度 |
+| preview | Boolean | false | 预览模式 |
+| expand | Boolean | false | 全屏模式 |
 
 #### events
 

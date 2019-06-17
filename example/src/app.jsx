@@ -72,6 +72,7 @@ const editor = 'for-editor'
       <div className={styles.editor}>
         <div>
           <Editor
+            height="100%"
             value={value}
             onChange={value => this.handleChange(value)}
             onSave={value => this.handleSave(value)}
