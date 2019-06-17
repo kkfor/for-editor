@@ -1,34 +1,78 @@
-const path = require('path')
-
-const resolve = dir => {
-  return path.resolve(__dirname, '..', dir)
-}
+// const isProd = process.env.NODE_ENV === 'production'
+const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
+  entry: './example/index.tsx',
+  devtool: isDev && 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx'],
-    alias: {
-      '@': resolve('src')
-    }
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: resolve('node_modules'),
-        use: require.resolve('babel-loader')
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: ['@babel/plugin-proposal-class-properties']
+          }
+        }
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'ts-loader'
+        }
       },
       {
         test: /\.css$/,
-        use: [require.resolve('style-loader'), require.resolve('css-loader')]
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: isDev,
+              importLoaders: 1
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')],
+              sourceMap: isDev
+            }
+          }
+        ]
       },
       {
-        test: /\.(sass|scss)$/,
+        test: /\.scss$/,
         exclude: /\.module\.(sass|scss)$/,
         use: [
-          require.resolve('style-loader'),
-          require.resolve('css-loader'),
-          require.resolve('sass-loader')
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: isDev
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')],
+              sourceMap: isDev
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: isDev
+            }
+          }
         ]
       },
       {
@@ -38,8 +82,15 @@ module.exports = {
           {
             loader: require.resolve('css-loader'),
             options: {
-              importLoaders: 1,
+              importLoaders: 2,
               modules: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')],
+              sourceMap: isDev
             }
           },
           require.resolve('sass-loader')

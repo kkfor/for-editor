@@ -1,8 +1,8 @@
 const webpackBaseConfig = require('./webpack.base.config')
 const merge = require('webpack-merge')
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = merge(webpackBaseConfig, {
   mode: 'development',
@@ -19,8 +19,6 @@ module.exports = merge(webpackBaseConfig, {
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    // contentBase: path.resolve(__dirname, '../dist'),
-    // watchContentBase: true,
     historyApiFallback: true,
     disableHostCheck: true,
     inline: true,
