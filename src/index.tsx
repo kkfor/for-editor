@@ -21,6 +21,7 @@ interface P {
   toolbars: object
   preview: boolean
   expand: boolean
+  style: object
   height: string
 }
 
@@ -58,7 +59,8 @@ class MdEditor extends React.Component<P, S> {
     fontSize: '14px',
     disabled: false,
     preview_switch: false,
-    expand_switch: false
+    expand_switch: false,
+    style: {}
   }
 
   componentDidMount() {
@@ -130,7 +132,7 @@ class MdEditor extends React.Component<P, S> {
 
   render() {
     const { preview_switch, expand_switch, line_index } = this.state
-    const { value, placeholder, fontSize, disabled, height } = this.props
+    const { value, placeholder, fontSize, disabled, height, style } = this.props
     const previewClass = classNames({
       'for-panel': true,
       'for-editor-preview': true,
@@ -159,7 +161,7 @@ class MdEditor extends React.Component<P, S> {
     }
 
     return (
-      <div className={fullscreen} style={{ height }}>
+      <div className={fullscreen} style={{ height, ...style }}>
         {/* 菜单栏 */}
         <div className="for-controlbar">
           <ToolbarLeft onClick={type => this.toolBarLeftClick(type)} />

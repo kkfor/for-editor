@@ -3,6 +3,11 @@
   display: flex;
   flex-direction: column;
   height: 600px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 12px;
+  background: #fff;
+  font-size: 14px;
 
   &.for-fullscreen {
     position: fixed;
@@ -21,10 +26,6 @@
     padding: 0;
   }
 
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: #fff;
-  font-size: 14px;
 
   .for-controlbar {
     font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
@@ -77,12 +78,13 @@
       overflow: auto;
 
       .for-preview {
+        height: 100%;
         padding: 10px 14px;
         background: #fcfcfc;
       }
     }
     .for-editor-preview {
-      border-left: 1px solid #ccc;
+      border-left: 1px solid #ddd;
     }
 
     .for-preview-hidden {
