@@ -33,6 +33,7 @@
     justify-content: space-between;
     padding: 0 6px;
     border-bottom: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
     color: #555;
     user-select: none;
 
@@ -68,7 +69,7 @@
     justify-content: space-between;
     height: 100%;
     color: rgba(0, 0, 0, 0.65);
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 8px 8px;
     overflow: hidden;
 
     .for-panel {
@@ -78,7 +79,7 @@
       overflow: auto;
 
       .for-preview {
-        height: 100%;
+        min-height: 100%;
         box-sizing: border-box;
         padding: 10px 14px;
         background: #fcfcfc;
