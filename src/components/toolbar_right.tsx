@@ -50,6 +50,9 @@ class Toolbars extends React.Component<P, S> {
               <i className="foricon for-eye" />
             )}
         </li>
+        <li onClick={() => this.onClick('preview')}>
+          <i className="foricon for-columns" />
+        </li>
       </ul>
     )
   }
