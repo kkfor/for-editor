@@ -135,7 +135,7 @@ class MdEditor extends React.Component<P, S> {
   }
 
   handleScoll(e) {
-    const radio = this.$blockEdit.scrollTop / (this.$scrollEdit.offsetHeight - e.target.offsetHeight)
+    const radio = this.$blockEdit.scrollTop / (this.$scrollEdit.scrollHeight - e.target.offsetHeight)
     this.$blockPreview.scrollTop = (this.$scrollPreview.scrollHeight - this.$blockPreview.offsetHeight) * radio
   }
 
