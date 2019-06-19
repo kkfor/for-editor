@@ -78,12 +78,10 @@
     .for-panel {
       height: 100%;
       flex: 0 0 100%;
-      width: 100%;
       overflow: auto;
       transition: all 0.2s linear 0s;
 
       &.for-active {
-        width: 50%;
         flex: 0 0 50%;
       }
 
