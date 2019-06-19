@@ -18,12 +18,12 @@ interface P {
   placeholder: string
   fontSize: string
   disabled: boolean
-  toolbars: object
   style: object
   height: string
   preview: boolean
   expand: boolean
   subfield: boolean
+  toolbar: object
 }
 
 interface S {
@@ -68,7 +68,22 @@ class MdEditor extends React.Component<P, S> {
     preview_switch: false,
     expand_switch: false,
     subfield_switch: false,
-    style: {}
+    style: {},
+    toolbar: {
+      h1: true,
+      h2: true,
+      h3: true,
+      h4: true,
+      img: true,
+      link: true,
+      code: true,
+      preview: true,
+      expand: true,
+      undo: true,
+      redo: true,
+      save: true,
+      subfield: true,
+    }
   }
 
   componentDidMount() {
@@ -145,7 +160,7 @@ class MdEditor extends React.Component<P, S> {
 
   render() {
     const { preview_switch, expand_switch, subfield_switch, line_index } = this.state
-    const { value, placeholder, fontSize, disabled, height, style } = this.props
+    const { value, placeholder, fontSize, disabled, height, style, toolbar } = this.props
     const previewClass = classNames({
       'for-panel': true,
       'for-editor-preview': true,
@@ -178,8 +193,9 @@ class MdEditor extends React.Component<P, S> {
       <div className={fullscreen} style={{ height, ...style }}>
         {/* 菜单栏 */}
         <div className="for-controlbar">
-          <ToolbarLeft onClick={type => this.toolBarLeftClick(type)} />
+          <ToolbarLeft toolbar={toolbar} onClick={type => this.toolBarLeftClick(type)} />
           <ToolbarRight
+            toolbar={toolbar}
             preview={preview_switch}
             expand={expand_switch}
             subfield={subfield_switch}

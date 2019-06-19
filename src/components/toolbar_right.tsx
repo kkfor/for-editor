@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 interface P {
   onClick: (type: string) => void
-  toolbars: object,
+  toolbar: object,
   preview: boolean,
   expand: boolean,
   subfield: boolean
@@ -27,7 +27,7 @@ class Toolbars extends React.Component<P, S> {
   }
 
   render() {
-    const { preview, expand, subfield } = this.props
+    const { preview, expand, subfield, toolbar } = this.props
 
     const previewActive = classNames({
       'for-active': preview
@@ -40,23 +40,32 @@ class Toolbars extends React.Component<P, S> {
     })
     return (
       <ul>
-        <li className={expandActive} onClick={() => this.onClick('expand')}>
-          {expandActive ? (
-            <i className="foricon for-contract" />
-          ) : (
-              <i className="foricon for-expand" />
-            )}
-        </li>
-        <li className={previewActive} onClick={() => this.onClick('preview')}>
-          {previewActive ? (
-            <i className="foricon for-eye-off" />
-          ) : (
-              <i className="foricon for-eye" />
-            )}
-        </li>
-        <li className={subfieldActive} onClick={() => this.onClick('subfield')}>
-          <i className="foricon for-subfield" />
-        </li>
+        {
+          toolbar['expand'] &&
+          <li className={expandActive} onClick={() => this.onClick('expand')}>
+            {expandActive ? (
+              <i className="foricon for-contract" />
+            ) : (
+                <i className="foricon for-expand" />
+              )}
+          </li>
+        }
+        {
+          toolbar['preview'] &&
+          <li className={previewActive} onClick={() => this.onClick('preview')}>
+            {previewActive ? (
+              <i className="foricon for-eye-off" />
+            ) : (
+                <i className="foricon for-eye" />
+              )}
+          </li>
+        }
+        {
+          toolbar['subfield'] &&
+          <li className={subfieldActive} onClick={() => this.onClick('subfield')}>
+            <i className="foricon for-subfield" />
+          </li>
+        }
       </ul>
     )
   }

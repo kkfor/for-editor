@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 interface P {
   onClick: (type: string) => void
-  toolbars: object,
+  toolbar: object,
 }
 
 interface S { }
@@ -15,7 +15,7 @@ class Toolbars extends React.Component<P, S> {
 
   static defaultProps = {
     onClick: () => { },
-    toolbars: {}
+    toolbar: {}
   }
 
   // 快捷插入
@@ -24,6 +24,7 @@ class Toolbars extends React.Component<P, S> {
   }
 
   render() {
+    const { toolbar } = this.props
     return (
       <ul>
         <li onClick={() => this.onClick('undo')} title="上一步 (ctrl+z)">
@@ -32,30 +33,54 @@ class Toolbars extends React.Component<P, S> {
         <li onClick={() => this.onClick('redo')} title="下一步 (ctrl+y)">
           <i className="foricon for-redo" />
         </li>
-        <li onClick={() => this.onClick('h1')} title="一级标题">
-          H1
+        {
+          toolbar['h1'] &&
+          <li onClick={() => this.onClick('h1')} title="一级标题">
+            H1
         </li>
-        <li onClick={() => this.onClick('h2')} title="二级标题">
-          H2
+        }
+        {
+          toolbar['h2'] &&
+          <li onClick={() => this.onClick('h2')} title="二级标题">
+            H2
         </li>
-        <li onClick={() => this.onClick('h3')} title="三级标题">
-          H3
+        }
+        {
+          toolbar['h3'] &&
+          <li onClick={() => this.onClick('h3')} title="三级标题">
+            H3
         </li>
-        <li onClick={() => this.onClick('h4')} title="四级标题">
-          H4
+        }
+        {
+          toolbar['h4'] &&
+          <li onClick={() => this.onClick('h4')} title="四级标题">
+            H4
         </li>
-        <li onClick={() => this.onClick('img')} title="图片">
-          <i className="foricon for-image" />
-        </li>
-        <li onClick={() => this.onClick('link')} title="超链接">
-          <i className="foricon for-link" />
-        </li>
-        <li onClick={() => this.onClick('code')} title="代码块">
-          <i className="foricon for-code" />
-        </li>
-        <li onClick={() => this.onClick('save')} title="保存 (ctrl+s)">
-          <i className="foricon for-save" />
-        </li>
+        }
+        {
+          toolbar['img'] &&
+          <li onClick={() => this.onClick('img')} title="图片">
+            <i className="foricon for-image" />
+          </li>
+        }
+        {
+          toolbar['link'] &&
+          <li onClick={() => this.onClick('link')} title="超链接">
+            <i className="foricon for-link" />
+          </li>
+        }
+        {
+          toolbar['code'] &&
+          <li onClick={() => this.onClick('code')} title="代码块">
+            <i className="foricon for-code" />
+          </li>
+        }
+        {
+          toolbar['save'] &&
+          <li onClick={() => this.onClick('save')} title="保存 (ctrl+s)">
+            <i className="foricon for-save" />
+          </li>
+        }
       </ul>
     )
   }

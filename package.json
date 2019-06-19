@@ -1,6 +1,6 @@
 {
   "name": "for-editor",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "react markdown editor",
   "main": "dist/index.js",
   "scripts": {
