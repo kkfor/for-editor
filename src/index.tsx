@@ -23,13 +23,13 @@ interface P {
   height: string
   preview: boolean
   expand: boolean
-  columns: boolean
+  subfield: boolean
 }
 
 interface S {
   preview_switch: boolean
   expand_switch: boolean
-  columns_switch: boolean
+  subfield_switch: boolean
   f_history: string[]
   f_history_index: number
   line_index: number
@@ -44,7 +44,7 @@ class MdEditor extends React.Component<P, S> {
     this.state = {
       preview_switch: props.preview,
       expand_switch: props.expand,
-      columns_switch: props.columns,
+      subfield_switch: props.subfield,
       f_history: [],
       f_history_index: 0,
       line_index: 1,
@@ -67,7 +67,7 @@ class MdEditor extends React.Component<P, S> {
     disabled: false,
     preview_switch: false,
     expand_switch: false,
-    columns_switch: false,
+    subfield_switch: false,
     style: {}
   }
 
@@ -144,7 +144,7 @@ class MdEditor extends React.Component<P, S> {
   }
 
   render() {
-    const { preview_switch, expand_switch, columns_switch, line_index } = this.state
+    const { preview_switch, expand_switch, subfield_switch, line_index } = this.state
     const { value, placeholder, fontSize, disabled, height, style } = this.props
     const previewClass = classNames({
       'for-panel': true,
@@ -154,7 +154,7 @@ class MdEditor extends React.Component<P, S> {
     const editorClass = classNames({
       'for-editor-edit': true,
       'for-panel': true,
-      'for-hidden': preview_switch && !columns_switch
+      'for-hidden': preview_switch && !subfield_switch
     })
     const fullscreen = classNames({
       'for-container': true,
@@ -182,7 +182,7 @@ class MdEditor extends React.Component<P, S> {
           <ToolbarRight
             preview={preview_switch}
             expand={expand_switch}
-            columns={columns_switch}
+            subfield={subfield_switch}
             onClick={type => this.toolBarRightClick(type)} />
         </div>
         {/* 内容区 */}
