@@ -62,6 +62,7 @@ ReactDOM.render(
 | height | String | 600px | 编辑器高度 |
 | preview | Boolean | false | 预览模式 |
 | expand | Boolean | false | 全屏模式 |
+| columns | Boolean | false | 双栏模式 |
 
 #### events
 

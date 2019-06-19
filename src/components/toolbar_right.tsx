@@ -5,7 +5,8 @@ interface P {
   onClick: (type: string) => void
   toolbars: object,
   preview: boolean,
-  expand: boolean
+  expand: boolean,
+  columns: boolean
 }
 
 interface S { }
@@ -26,13 +27,16 @@ class Toolbars extends React.Component<P, S> {
   }
 
   render() {
-    const { preview, expand } = this.props
+    const { preview, expand, columns } = this.props
 
     const previewActive = classNames({
       'for-active': preview
     })
     const expandActive = classNames({
       'for-active': expand
+    })
+    const columnsActive = classNames({
+      'for-active': columns
     })
     return (
       <ul>
@@ -50,7 +54,7 @@ class Toolbars extends React.Component<P, S> {
               <i className="foricon for-eye" />
             )}
         </li>
-        <li onClick={() => this.onClick('preview')}>
+        <li className={columnsActive} onClick={() => this.onClick('columns')}>
           <i className="foricon for-columns" />
         </li>
       </ul>

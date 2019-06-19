@@ -19,15 +19,17 @@ interface P {
   fontSize: string
   disabled: boolean
   toolbars: object
-  preview: boolean
-  expand: boolean
   style: object
   height: string
+  preview: boolean
+  expand: boolean
+  columns: boolean
 }
 
 interface S {
   preview_switch: boolean
   expand_switch: boolean
+  columns_switch: boolean
   f_history: string[]
   f_history_index: number
   line_index: number
@@ -42,6 +44,7 @@ class MdEditor extends React.Component<P, S> {
     this.state = {
       preview_switch: props.preview,
       expand_switch: props.expand,
+      columns_switch: props.columns,
       f_history: [],
       f_history_index: 0,
       line_index: 1,
@@ -64,6 +67,7 @@ class MdEditor extends React.Component<P, S> {
     disabled: false,
     preview_switch: false,
     expand_switch: false,
+    columns_switch: false,
     style: {}
   }
 
@@ -140,16 +144,17 @@ class MdEditor extends React.Component<P, S> {
   }
 
   render() {
-    const { preview_switch, expand_switch, line_index } = this.state
+    const { preview_switch, expand_switch, columns_switch, line_index } = this.state
     const { value, placeholder, fontSize, disabled, height, style } = this.props
     const previewClass = classNames({
       'for-panel': true,
       'for-editor-preview': true,
-      'for-preview-hidden': !preview_switch
+      'for-hidden': !preview_switch
     })
     const editorClass = classNames({
       'for-editor-edit': true,
-      'for-panel': true
+      'for-panel': true,
+      'for-hidden': preview_switch && !columns_switch
     })
     const fullscreen = classNames({
       'for-container': true,
@@ -174,7 +179,11 @@ class MdEditor extends React.Component<P, S> {
         {/* 菜单栏 */}
         <div className="for-controlbar">
           <ToolbarLeft onClick={type => this.toolBarLeftClick(type)} />
-          <ToolbarRight preview={preview_switch} expand={expand_switch} onClick={type => this.toolBarRightClick(type)} />
+          <ToolbarRight
+            preview={preview_switch}
+            expand={expand_switch}
+            columns={columns_switch}
+            onClick={type => this.toolBarRightClick(type)} />
         </div>
         {/* 内容区 */}
         <div className="for-editor" style={{ fontSize }}>
@@ -185,7 +194,6 @@ class MdEditor extends React.Component<P, S> {
               <div className="for-editor-content">
                 <pre>{value} </pre>
                 <textarea
-                  // defaultValue={defalutValue}
                   ref={$vm => this.$vm = $vm}
                   value={value}
                   disabled={disabled}
