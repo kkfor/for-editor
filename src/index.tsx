@@ -5,6 +5,7 @@ import keydownListen from './lib/helpers/keydownListen'
 import 'highlight.js/styles/tomorrow.css'
 import './lib/fonts/iconfont.css'
 import './lib/css/index.scss'
+import { CSSTransition } from 'react-transition-group'
 import ToolbarLeft from './components/toolbar_left'
 import ToolbarRight from './components/toolbar_right'
 import { toolbar_right_click } from './lib/toolbar_click/toolbar_right_click'
@@ -161,15 +162,16 @@ class MdEditor extends React.Component<P, S> {
   render() {
     const { preview_switch, expand_switch, subfield_switch, line_index } = this.state
     const { value, placeholder, fontSize, disabled, height, style, toolbar } = this.props
-    const previewClass = classNames({
-      'for-panel': true,
-      'for-editor-preview': true,
-      'for-hidden': !preview_switch
-    })
     const editorClass = classNames({
       'for-editor-edit': true,
       'for-panel': true,
-      'for-hidden': preview_switch && !subfield_switch
+      'for-active': preview_switch && subfield_switch,
+      'for-edit-preview': preview_switch && !subfield_switch
+    })
+    const previewClass = classNames({
+      'for-panel': true,
+      'for-editor-preview': true,
+      'for-active': preview_switch && subfield_switch,
     })
     const fullscreen = classNames({
       'for-container': true,

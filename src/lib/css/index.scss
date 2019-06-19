@@ -26,6 +26,9 @@
     padding: 0;
   }
 
+  .for-hidden {
+    display: none;
+  }
 
   .for-controlbar {
     font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
@@ -74,9 +77,15 @@
 
     .for-panel {
       height: 100%;
-      flex: 1;
-      width: 50%;
+      flex: 0 0 100%;
+      width: 100%;
       overflow: auto;
+      transition: all 0.2s linear 0s;
+
+      &.for-active {
+        width: 50%;
+        flex: 0 0 50%;
+      }
 
       .for-preview {
         min-height: 100%;
@@ -85,19 +94,16 @@
         background: #fcfcfc;
       }
     }
-    .for-editor-preview {
-      // border-left: 1px solid #ddd;
-    }
-
-    .for-hidden {
-      display: none;
-    }
 
     // 编辑区域
     .for-editor-edit {
       line-height: 1.6;
       height: 100%;
 
+      &.for-edit-preview {
+        width: 0;
+        flex: 0 0 0;
+      }
       .for-editor-block {
         display: flex;
         min-height: 100%;
