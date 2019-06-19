@@ -23,10 +23,17 @@ function toolbar_right_columns_click($vm) {
       })
     }
   } else {
-    $vm.setState({
-      columns_switch: !$vm.state.columns_switch,
-      preview_switch: true
-    })
+    if (columns_switch) {
+      $vm.setState({
+        columns_switch: false
+      })
+    } else {
+      $vm.setState({
+        preview_switch: true,
+        columns_switch: true
+      })
+    }
+    
   }
 }
 
