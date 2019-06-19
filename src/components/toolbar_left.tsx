@@ -27,12 +27,18 @@ class Toolbars extends React.Component<P, S> {
     const { toolbar } = this.props
     return (
       <ul>
-        <li onClick={() => this.onClick('undo')} title="上一步 (ctrl+z)">
-          <i className="foricon for-undo" />
-        </li>
-        <li onClick={() => this.onClick('redo')} title="下一步 (ctrl+y)">
-          <i className="foricon for-redo" />
-        </li>
+        {
+          toolbar['undo'] &&
+          <li onClick={() => this.onClick('undo')} title="上一步 (ctrl+z)">
+            <i className="foricon for-undo" />
+          </li>
+        }
+        {
+          toolbar['redo'] &&
+          <li onClick={() => this.onClick('redo')} title="下一步 (ctrl+y)">
+            <i className="foricon for-redo" />
+          </li>
+        }
         {
           toolbar['h1'] &&
           <li onClick={() => this.onClick('h1')} title="一级标题">
