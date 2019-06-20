@@ -25,7 +25,7 @@
     left: 0;
     height: 100%;
   }
-  
+
   > div {
     &:first-child {
       border-top-left-radius: 8px;
@@ -116,7 +116,7 @@
       .for-line-num {
         list-style: none;
         background: #eee;
-        padding: 8px 0 20%;
+        padding: 8px 0 120px;
         min-width: 30px;
         text-align: center;
         &.hidden {
@@ -149,6 +149,7 @@
   textarea {
     font-family: 'Consolas', 'Source Sans Pro', 'Helvetica Neue', Arial,
       sans-serif;
+    box-sizing: border-box;
     position: absolute;
     top: 0;
     bottom: 0;
