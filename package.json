@@ -5,11 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "npm run dev",
-    "dev": "webpack-dev-server --config build/webpack.dev.config.js",
-    "build": "webpack --config build/webpack.prod.config.js",
-    "dist": "webpack --config build/webpack.dist.config.js",
-    "lint": "eslint --ext .js,.jsx --ignore-path .gitignore .",
-    "test": "jest --config jest.config.js"
+    "dev": "webpack-dev-server --config webpack/webpack.dev.config.js",
+    "build": "webpack --config webpack/webpack.prod.config.js",
+    "dist": "webpack --config webpack/webpack.dist.config.js",
+    "lint": "eslint --ext .js,.jsx --ignore-path .gitignore ."
   },
   "repository": {
     "type": "git",
@@ -56,6 +55,7 @@
     "node-sass": "^4.11.0",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.15.3",
+    "raw-loader": "^3.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "sass-loader": "^7.1.0",

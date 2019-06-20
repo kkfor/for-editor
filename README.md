@@ -58,6 +58,7 @@ ReactDOM.render(<App />, document.getElementById('root'))
 | expand      | Boolean | false         | 全屏模式     |
 | subfield    | Boolean | false         | 双栏模式     |
 
+
 ```js
 /*
   默认工具栏按钮全部开启, 传入自定义对象
@@ -69,7 +70,6 @@ ReactDOM.render(<App />, document.getElementById('root'))
   此时, 仅仅显示此三个功能键
   注:传入空对象则不显示工具栏
  */
-
 
 toolbar: {
   h1: true, // h1
@@ -97,6 +97,7 @@ toolbar: {
 | onChange | function(e) | -       | 内容改变时回调 |
 | onSave   | function(e) | -       | 保存时回调     |
 
+
 #### hot key
 
 | name   | description  |
@@ -105,6 +106,7 @@ toolbar: {
 | ctrl+s | 保存         |
 | ctrl+z | 上一步       |
 | ctrl+y | 下一步       |
+
 
 ### Update
 

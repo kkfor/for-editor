@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Editor from '../../src/index'
 // import Editor from '../../dist'
 import styles from './app.module.scss'
+import value from '../static/help.md'
 
 class App extends Component {
   constructor() {
@@ -12,42 +13,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const value = `> \`for-editor\` is a markdown editor
-
-# for-editor
-
-this is a markdown editor
-
-## for-editor
-
-this is a markdown editor
-
-### for-editor
-
-\`\`\`js
-const editor = 'for-editor'
-\`\`\`
-
-- item1
-  - subitem1
-  - subitem2
-  - subitem3
-- item2
-- item3
-
----
-
-1. item1
-2. item2
-3. item3
-
-### table
-
-| title | description |
-| - | - |
-| for-editor | markdown editor |
-`
-
     setTimeout(() => {
       this.setState({
         value
@@ -69,10 +34,37 @@ const editor = 'for-editor'
     const { value } = this.state
 
     return (
-      <div className={styles.editor}>
-        <div>
-          <Editor
+      <div className={styles.main}>
+        <div className={styles.top}>
+          <h1>for-editor</h1>
+          <ul>
+            <li>
+              <a
+                href="https://github.com/kkfor/for-editor"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.editor}>
+          {/* <Editor
             height="100%"
+            value={value}
+            onChange={value => this.handleChange(value)}
+            onSave={value => this.handleSave(value)}
+          /> */}
+          <Editor
+            height="700px"
+            toolbar={{
+              h1: true,
+              h2: true,
+              h3: true,
+              save: true,
+              preview: true
+            }}
             value={value}
             onChange={value => this.handleChange(value)}
             onSave={value => this.handleSave(value)}

@@ -102,6 +102,10 @@ module.exports = {
         options: {
           name: 'static/fonts/[name].[hash:8].[ext]'
         }
+      },
+      {
+        test: /\.md$/,
+        loader: require.resolve('raw-loader')
       }
     ]
   }

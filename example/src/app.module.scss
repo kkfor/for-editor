@@ -1,19 +1,47 @@
 html {
   height: 100%;
 }
+
 body {
   height: 100%;
   margin: 0;
 }
 
-.editor {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  
-  > div {
+.main {
+  padding-bottom: 80px;
+
+  h1,
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul,
+  li {
+    list-style: none;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    line-height: 80px;
+    padding: 0 20px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(160deg, #852178, #019845);
+  }
+
+  .editor {
     height: 80%;
-    width: 960px;
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 }
