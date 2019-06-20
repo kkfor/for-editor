@@ -8,16 +8,34 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      value: ''
+      value: '',
+      mobile: false
     }
   }
 
   componentDidMount() {
+    this.resize()
+    window.addEventListener('resize', () => {
+      this.resize()
+    })
     setTimeout(() => {
       this.setState({
         value
       })
     }, 200)
+  }
+
+  resize() {
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      this.setState({
+        mobile: false
+      })
+    } else {
+      this.setState({
+        mobile: true
+      })
+    }
+    console.log(window.matchMedia('(min-width: 768px)').matches)
   }
 
   handleChange(value) {
@@ -31,7 +49,7 @@ class App extends Component {
   }
 
   render() {
-    const { value } = this.state
+    const { value, mobile } = this.state
 
     return (
       <div className={styles.main}>
@@ -50,25 +68,30 @@ class App extends Component {
           </ul>
         </div>
         <div className={styles.editor}>
-          {/* <Editor
-            height="100%"
-            value={value}
-            onChange={value => this.handleChange(value)}
-            onSave={value => this.handleSave(value)}
-          /> */}
-          <Editor
-            height="700px"
-            toolbar={{
-              h1: true,
-              h2: true,
-              h3: true,
-              save: true,
-              preview: true
-            }}
-            value={value}
-            onChange={value => this.handleChange(value)}
-            onSave={value => this.handleSave(value)}
-          />
+          {mobile && (
+            <Editor
+              height="500px"
+              toolbar={{
+                h1: true,
+                h2: true,
+                h3: true,
+                save: true,
+                preview: true
+              }}
+              value={value}
+              subfield={false}
+              onChange={value => this.handleChange(value)}
+              onSave={value => this.handleSave(value)}
+            />
+          )}
+          {!mobile && (
+            <Editor
+              height="100%"
+              value={value}
+              onChange={value => this.handleChange(value)}
+              onSave={value => this.handleSave(value)}
+            />
+          )}
         </div>
       </div>
     )
