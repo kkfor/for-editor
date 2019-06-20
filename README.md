@@ -59,6 +59,18 @@ ReactDOM.render(<App />, document.getElementById('root'))
 | subfield    | Boolean | false         | 双栏模式     |
 
 ```js
+/*
+  默认工具栏按钮全部开启, 传入自定义对象
+  例如: {
+    h1: true, // h1
+    code: true, // 代码块
+    preview: true, // 预览
+  }
+  此时, 仅仅显示此三个功能键
+  注:传入空对象则不显示工具栏
+ */
+
+
 toolbar: {
   h1: true, // h1
   h2: true, // h2

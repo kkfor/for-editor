@@ -5,7 +5,6 @@ import keydownListen from './lib/helpers/keydownListen'
 import 'highlight.js/styles/tomorrow.css'
 import './lib/fonts/iconfont.css'
 import './lib/css/index.scss'
-import { CSSTransition } from 'react-transition-group'
 import ToolbarLeft from './components/toolbar_left'
 import ToolbarRight from './components/toolbar_right'
 import { toolbar_right_click } from './lib/toolbar_click/toolbar_right_click'
@@ -194,15 +193,18 @@ class MdEditor extends React.Component<P, S> {
     return (
       <div className={fullscreen} style={{ height, ...style }}>
         {/* 菜单栏 */}
-        <div className="for-controlbar">
-          <ToolbarLeft toolbar={toolbar} onClick={type => this.toolBarLeftClick(type)} />
-          <ToolbarRight
-            toolbar={toolbar}
-            preview={preview_switch}
-            expand={expand_switch}
-            subfield={subfield_switch}
-            onClick={type => this.toolBarRightClick(type)} />
-        </div>
+        {
+          Boolean(Object.keys(toolbar).length) &&
+          <div className="for-controlbar">
+            <ToolbarLeft toolbar={toolbar} onClick={type => this.toolBarLeftClick(type)} />
+            <ToolbarRight
+              toolbar={toolbar}
+              preview={preview_switch}
+              expand={expand_switch}
+              subfield={subfield_switch}
+              onClick={type => this.toolBarRightClick(type)} />
+          </div>
+        }
         {/* 内容区 */}
         <div className="for-editor" style={{ fontSize }}>
           {/* 编辑区 */}

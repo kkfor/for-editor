@@ -9,6 +9,13 @@
   background: #fff;
   font-size: 14px;
 
+  ul,
+  ol,
+  li {
+    margin: 0;
+    padding: 0;
+  }
+
   &.for-fullscreen {
     position: fixed;
     z-index: 99999;
@@ -18,12 +25,12 @@
     left: 0;
     height: 100%;
   }
-
-  ul,
-  ol,
-  li {
-    margin: 0;
-    padding: 0;
+  
+  > div {
+    &:first-child {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
   }
 
   .for-hidden {
@@ -36,7 +43,6 @@
     justify-content: space-between;
     padding: 0 6px;
     border-bottom: 1px solid #ddd;
-    border-radius: 8px 8px 0 0;
     color: #555;
     user-select: none;
 
