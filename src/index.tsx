@@ -87,7 +87,9 @@ class MdEditor extends React.Component<P, S> {
   }
 
   componentDidMount() {
+    const { value } = this.props
     keydownListen(this)
+    this.reLineNum(value)
   }
 
   componentDidUpdate(preProps) {

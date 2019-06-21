@@ -35,7 +35,6 @@ class App extends Component {
         mobile: true
       })
     }
-    console.log(window.matchMedia('(min-width: 768px)').matches)
   }
 
   handleChange(value) {
@@ -86,7 +85,7 @@ class App extends Component {
           )}
           {!mobile && (
             <Editor
-              height="100%"
+              height="700px"
               value={value}
               onChange={value => this.handleChange(value)}
               onSave={value => this.handleSave(value)}
