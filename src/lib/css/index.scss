@@ -77,7 +77,7 @@
     display: flex;
     justify-content: space-between;
     height: 100%;
-    color: rgba(0, 0, 0, 0.65);
+    color: #2c3e50;
     border-radius: 0 0 8px 8px;
     overflow: hidden;
 
@@ -162,7 +162,7 @@
     border: none;
     outline: none;
     font-size: inherit;
-    color: rgba(0, 0, 0, 0.65);
+    color: inherit;
     background: none;
     line-height: inherit;
   }
@@ -226,12 +226,16 @@
         }
 
         > ul {
-          li {
-            list-style-type: circle;
-          }
-
           &:last-child {
             margin-bottom: 0;
+          }
+
+          li {
+            list-style-type: circle;
+
+            > ul li {
+              list-style-type: square;
+            }
           }
         }
       }
@@ -301,6 +305,11 @@
       margin-bottom: 0.6em;
       border-collapse: collapse;
       text-align: left;
+
+      thead {
+        background: #eee;
+      }
+
       th,
       td {
         padding: 0.1em 0.4em;
