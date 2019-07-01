@@ -33,7 +33,6 @@ function toolbar_right_subfield_click($vm) {
         subfield_switch: true
       })
     }
-    
   }
 }
 
@@ -43,5 +42,7 @@ export const toolbar_right_click = (type, $vm) => {
     'expand': toolbar_right_expand_click,
     'subfield': toolbar_right_subfield_click
   }
-  right_click[type]($vm)
+  if (right_click.hasOwnProperty(type)) {
+    right_click[type]($vm)
+  }
 }

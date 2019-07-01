@@ -68,6 +68,9 @@ export const toolbar_left_click = (type, $vm) => {
     'link': toolbar_left_link_click,
     'code': toolbar_left_code_click,
     'save': toolbar_left_save_click,
+    'tab': toolbar_left_tab_click
   }
-  left_click[type]($vm)
+  if (left_click.hasOwnProperty(type)) {
+    left_click[type]($vm)
+  }
 }
