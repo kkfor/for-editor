@@ -5,7 +5,7 @@ module.exports = {
   entry: './example/index.tsx',
   devtool: isDev && 'source-map',
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx']
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
   },
   module: {
     rules: [

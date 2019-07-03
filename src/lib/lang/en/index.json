@@ -1,0 +1,18 @@
+{
+  "placeholder": "Begin editing...",
+  "undo": "Undo",
+  "redo": "Redo",
+  "header_one": "Header 1",
+  "header_two": "Header 2",
+  "header_three": "Header 3",
+  "header_four": "Header 4",
+  "image": "Image Link",
+  "link": "Link",
+  "code": "Code",
+  "save": "Save",
+  "preview": "Preview",
+  "single_column": "Single Column",
+  "double_column": "Double Columns",
+  "fullscreen_on": "FullScreen ON",
+  "fullscreen_off": "FullScreen OFF"
+}

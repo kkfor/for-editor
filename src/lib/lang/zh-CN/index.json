@@ -1,0 +1,18 @@
+{
+  "placeholder": "开始编辑...",
+  "undo": "上一步",
+  "redo": "下一步",
+  "header_one": "一级标题",
+  "header_two": "二级标题",
+  "header_three": "三级标题",
+  "header_four": "四级标题",
+  "image": "添加图片链接",
+  "link": "链接",
+  "code": "代码块",
+  "save": "保存",
+  "preview": "预览",
+  "single_column": "单栏",
+  "double_column": "双栏",
+  "fullscreen_on": "全屏编辑",
+  "fullscreen_off": "退出全屏"
+}
