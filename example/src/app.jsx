@@ -70,7 +70,7 @@ class App extends Component {
           {mobile && (
             <Editor
               height="500px"
-              toolbar={{
+              toolbars={{
                 h1: true,
                 h2: true,
                 h3: true,
@@ -85,6 +85,7 @@ class App extends Component {
           )}
           {!mobile && (
             <Editor
+              language="en"
               height="700px"
               value={value}
               onChange={value => this.handleChange(value)}

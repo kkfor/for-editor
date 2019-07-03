@@ -9,6 +9,7 @@ import ToolbarLeft from './components/toolbar_left'
 import ToolbarRight from './components/toolbar_right'
 import { toolbar_right_click } from './lib/toolbar_click/toolbar_right_click'
 import { toolbar_left_click } from './lib/toolbar_click/toolbar_left_click'
+import { CONFIG } from './lib'
 
 interface P {
   value: string
@@ -24,6 +25,7 @@ interface P {
   expand: boolean
   subfield: boolean
   toolbar: object
+  language: string
 }
 
 interface S {
@@ -34,6 +36,7 @@ interface S {
   f_history_index: number
   line_index: number
   value: string
+  words: object
 }
 
 
@@ -48,7 +51,8 @@ class MdEditor extends React.Component<P, S> {
       f_history: [],
       f_history_index: 0,
       line_index: 1,
-      value: props.value
+      value: props.value,
+      words: {}
     }
   }
   private $vm: HTMLTextAreaElement
@@ -59,7 +63,6 @@ class MdEditor extends React.Component<P, S> {
   private currentTimeout: null | number | NodeJS.Timer
 
   static defaultProps = {
-    placeholder: '请输入内容...',
     lineNum: true,
     onChange: () => { },
     onSave: () => { },
@@ -69,27 +72,15 @@ class MdEditor extends React.Component<P, S> {
     expand_switch: false,
     subfield_switch: false,
     style: {},
-    toolbar: {
-      h1: true,
-      h2: true,
-      h3: true,
-      h4: true,
-      img: true,
-      link: true,
-      code: true,
-      preview: true,
-      expand: true,
-      undo: true,
-      redo: true,
-      save: true,
-      subfield: true,
-    }
+    toolbar: CONFIG.toolbar,
+    language: 'zh-CN'
   }
 
   componentDidMount() {
     const { value } = this.props
     keydownListen(this)
     this.reLineNum(value)
+    this.initLanguage()
   }
 
   componentDidUpdate(preProps) {
@@ -104,6 +95,14 @@ class MdEditor extends React.Component<P, S> {
         this.saveHistory(value)
       }, 500);
     }
+  }
+
+  initLanguage() {
+    const { language } = this.props
+    let lang = CONFIG.langList.indexOf(language) >= 0 ? language : 'zh-CN'
+    this.setState({
+      words: CONFIG[lang]
+    })
   }
 
   // 输入框改变
@@ -161,7 +160,7 @@ class MdEditor extends React.Component<P, S> {
   }
 
   render() {
-    const { preview_switch, expand_switch, subfield_switch, line_index } = this.state
+    const { preview_switch, expand_switch, subfield_switch, line_index, words } = this.state
     const { value, placeholder, fontSize, disabled, height, style, toolbar } = this.props
     const editorClass = classNames({
       'for-editor-edit': true,
@@ -198,9 +197,10 @@ class MdEditor extends React.Component<P, S> {
         {
           Boolean(Object.keys(toolbar).length) &&
           <div className="for-controlbar">
-            <ToolbarLeft toolbar={toolbar} onClick={type => this.toolBarLeftClick(type)} />
+            <ToolbarLeft toolbar={toolbar} words={words} onClick={type => this.toolBarLeftClick(type)} />
             <ToolbarRight
               toolbar={toolbar}
+              words={words}
               preview={preview_switch}
               expand={expand_switch}
               subfield={subfield_switch}
@@ -220,7 +220,7 @@ class MdEditor extends React.Component<P, S> {
                   value={value}
                   disabled={disabled}
                   onChange={e => this.handleChange(e)}
-                  placeholder={placeholder}
+                  placeholder={placeholder ? placeholder : words['placeholder']}
                 />
               </div>
             </div>

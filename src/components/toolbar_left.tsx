@@ -4,6 +4,7 @@ import classNames from 'classnames'
 interface P {
   onClick: (type: string) => void
   toolbar: object,
+  words: object
 }
 
 interface S { }
@@ -15,7 +16,8 @@ class Toolbars extends React.Component<P, S> {
 
   static defaultProps = {
     onClick: () => { },
-    toolbar: {}
+    toolbar: {},
+    words: {}
   }
 
   // 快捷插入
@@ -24,66 +26,66 @@ class Toolbars extends React.Component<P, S> {
   }
 
   render() {
-    const { toolbar } = this.props
+    const { toolbar, words } = this.props
     return (
       <ul>
         {
           toolbar['undo'] &&
-          <li onClick={() => this.onClick('undo')} title="上一步 (ctrl+z)">
+          <li onClick={() => this.onClick('undo')} title={`${words['undo']} (ctrl+z)`}>
             <i className="foricon for-undo" />
           </li>
         }
         {
           toolbar['redo'] &&
-          <li onClick={() => this.onClick('redo')} title="下一步 (ctrl+y)">
+          <li onClick={() => this.onClick('redo')} title={`${words['redo']} (ctrl+y)`}>
             <i className="foricon for-redo" />
           </li>
         }
         {
           toolbar['h1'] &&
-          <li onClick={() => this.onClick('h1')} title="一级标题">
+          <li onClick={() => this.onClick('h1')} title={words['h1']}>
             H1
         </li>
         }
         {
           toolbar['h2'] &&
-          <li onClick={() => this.onClick('h2')} title="二级标题">
+          <li onClick={() => this.onClick('h2')} title={words['h2']}>
             H2
         </li>
         }
         {
           toolbar['h3'] &&
-          <li onClick={() => this.onClick('h3')} title="三级标题">
+          <li onClick={() => this.onClick('h3')} title={words['h3']}>
             H3
         </li>
         }
         {
           toolbar['h4'] &&
-          <li onClick={() => this.onClick('h4')} title="四级标题">
+          <li onClick={() => this.onClick('h4')} title={words['h4']}>
             H4
         </li>
         }
         {
           toolbar['img'] &&
-          <li onClick={() => this.onClick('img')} title="图片">
+          <li onClick={() => this.onClick('img')} title={words['img']}>
             <i className="foricon for-image" />
           </li>
         }
         {
           toolbar['link'] &&
-          <li onClick={() => this.onClick('link')} title="超链接">
+          <li onClick={() => this.onClick('link')} title={words['link']}>
             <i className="foricon for-link" />
           </li>
         }
         {
           toolbar['code'] &&
-          <li onClick={() => this.onClick('code')} title="代码块">
+          <li onClick={() => this.onClick('code')} title={words['code']}>
             <i className="foricon for-code" />
           </li>
         }
         {
           toolbar['save'] &&
-          <li onClick={() => this.onClick('save')} title="保存 (ctrl+s)">
+          <li onClick={() => this.onClick('save')} title={`${words['save']} (ctrl+s)`}>
             <i className="foricon for-save" />
           </li>
         }

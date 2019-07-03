@@ -3,10 +3,11 @@ import classNames from 'classnames'
 
 interface P {
   onClick: (type: string) => void
-  toolbar: object,
-  preview: boolean,
-  expand: boolean,
+  toolbar: object
+  preview: boolean
+  expand: boolean
   subfield: boolean
+  words: object
 }
 
 interface S { }
@@ -18,7 +19,8 @@ class Toolbars extends React.Component<P, S> {
 
   static defaultProps = {
     onClick: () => { },
-    toolbars: {}
+    toolbars: {},
+    words: {}
   }
 
   // 快捷插入
@@ -27,7 +29,7 @@ class Toolbars extends React.Component<P, S> {
   }
 
   render() {
-    const { preview, expand, subfield, toolbar } = this.props
+    const { preview, expand, subfield, toolbar, words } = this.props
 
     const previewActive = classNames({
       'for-active': preview
@@ -42,7 +44,7 @@ class Toolbars extends React.Component<P, S> {
       <ul>
         {
           toolbar['expand'] &&
-          <li className={expandActive} onClick={() => this.onClick('expand')}>
+          <li className={expandActive} onClick={() => this.onClick('expand')} title={expandActive ? words['fullscreen_off'] : words['fullscreen_on']}>
             {expandActive ? (
               <i className="foricon for-contract" />
             ) : (
@@ -52,7 +54,7 @@ class Toolbars extends React.Component<P, S> {
         }
         {
           toolbar['preview'] &&
-          <li className={previewActive} onClick={() => this.onClick('preview')}>
+          <li className={previewActive} onClick={() => this.onClick('preview')} title={words['preview']}>
             {previewActive ? (
               <i className="foricon for-eye-off" />
             ) : (
@@ -62,11 +64,11 @@ class Toolbars extends React.Component<P, S> {
         }
         {
           toolbar['subfield'] &&
-          <li className={subfieldActive} onClick={() => this.onClick('subfield')}>
+          <li className={subfieldActive} onClick={() => this.onClick('subfield')} title={subfieldActive ? words['single_column'] : words['double_column']}>
             <i className="foricon for-subfield" />
           </li>
         }
-      </ul>
+      </ul >
     )
   }
 }
