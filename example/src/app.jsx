@@ -70,7 +70,7 @@ class App extends Component {
           {mobile && (
             <Editor
               height="500px"
-              toolbars={{
+              toolbar={{
                 h1: true,
                 h2: true,
                 h3: true,
