@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-// import Editor from '../../src/index'
-import Editor from '../../dist'
+import Editor from '../../src/index'
+// import Editor from '../../dist'
 import styles from './app.module.scss'
 import value from '../static/help.md'
 

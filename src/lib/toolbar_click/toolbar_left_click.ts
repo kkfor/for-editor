@@ -20,57 +20,65 @@ function toolbar_left_redo_click($vm) {
   })
 }
 
-function toolbar_left_h1_click($vm) {
-  insertText($vm, '# ', '一级标题')
-}
-
-function toolbar_left_h2_click($vm) {
-  insertText($vm, '## ', '二级标题')
-}
-
-function toolbar_left_h3_click($vm) {
-  insertText($vm, '### ', '三级标题')
-}
-
-function toolbar_left_h4_click($vm) {
-  insertText($vm, '#### ', '四级标题')
-}
-
-function toolbar_left_img_click($vm) {
-  insertText($vm, '![alt](', 'url', ')')
-}
-
-function toolbar_left_link_click($vm) {
-  insertText($vm, '[title](', 'url', ')')
-}
-
-function toolbar_left_code_click($vm) {
-  insertText($vm, '```', 'language', '\n\n```')
-}
-
 function toolbar_left_save_click($vm) {
   $vm.save()
 }
 
-function toolbar_left_tab_click($vm) {
-  insertText($vm, '  ')
-}
-
 export const toolbar_left_click = (type, $vm) => {
-  const left_click = {
-    'undo': toolbar_left_undo_click,
-    'redo': toolbar_left_redo_click,
-    'h1': toolbar_left_h1_click,
-    'h2': toolbar_left_h2_click,
-    'h3': toolbar_left_h3_click,
-    'h4': toolbar_left_h4_click,
-    'img': toolbar_left_img_click,
-    'link': toolbar_left_link_click,
-    'code': toolbar_left_code_click,
-    'save': toolbar_left_save_click,
-    'tab': toolbar_left_tab_click
+  const { words } = $vm.state
+  const insert_text_obj = {
+    'h1': {
+      prefix: '# ',
+      subfix: '',
+      str: words.h1
+    },
+    'h2': {
+      prefix: '## ',
+      subfix: '',
+      str: words.h2
+    },
+    'h3': {
+      prefix: '### ',
+      subfix: '',
+      str: words.h3
+    },
+    'h4': {
+      prefix: '#### ',
+      subfix: '',
+      str: words.h4
+    },
+    'img': {
+      prefix: '![alt](',
+      subfix: ')',
+      str: 'url'
+    },
+    'link': {
+      prefix: '[title](',
+      subfix: ')',
+      str: 'url'
+    },
+    'code': {
+      prefix: '```',
+      subfix: '\n\n```',
+      str: 'language'
+    },
+    'tab': {
+      prefix: '  ',
+      subfix: '',
+      str: ''
+    }
   }
-  if (left_click.hasOwnProperty(type)) {
-    left_click[type]($vm)
+
+  if (insert_text_obj.hasOwnProperty(type)) {
+    insertText($vm, insert_text_obj[type])
+  }
+
+  const other_left_click = {
+    undo: toolbar_left_undo_click,
+    redo: toolbar_left_redo_click,
+    save: toolbar_left_save_click
+  }
+  if (other_left_click.hasOwnProperty(type)) {
+    other_left_click[type]($vm)
   }
 }

@@ -1,4 +1,5 @@
-function insertText(that, prefix, hint = '', subfix = '') {
+function insertText(that, params) {
+  const { prefix, str = '', subfix = '' } = params
   const $vm = that.$vm
   const value = $vm.value
   if ($vm.selectionStart || $vm.selectionStart === 0) {
@@ -11,11 +12,11 @@ function insertText(that, prefix, hint = '', subfix = '') {
       $vm.value =
         value.substring(0, start) +
         prefix +
-        hint +
+        str +
         subfix +
         value.substring(end, value.length)
       $vm.selectionStart = start + prefix.length
-      $vm.selectionEnd = end + prefix.length + hint.length
+      $vm.selectionEnd = end + prefix.length + str.length
     } else {
       $vm.value =
         value.substring(0, start) +
@@ -34,10 +35,6 @@ function insertText(that, prefix, hint = '', subfix = '') {
       $vm.scrollTop = restoreTop
     }
   }
-}
-
-function srcoll($vm) {
-  
 }
 
 export {
