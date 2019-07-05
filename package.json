@@ -1,6 +1,6 @@
 {
   "name": "for-editor",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "description": "react markdown editor",
   "main": "dist/index.js",
   "scripts": {
@@ -27,6 +27,7 @@
   },
   "files": [
     "dist/",
+    "index.d.ts",
     "LICENSE"
   ],
   "homepage": "https://github.com/kkfor/for-editor#readme",

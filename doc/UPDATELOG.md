@@ -1,3 +1,5 @@
+- 2019-07-05 v0.3.0
+  - 添加d.ts声明文件，修复bug [#27](https://github.com/kkfor/for-editor/issues/26)
 - 2019-07-03 v0.2.9
   - 修复bug [#26](https://github.com/kkfor/for-editor/issues/26)
 - 2019-07-03 v0.2.8
