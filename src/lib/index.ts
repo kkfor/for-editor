@@ -18,6 +18,6 @@ export const CONFIG = {
     undo: true,
     redo: true,
     save: true,
-    subfield: true,
+    subfield: true
   }
 }

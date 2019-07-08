@@ -39,28 +39,7 @@ interface S {
   words: object
 }
 
-
 class MdEditor extends React.Component<P, S> {
-  constructor(props: P) {
-    super(props)
-
-    this.state = {
-      preview_switch: props.preview,
-      expand_switch: props.expand,
-      subfield_switch: props.subfield,
-      f_history: [],
-      f_history_index: 0,
-      line_index: 1,
-      value: props.value,
-      words: {}
-    }
-  }
-  private $vm: HTMLTextAreaElement
-  private $scrollEdit: HTMLDivElement
-  private $scrollPreview: HTMLDivElement
-  private $blockEdit: HTMLDivElement
-  private $blockPreview: HTMLDivElement
-  private currentTimeout: null | number | NodeJS.Timer
 
   static defaultProps = {
     lineNum: true,
@@ -74,6 +53,26 @@ class MdEditor extends React.Component<P, S> {
     style: {},
     toolbar: CONFIG.toolbar,
     language: 'zh-CN'
+  }
+  private $vm: HTMLTextAreaElement
+  private $scrollEdit: HTMLDivElement
+  private $scrollPreview: HTMLDivElement
+  private $blockEdit: HTMLDivElement
+  private $blockPreview: HTMLDivElement
+  private currentTimeout: null | number | NodeJS.Timer
+  constructor(props: P) {
+    super(props)
+
+    this.state = {
+      preview_switch: props.preview,
+      expand_switch: props.expand,
+      subfield_switch: props.subfield,
+      f_history: [],
+      f_history_index: 0,
+      line_index: 1,
+      value: props.value,
+      words: {}
+    }
   }
 
   componentDidMount() {
@@ -99,7 +98,7 @@ class MdEditor extends React.Component<P, S> {
 
   initLanguage() {
     const { language } = this.props
-    let lang = CONFIG.langList.indexOf(language) >= 0 ? language : 'zh-CN'
+    const lang = CONFIG.langList.indexOf(language) >= 0 ? language : 'zh-CN'
     this.setState({
       words: CONFIG[lang]
     })
@@ -171,7 +170,7 @@ class MdEditor extends React.Component<P, S> {
     const previewClass = classNames({
       'for-panel': true,
       'for-editor-preview': true,
-      'for-active': preview_switch && subfield_switch,
+      'for-active': preview_switch && subfield_switch
     })
     const fullscreen = classNames({
       'for-container': true,
@@ -220,7 +219,7 @@ class MdEditor extends React.Component<P, S> {
                   value={value}
                   disabled={disabled}
                   onChange={e => this.handleChange(e)}
-                  placeholder={placeholder ? placeholder : words['placeholder']}
+                  placeholder={placeholder ? placeholder : words.placeholder}
                 />
               </div>
             </div>

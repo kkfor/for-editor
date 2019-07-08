@@ -32,7 +32,7 @@ renderer.paragraph = paragraphParse
 renderer.link = linkParse
 
 export default content => {
-  if (typeof content != 'string') return ''
+  if (typeof content !== 'string') return ''
 
   return marked(content, { renderer })
 }

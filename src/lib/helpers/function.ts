@@ -3,8 +3,8 @@ function insertText(that, params) {
   const $vm = that.$vm
   const value = $vm.value
   if ($vm.selectionStart || $vm.selectionStart === 0) {
-    let start = $vm.selectionStart
-    let end = $vm.selectionEnd
+    const start = $vm.selectionStart
+    const end = $vm.selectionEnd
 
     const restoreTop = $vm.scrollTop
 
