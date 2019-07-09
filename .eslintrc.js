@@ -68,6 +68,19 @@ module.exports = {
      */
     camelcase: 'error',
     /**
+     * 定义过的变量必须使用
+     * @category Variables
+     */
+    'no-unused-vars': [
+      'error',
+      {
+        vars: 'all',
+        args: 'none',
+        caughtErrors: 'none',
+        ignoreRestSiblings: true
+      }
+    ],
+    /**
      * 禁止使用 console
      * @category Possible Errors
      * @reason console 的使用很常见
@@ -97,17 +110,6 @@ module.exports = {
      */
     'no-alert': 'error',
     /**
-     * 禁止出现未使用的变量
-     * @category TypeScript
-     * @reason 编译阶段检查就足够了
-     */
-    '@typescript-eslint/no-unused-vars': 'error',
-    /**
-     * 禁止出现没必要的 constructor
-     * @category TypeScript
-     */
-    '@typescript-eslint/no-useless-constructor': 'error',
-    /**
      * 禁止拼写错误
      */
     'react/no-typos': 'error',
@@ -135,9 +137,18 @@ module.exports = {
      */
     'react/void-dom-elements-no-children': 'error',
     /**
+     * 定义了的 jsx element 必须使用
+     */
+    'react/jsx-uses-vars': 'error',
+    /**
      * 禁止定义空的接口
      * @category TypeScript
      */
-    '@typescript-eslint/no-empty-interface': 'error'
+    '@typescript-eslint/no-empty-interface': 'error',
+    /**
+     * 禁止出现没必要的 constructor
+     * @category TypeScript
+     */
+    '@typescript-eslint/no-useless-constructor': 'error'
   }
 }
