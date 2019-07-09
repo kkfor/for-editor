@@ -92,7 +92,7 @@ class MdEditor extends React.Component<P, S> {
       window.clearTimeout(Number(this.currentTimeout))
       this.currentTimeout = setTimeout(() => {
         this.saveHistory(value)
-      }, 500);
+      }, 500)
     }
   }
 
