@@ -13,9 +13,6 @@ interface P {
 interface S { }
 
 class Toolbars extends React.Component<P, S> {
-  constructor(props: P) {
-    super(props)
-  }
 
   static defaultProps = {
     onClick: () => { },
@@ -48,8 +45,8 @@ class Toolbars extends React.Component<P, S> {
             {expandActive ? (
               <i className="foricon for-contract" />
             ) : (
-                <i className="foricon for-expand" />
-              )}
+              <i className="foricon for-expand" />
+            )}
           </li>
         }
         {
@@ -58,8 +55,8 @@ class Toolbars extends React.Component<P, S> {
             {previewActive ? (
               <i className="foricon for-eye-off" />
             ) : (
-                <i className="foricon for-eye" />
-              )}
+              <i className="foricon for-eye" />
+            )}
           </li>
         }
         {

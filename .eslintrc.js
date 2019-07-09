@@ -6,17 +6,30 @@ module.exports = {
     ecmaFeatures: {
       globalReturn: false,
       impliedStrict: true,
-      jsx: true,
-    },
+      jsx: true
+    }
   },
   root: true,
   env: {
     browser: true,
     node: true,
     commonjs: true,
-    es6: true,
+    es6: true
   },
   rules: {
+    /**
+     * 一个缩进必须用两个空格替代
+     * @category Stylistic Issues
+     * @fixable
+     */
+    indent: [
+      'error',
+      2,
+      {
+        SwitchCase: 1,
+        flatTernaryExpressions: true
+      }
+    ],
     /**
      * 结尾不带分号
      * @category Stylistic Issues
@@ -26,8 +39,8 @@ module.exports = {
       'error',
       'never',
       {
-        beforeStatementContinuationChars: 'always',
-      },
+        beforeStatementContinuationChars: 'always'
+      }
     ],
     /**
      * 必须使用单引号，禁止使用双引号
@@ -39,8 +52,8 @@ module.exports = {
       'single',
       {
         avoidEscape: true,
-        allowTemplateLiterals: true,
-      },
+        allowTemplateLiterals: true
+      }
     ],
     /**
      * jsx 中的属性必须用双引号
@@ -74,8 +87,8 @@ module.exports = {
       'error',
       'always',
       {
-        null: 'ignore',
-      },
+        null: 'ignore'
+      }
     ],
     /**
      * 禁止使用 alert
@@ -121,5 +134,10 @@ module.exports = {
      * HTML 中的自闭和标签禁止有 children
      */
     'react/void-dom-elements-no-children': 'error',
-  },
+    /**
+     * 禁止定义空的接口
+     * @category TypeScript
+     */
+    '@typescript-eslint/no-empty-interface': 'error'
+  }
 }
