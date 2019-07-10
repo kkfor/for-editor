@@ -1,27 +1,29 @@
 import * as React from 'react'
 import classNames from 'classnames'
 
+interface Toolbar {
+  expand: boolean
+  preview: boolean
+  subfield: boolean
+}
 interface P {
   onClick: (type: string) => void
-  toolbar: object
+  toolbar: Toolbar
   preview: boolean
   expand: boolean
   subfield: boolean
   words: object
 }
 
-interface S { }
-
-class Toolbars extends React.Component<P, S> {
-
+class Toolbars extends React.Component<P, {}> {
   static defaultProps = {
     onClick: () => { },
     toolbars: {},
     words: {}
   }
-
+  
   // 快捷插入
-  onClick(type) {
+  onClick(type: string) {
     this.props.onClick(type)
   }
 

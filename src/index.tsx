@@ -40,11 +40,10 @@ interface S {
 }
 
 class MdEditor extends React.Component<P, S> {
-
   static defaultProps = {
     lineNum: true,
-    onChange: () => { },
-    onSave: () => { },
+    onChange: () => {},
+    onSave: () => {},
     fontSize: '14px',
     disabled: false,
     preview: false,
@@ -54,11 +53,11 @@ class MdEditor extends React.Component<P, S> {
     toolbar: CONFIG.toolbar,
     language: 'zh-CN'
   }
-  private $vm: HTMLTextAreaElement
-  private $scrollEdit: HTMLDivElement
-  private $scrollPreview: HTMLDivElement
-  private $blockEdit: HTMLDivElement
-  private $blockPreview: HTMLDivElement
+  private $vm = React.createRef<HTMLTextAreaElement>()
+  private $scrollEdit = React.createRef<HTMLDivElement>()
+  private $scrollPreview = React.createRef<HTMLDivElement>()
+  private $blockEdit = React.createRef<HTMLDivElement>()
+  private $blockPreview = React.createRef<HTMLDivElement>()
   private currentTimeout: null | number | NodeJS.Timer
   constructor(props: P) {
     super(props)
@@ -137,7 +136,7 @@ class MdEditor extends React.Component<P, S> {
 
   // 保存
   save() {
-    this.props.onSave(this.$vm.value)
+    this.props.onSave(this.$vm.current!.value)
   }
 
   // 菜单点击
@@ -150,12 +149,14 @@ class MdEditor extends React.Component<P, S> {
   }
 
   focusText() {
-    this.$vm.focus()
+    this.$vm.current!.focus()
   }
 
   handleScoll(e) {
-    const radio = this.$blockEdit.scrollTop / (this.$scrollEdit.scrollHeight - e.target.offsetHeight)
-    this.$blockPreview.scrollTop = (this.$scrollPreview.scrollHeight - this.$blockPreview.offsetHeight) * radio
+    const radio =
+      this.$blockEdit.current!.scrollTop / (this.$scrollEdit.current!.scrollHeight - e.target.offsetHeight)
+    this.$blockPreview.current!.scrollTop =
+      (this.$scrollPreview.current!.scrollHeight - this.$blockPreview.current!.offsetHeight) * radio
   }
 
   render() {
@@ -193,41 +194,50 @@ class MdEditor extends React.Component<P, S> {
     return (
       <div className={fullscreen} style={{ height, ...style }}>
         {/* 菜单栏 */}
-        {
-          Boolean(Object.keys(toolbar).length) &&
+        {Boolean(Object.keys(toolbar).length) && (
           <div className="for-controlbar">
-            <ToolbarLeft toolbar={toolbar} words={words} onClick={type => this.toolBarLeftClick(type)} />
+            <ToolbarLeft
+              toolbar={toolbar}
+              words={words}
+              onClick={(type) => this.toolBarLeftClick(type)}
+            />
             <ToolbarRight
               toolbar={toolbar}
               words={words}
               preview={preview}
               expand={expand}
               subfield={subfield}
-              onClick={type => this.toolBarRightClick(type)} />
+              onClick={(type) => this.toolBarRightClick(type)}
+            />
           </div>
-        }
+        )}
         {/* 内容区 */}
         <div className="for-editor" style={{ fontSize }}>
           {/* 编辑区 */}
-          <div className={editorClass} ref={$v => this.$blockEdit = $v} onScroll={e => this.handleScoll(e)} onClick={() => this.focusText()}>
-            <div className="for-editor-block" ref={$v => this.$scrollEdit = $v}>
+          <div
+            className={editorClass}
+            ref={this.$blockEdit}
+            onScroll={(e) => this.handleScoll(e)}
+            onClick={() => this.focusText()}
+          >
+            <div className="for-editor-block" ref={this.$scrollEdit}>
               {lineNum()}
               <div className="for-editor-content">
                 <pre>{value} </pre>
                 <textarea
-                  ref={$vm => this.$vm = $vm}
+                  ref={this.$vm}
                   value={value}
                   disabled={disabled}
-                  onChange={e => this.handleChange(e)}
+                  onChange={(e) => this.handleChange(e)}
                   placeholder={placeholder ? placeholder : words.placeholder}
                 />
               </div>
             </div>
           </div>
           {/* 预览区 */}
-          <div className={previewClass} ref={$v => this.$blockPreview = $v}>
+          <div className={previewClass} ref={this.$blockPreview}>
             <div
-              ref={$v => this.$scrollPreview = $v}
+              ref={this.$scrollPreview}
               className="for-preview for-markdown-preview"
               dangerouslySetInnerHTML={{ __html: marked(value) }}
             />
