@@ -7,8 +7,8 @@ import './lib/fonts/iconfont.css'
 import './lib/css/index.scss'
 import ToolbarLeft from './components/toolbar_left'
 import ToolbarRight from './components/toolbar_right'
-import { toolbar_right_click } from './lib/toolbar_click/toolbar_right_click'
-import { toolbar_left_click } from './lib/toolbar_click/toolbar_left_click'
+import { toolbarLeftClick } from './lib/toolbar_click/toolbar_left_click'
+import { toolbarRightClick } from './lib/toolbar_click/toolbar_right_click'
 import { CONFIG } from './lib'
 
 interface P {
@@ -29,12 +29,12 @@ interface P {
 }
 
 interface S {
-  preview_switch: boolean
-  expand_switch: boolean
-  subfield_switch: boolean
-  f_history: string[]
-  f_history_index: number
-  line_index: number
+  preview: boolean
+  expand: boolean
+  subfield: boolean
+  history: string[]
+  historyIndex: number
+  lineIndex: number
   value: string
   words: object
 }
@@ -47,9 +47,9 @@ class MdEditor extends React.Component<P, S> {
     onSave: () => { },
     fontSize: '14px',
     disabled: false,
-    preview_switch: false,
-    expand_switch: false,
-    subfield_switch: false,
+    preview: false,
+    expand: false,
+    subfield: false,
     style: {},
     toolbar: CONFIG.toolbar,
     language: 'zh-CN'
@@ -64,12 +64,12 @@ class MdEditor extends React.Component<P, S> {
     super(props)
 
     this.state = {
-      preview_switch: props.preview,
-      expand_switch: props.expand,
-      subfield_switch: props.subfield,
-      f_history: [],
-      f_history_index: 0,
-      line_index: 1,
+      preview: props.preview,
+      expand: props.expand,
+      subfield: props.subfield,
+      history: [],
+      historyIndex: 0,
+      lineIndex: 1,
       value: props.value,
       words: {}
     }
@@ -82,13 +82,13 @@ class MdEditor extends React.Component<P, S> {
     this.initLanguage()
   }
 
-  componentDidUpdate(preProps) {
+  componentDidUpdate(preProps: P) {
     const { value } = this.props
-    const { f_history, f_history_index } = this.state
+    const { history, historyIndex } = this.state
     if (preProps.value !== value) {
       this.reLineNum(value)
     }
-    if (value !== f_history[f_history_index]) {
+    if (value !== history[historyIndex]) {
       window.clearTimeout(Number(this.currentTimeout))
       this.currentTimeout = setTimeout(() => {
         this.saveHistory(value)
@@ -111,27 +111,27 @@ class MdEditor extends React.Component<P, S> {
   }
 
   // 保存记录
-  saveHistory(value) {
-    let { f_history, f_history_index } = this.state
+  saveHistory(value: string) {
+    let { history, historyIndex } = this.state
     // 撤销后修改，删除当前以后记录
-    f_history.splice(f_history_index + 1, f_history.length)
-    if (f_history.length >= 20) {
-      f_history.shift()
+    history.splice(historyIndex + 1, history.length)
+    if (history.length >= 20) {
+      history.shift()
     }
     // 记录当前位置
-    f_history_index = f_history.length
-    f_history.push(value)
+    historyIndex = history.length
+    history.push(value)
     this.setState({
-      f_history,
-      f_history_index
+      history,
+      historyIndex
     })
   }
 
   // 重新计算行号
-  reLineNum(value) {
-    const line_index = value ? value.split('\n').length : 1
+  reLineNum(value: string) {
+    const lineIndex = value ? value.split('\n').length : 1
     this.setState({
-      line_index
+      lineIndex
     })
   }
 
@@ -141,12 +141,12 @@ class MdEditor extends React.Component<P, S> {
   }
 
   // 菜单点击
-  toolBarLeftClick(type) {
-    toolbar_left_click(type, this)
+  toolBarLeftClick(type: string) {
+    toolbarLeftClick(type, this)
   }
 
-  toolBarRightClick(type) {
-    toolbar_right_click(type, this)
+  toolBarRightClick(type: string) {
+    toolbarRightClick(type, this)
   }
 
   focusText() {
@@ -159,22 +159,22 @@ class MdEditor extends React.Component<P, S> {
   }
 
   render() {
-    const { preview_switch, expand_switch, subfield_switch, line_index, words } = this.state
+    const { preview, expand, subfield, lineIndex, words } = this.state
     const { value, placeholder, fontSize, disabled, height, style, toolbar } = this.props
     const editorClass = classNames({
       'for-editor-edit': true,
       'for-panel': true,
-      'for-active': preview_switch && subfield_switch,
-      'for-edit-preview': preview_switch && !subfield_switch
+      'for-active': preview && subfield,
+      'for-edit-preview': preview && !subfield
     })
     const previewClass = classNames({
       'for-panel': true,
       'for-editor-preview': true,
-      'for-active': preview_switch && subfield_switch
+      'for-active': preview && subfield
     })
     const fullscreen = classNames({
       'for-container': true,
-      'for-fullscreen': expand_switch
+      'for-fullscreen': expand
     })
     const lineNumStyles = classNames({
       'for-line-num': true,
@@ -184,7 +184,7 @@ class MdEditor extends React.Component<P, S> {
     // 行号
     function lineNum() {
       const list = []
-      for (let i = 0; i < line_index; i++) {
+      for (let i = 0; i < lineIndex; i++) {
         list.push(<li key={i + 1}>{i + 1}</li>)
       }
       return <ul className={lineNumStyles}>{list}</ul>
@@ -200,9 +200,9 @@ class MdEditor extends React.Component<P, S> {
             <ToolbarRight
               toolbar={toolbar}
               words={words}
-              preview={preview_switch}
-              expand={expand_switch}
-              subfield={subfield_switch}
+              preview={preview}
+              expand={expand}
+              subfield={subfield}
               onClick={type => this.toolBarRightClick(type)} />
           </div>
         }

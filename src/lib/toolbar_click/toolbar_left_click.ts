@@ -24,7 +24,7 @@ function toolbar_left_save_click($vm) {
   $vm.save()
 }
 
-export const toolbar_left_click = (type, $vm) => {
+export const toolbarLeftClick = (type, $vm) => {
   const { words } = $vm.state
   const insert_text_obj = {
     'h1': {

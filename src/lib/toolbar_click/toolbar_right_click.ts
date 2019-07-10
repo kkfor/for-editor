@@ -36,7 +36,7 @@ function toolbar_right_subfield_click($vm) {
   }
 }
 
-export const toolbar_right_click = (type, $vm) => {
+export const toolbarRightClick = (type, $vm) => {
   const right_click = {
     'preview': toolbar_right_preview_click,
     'expand': toolbar_right_expand_click,
