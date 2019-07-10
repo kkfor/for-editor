@@ -11,6 +11,22 @@ import { toolbarLeftClick } from './lib/toolbar_click/toolbar_left_click'
 import { toolbarRightClick } from './lib/toolbar_click/toolbar_right_click'
 import { CONFIG } from './lib'
 
+interface Toolbar {
+  h1: boolean
+  h2: boolean
+  h3: boolean
+  h4: boolean
+  img: boolean
+  link: boolean
+  code: boolean
+  preview: boolean
+  expand: boolean
+  undo: boolean
+  redo: boolean
+  save: boolean
+  subfield: boolean
+
+}
 interface P {
   value: string
   lineNum: number
@@ -24,7 +40,7 @@ interface P {
   preview: boolean
   expand: boolean
   subfield: boolean
-  toolbar: object
+  toolbar: Toolbar
   language: string
 }
 
@@ -36,7 +52,9 @@ interface S {
   historyIndex: number
   lineIndex: number
   value: string
-  words: object
+  words: {
+    placeholder?: string
+  }
 }
 
 class MdEditor extends React.Component<P, S> {

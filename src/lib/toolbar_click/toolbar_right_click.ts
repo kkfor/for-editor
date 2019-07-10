@@ -36,7 +36,7 @@ function toolbarRightSubfieldClick($vm) {
   }
 }
 
-export const toolbarRightClick = (type:string, $vm) => {
+export const toolbarRightClick = (type: string, $vm) => {
   const rightClick = {
     'preview': toolbarRightPreviewClick,
     'expand': toolbarRightExpandClick,
