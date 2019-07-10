@@ -1,8 +1,8 @@
-import zh_CN from './lang/zh-CN/index.json'
+import zhCN from './lang/zh-CN/index.json'
 import en from './lang/en/index.json'
 
 export const CONFIG = {
-  'zh-CN': zh_CN,
+  'zh-CN': zhCN,
   en,
   langList: ['zh-CN', 'en'],
   toolbar: {

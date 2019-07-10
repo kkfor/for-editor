@@ -1,32 +1,32 @@
 import { insertText } from '../helpers/function'
 
-function toolbar_left_undo_click($vm) {
-  let { f_history, f_history_index } = $vm.state
-  f_history_index = f_history_index - 1
-  if (f_history_index < 0) return
-  $vm.props.onChange(f_history[f_history_index])
+function toolbarLeftUndoClick($vm) {
+  let { history, historyIndex } = $vm.state
+  historyIndex = historyIndex - 1
+  if (historyIndex < 0) return
+  $vm.props.onChange(history[historyIndex])
   $vm.setState({
-    f_history_index
+    historyIndex
   })
 }
 
-function toolbar_left_redo_click($vm) {
-  let { f_history, f_history_index } = $vm.state
-  f_history_index = f_history_index + 1
-  if (f_history_index >= f_history.length) return
-  $vm.props.onChange(f_history[f_history_index])
+function toolbarLeftRedoClick($vm) {
+  let { history, historyIndex } = $vm.state
+  historyIndex = historyIndex + 1
+  if (historyIndex >= history.length) return
+  $vm.props.onChange(history[historyIndex])
   $vm.setState({
-    f_history_index
+    historyIndex
   })
 }
 
-function toolbar_left_save_click($vm) {
+function toolbarLeftSaveClick($vm) {
   $vm.save()
 }
 
-export const toolbarLeftClick = (type, $vm) => {
+export const toolbarLeftClick = (type:string, $vm) => {
   const { words } = $vm.state
-  const insert_text_obj = {
+  const insertTextObj = {
     'h1': {
       prefix: '# ',
       subfix: '',
@@ -69,16 +69,16 @@ export const toolbarLeftClick = (type, $vm) => {
     }
   }
 
-  if (insert_text_obj.hasOwnProperty(type)) {
-    insertText($vm, insert_text_obj[type])
+  if (insertTextObj.hasOwnProperty(type)) {
+    insertText($vm, insertTextObj[type])
   }
 
-  const other_left_click = {
-    undo: toolbar_left_undo_click,
-    redo: toolbar_left_redo_click,
-    save: toolbar_left_save_click
+  const otherLeftClick = {
+    undo: toolbarLeftUndoClick,
+    redo: toolbarLeftRedoClick,
+    save: toolbarLeftSaveClick
   }
-  if (other_left_click.hasOwnProperty(type)) {
-    other_left_click[type]($vm)
+  if (otherLeftClick.hasOwnProperty(type)) {
+    otherLeftClick[type]($vm)
   }
 }

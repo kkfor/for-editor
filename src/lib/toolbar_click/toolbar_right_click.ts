@@ -1,48 +1,48 @@
-function toolbar_right_preview_click($vm) {
+function toolbarRightPreviewClick($vm) {
   $vm.setState({
-    preview_switch: !$vm.state.preview_switch
+    preview: !$vm.state.preview
   })
 }
-function toolbar_right_expand_click($vm) {
+function toolbarRightExpandClick($vm) {
   $vm.setState({
-    expand_switch: !$vm.state.expand_switch
+    expand: !$vm.state.expand
   })
 }
 
-function toolbar_right_subfield_click($vm) {
-  const { preview_switch, subfield_switch } = $vm.state
-  if (preview_switch) {
-    if (subfield_switch) {
+function toolbarRightSubfieldClick($vm) {
+  const { preview, subfield } = $vm.state
+  if (preview) {
+    if (subfield) {
       $vm.setState({
-        subfield_switch: false,
-        preview_switch: false
+        subfield: false,
+        preview: false
       })
     } else {
       $vm.setState({
-        subfield_switch: true
+        subfield: true
       })
     }
   } else {
-    if (subfield_switch) {
+    if (subfield) {
       $vm.setState({
-        subfield_switch: false
+        subfield: false
       })
     } else {
       $vm.setState({
-        preview_switch: true,
-        subfield_switch: true
+        preview: true,
+        subfield: true
       })
     }
   }
 }
 
-export const toolbarRightClick = (type, $vm) => {
-  const right_click = {
-    'preview': toolbar_right_preview_click,
-    'expand': toolbar_right_expand_click,
-    'subfield': toolbar_right_subfield_click
+export const toolbarRightClick = (type:string, $vm) => {
+  const rightClick = {
+    'preview': toolbarRightPreviewClick,
+    'expand': toolbarRightExpandClick,
+    'subfield': toolbarRightSubfieldClick
   }
-  if (right_click.hasOwnProperty(type)) {
-    right_click[type]($vm)
+  if (rightClick.hasOwnProperty(type)) {
+    rightClick[type]($vm)
   }
 }
