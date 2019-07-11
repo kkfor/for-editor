@@ -25,7 +25,6 @@ interface Toolbar {
   redo: boolean
   save: boolean
   subfield: boolean
-
 }
 interface P {
   value: string
@@ -122,10 +121,7 @@ class MdEditor extends React.Component<P, S> {
   }
 
   // 输入框改变
-  handleChange(e) {
-    const value = e.target.value
-    this.props.onChange(value)
-  }
+  public handleChange= (e: React.ChangeEvent<HTMLTextAreaElement>) => {}
 
   // 保存记录
   saveHistory(value: string) {
@@ -158,21 +154,22 @@ class MdEditor extends React.Component<P, S> {
   }
 
   // 菜单点击
-  toolBarLeftClick(type: string) {
+  toolBarLeftClick = (type: string): void => {
     toolbarLeftClick(type, this)
   }
 
-  toolBarRightClick(type: string) {
+  toolBarRightClick = (type: string): void => {
     toolbarRightClick(type, this)
   }
 
-  focusText() {
+  public focusText = (): void => {
     this.$vm.current!.focus()
   }
 
-  handleScoll(e) {
+  handleScoll = (e: React.UIEvent<HTMLDivElement>): void => {
     const radio =
-      this.$blockEdit.current!.scrollTop / (this.$scrollEdit.current!.scrollHeight - e.target.offsetHeight)
+      this.$blockEdit.current!.scrollTop /
+      (this.$scrollEdit.current!.scrollHeight - e.currentTarget.offsetHeight)
     this.$blockPreview.current!.scrollTop =
       (this.$scrollPreview.current!.scrollHeight - this.$blockPreview.current!.offsetHeight) * radio
   }
@@ -235,8 +232,8 @@ class MdEditor extends React.Component<P, S> {
           <div
             className={editorClass}
             ref={this.$blockEdit}
-            onScroll={(e) => this.handleScoll(e)}
-            onClick={() => this.focusText()}
+            onScroll={this.handleScoll}
+            onClick={this.focusText}
           >
             <div className="for-editor-block" ref={this.$scrollEdit}>
               {lineNum()}
@@ -246,7 +243,7 @@ class MdEditor extends React.Component<P, S> {
                   ref={this.$vm}
                   value={value}
                   disabled={disabled}
-                  onChange={(e) => this.handleChange(e)}
+                  onChange={this.handleChange}
                   placeholder={placeholder ? placeholder : words.placeholder}
                 />
               </div>

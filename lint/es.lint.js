@@ -1,6 +1,43 @@
 module.exports = {
   rules: {
     /**
+     * 命名函数表达式括号前禁止有空格，箭头函数表达式括号前面必须有一个空格
+     * @category Stylistic Issues
+     * @fixable
+     */
+    'space-before-function-paren': [
+      'error',
+      {
+        anonymous: 'never',
+        named: 'never',
+        asyncArrow: 'always'
+      }
+    ],
+    /**
+     * 箭头函数的箭头前后必须有空格
+     * @category ECMAScript 6
+     * @fixable
+     */
+    'arrow-spacing': [
+      'error',
+      {
+        before: true,
+        after: true
+      }
+    ],
+    /**
+     * 用作对象的计算属性时，中括号内的首尾禁止有空格
+     * @category Stylistic Issues
+     * @fixable
+     */
+    'computed-property-spacing': ['error', 'never'],
+    /**
+     * 操作符左右必须有空格
+     * @category Stylistic Issues
+     * @fixable
+     */
+    'space-infix-ops': 'error',
+    /**
      * 一个缩进必须用两个空格替代
      * @category Stylistic Issues
      * @fixable
