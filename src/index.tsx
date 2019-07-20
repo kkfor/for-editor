@@ -136,7 +136,7 @@ class MdEditor extends React.Component<IP, IS> {
     }
   }
 
-  initLanguage() {
+  initLanguage = (): void => {
     const { language } = this.props
     const lang = CONFIG.langList.indexOf(language) >= 0 ? language : 'zh-CN'
     this.setState({
@@ -145,13 +145,13 @@ class MdEditor extends React.Component<IP, IS> {
   }
 
   // 输入框改变
-  handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const value = e.target.value
     this.props.onChange(value)
   }
 
   // 保存记录
-  saveHistory(value: string) {
+  saveHistory = (value: string): void => {
     let { history, historyIndex } = this.state
     // 撤销后修改，删除当前以后记录
     history.splice(historyIndex + 1, history.length)
@@ -176,12 +176,12 @@ class MdEditor extends React.Component<IP, IS> {
   }
 
   // 保存
-  save = () => {
+  save = (): void => {
     this.props.onSave(this.$vm.current!.value)
   }
 
   // 撤销
-  undo = () => {
+  undo = (): void => {
     let { history, historyIndex } = this.state
     historyIndex = historyIndex - 1
     if (historyIndex < 0) return
@@ -192,7 +192,7 @@ class MdEditor extends React.Component<IP, IS> {
   }
 
   // 重做
-  redo = () => {
+  redo = (): void => {
     let { history, historyIndex } = this.state
     historyIndex = historyIndex + 1
     if (historyIndex >= history.length) return
@@ -203,7 +203,7 @@ class MdEditor extends React.Component<IP, IS> {
   }
 
   // 菜单点击
-  toolBarLeftClick(type: string) {
+  toolBarLeftClick = (type: string): void => {
     const { words } = this.state
     const insertTextObj: any = {
       h1: {
@@ -250,7 +250,8 @@ class MdEditor extends React.Component<IP, IS> {
 
     if (insertTextObj.hasOwnProperty(type)) {
       if (this.$vm.current) {
-        insertText(this.$vm.current, insertTextObj[type])
+        const value = insertText(this.$vm.current, insertTextObj[type])
+        this.props.onChange(value)
       }
     }
 
@@ -366,7 +367,7 @@ class MdEditor extends React.Component<IP, IS> {
             <ToolbarLeft
               toolbar={toolbar}
               words={words}
-              onClick={(type) => this.toolBarLeftClick(type)}
+              onClick={this.toolBarLeftClick}
               {...this.props}
             />
             <ToolbarRight
@@ -375,7 +376,7 @@ class MdEditor extends React.Component<IP, IS> {
               preview={preview}
               expand={expand}
               subfield={subfield}
-              onClick={(type) => this.toolBarRightClick(type)}
+              onClick={this.toolBarRightClick}
             />
           </div>
         )}
