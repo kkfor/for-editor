@@ -1,6 +1,18 @@
 module.exports = {
   rules: {
     /**
+     * 逗号前禁止有空格，逗号后必须要有空格
+     * @category Stylistic Issues
+     * @fixable
+     */
+    'comma-spacing': [
+      'error',
+      {
+        before: false,
+        after: true
+      }
+    ],
+    /**
      * 命名函数表达式括号前禁止有空格，箭头函数表达式括号前面必须有一个空格
      * @category Stylistic Issues
      * @fixable

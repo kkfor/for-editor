@@ -1,21 +1,17 @@
 import * as React from 'react'
 import classNames from 'classnames'
+import { IToolbar, IWords } from '../index'
 
-interface Toolbar {
-  expand: boolean
-  preview: boolean
-  subfield: boolean
-}
-interface P {
+interface IP {
   onClick: (type: string) => void
-  toolbar: Toolbar
+  toolbar: IToolbar
   preview: boolean
   expand: boolean
   subfield: boolean
-  words: object
+  words: IWords
 }
 
-class Toolbars extends React.Component<P, {}> {
+class Toolbars extends React.Component<IP, {}> {
   static defaultProps = {
     onClick: () => { },
     toolbars: {},

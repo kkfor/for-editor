@@ -1,12 +1,12 @@
 import * as React from 'react'
-
-interface P {
+import { IToolbar, IWords } from '../index'
+interface IP {
   onClick: (type: string) => void
-  toolbar: object
-  words: object
+  toolbar: IToolbar
+  words: IWords
 }
 
-class Toolbars extends React.Component<P, {}> {
+class Toolbars extends React.Component<IP, {}> {
   static defaultProps = {
     onClick: () => {},
     toolbar: {},

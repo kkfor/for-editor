@@ -10,22 +10,42 @@ import './lib/fonts/iconfont.css'
 import './lib/css/index.scss'
 import { CONFIG } from './lib'
 
-interface Toolbar {
-  h1: boolean
-  h2: boolean
-  h3: boolean
-  h4: boolean
-  img: boolean
-  link: boolean
-  code: boolean
-  preview: boolean
-  expand: boolean
-  undo: boolean
-  redo: boolean
-  save: boolean
-  subfield: boolean
+
+export interface IToolbar {
+  h1?: boolean
+  h2?: boolean
+  h3?: boolean
+  h4?: boolean
+  img?: boolean
+  link?: boolean
+  code?: boolean
+  preview?: boolean
+  expand?: boolean
+  undo?: boolean
+  redo?: boolean
+  save?: boolean
+  subfield?: boolean
 }
-interface P {
+
+export interface IWords {
+  placeholder?: string
+  h1?: string
+  h2?: string
+  h3?: string
+  h4?: string
+  undo?: string
+  redo?: string
+  img?: string
+  link?: string
+  code?: string
+  save?: string
+  preview?: string
+  'single_column'?: string
+  'double_column'?: string
+  'fullscreen_on'?: string
+  'fullscreen_off'?: string
+}
+interface IP {
   value: string
   lineNum: number
   onChange: (value: string) => void
@@ -38,11 +58,11 @@ interface P {
   preview: boolean
   expand: boolean
   subfield: boolean
-  toolbar: Toolbar
+  toolbar: IToolbar
   language: string
 }
 
-interface S {
+interface IS {
   preview: boolean
   expand: boolean
   subfield: boolean
@@ -50,16 +70,10 @@ interface S {
   historyIndex: number
   lineIndex: number
   value: string
-  words: {
-    placeholder?: string
-    h1?: string
-    h2?: string
-    h3?: string
-    h4?: string
-  }
+  words: IWords
 }
 
-class MdEditor extends React.Component<P, S> {
+class MdEditor extends React.Component<IP, IS> {
   static defaultProps = {
     lineNum: true,
     onChange: () => {},
@@ -78,8 +92,8 @@ class MdEditor extends React.Component<P, S> {
   private $scrollPreview = React.createRef<HTMLDivElement>()
   private $blockEdit = React.createRef<HTMLDivElement>()
   private $blockPreview = React.createRef<HTMLDivElement>()
-  private currentTimeout: null | number | NodeJS.Timer
-  constructor(props: P) {
+  private currentTimeout: number
+  constructor(props: IP) {
     super(props)
 
     this.state = {
@@ -101,15 +115,15 @@ class MdEditor extends React.Component<P, S> {
     this.initLanguage()
   }
 
-  componentDidUpdate(preProps: P) {
+  componentDidUpdate(preProps: IP) {
     const { value } = this.props
     const { history, historyIndex } = this.state
     if (preProps.value !== value) {
       this.reLineNum(value)
     }
     if (value !== history[historyIndex]) {
-      window.clearTimeout(Number(this.currentTimeout))
-      this.currentTimeout = setTimeout(() => {
+      window.clearTimeout(this.currentTimeout)
+      this.currentTimeout = window.setTimeout(() => {
         this.saveHistory(value)
       }, 500)
     }
@@ -119,7 +133,7 @@ class MdEditor extends React.Component<P, S> {
     const { language } = this.props
     const lang = CONFIG.langList.indexOf(language) >= 0 ? language : 'zh-CN'
     this.setState({
-      words: CONFIG[lang]
+      words: CONFIG.language[lang]
     })
   }
 
@@ -182,9 +196,9 @@ class MdEditor extends React.Component<P, S> {
   }
 
   // 菜单点击
-  toolBarLeftClick = (type: string): void => {
+  toolBarLeftClick(type: string) {
     const { words } = this.state
-    const insertTextObj = {
+    const insertTextObj: any = {
       h1: {
         prefix: '# ',
         subfix: '',
@@ -228,10 +242,12 @@ class MdEditor extends React.Component<P, S> {
     }
 
     if (insertTextObj.hasOwnProperty(type)) {
-      insertText(this.$vm.current, insertTextObj[type])
+      if(this.$vm.current) {
+        insertText(this.$vm.current, insertTextObj[type])
+      }
     }
 
-    const otherLeftClick = {
+    const otherLeftClick: any = {
       undo: this.undo,
       redo: this.redo,
       save: this.save
@@ -281,7 +297,7 @@ class MdEditor extends React.Component<P, S> {
       }
     }
 
-    const rightClick = {
+    const rightClick: any = {
       preview: toolbarRightPreviewClick,
       expand: toolbarRightExpandClick,
       subfield: toolbarRightSubfieldClick

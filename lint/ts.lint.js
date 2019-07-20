@@ -1,6 +1,17 @@
 module.exports = {
   rules: {
     /**
+     * 接口名称必须已 I 开头
+     * @category TypeScript
+     */
+    '@typescript-eslint/interface-name-prefix': ['error', 'always'],
+    /**
+     * 禁止出现未使用的变量
+     * @category TypeScript
+     * @reason 编译阶段检查就足够了
+     */
+    '@typescript-eslint/no-unused-vars': 'error',
+    /**
      * 类型定义的冒号前面必须没有空格，后面必须有一个空格
      * @category TypeScript
      * @fixable

@@ -4,8 +4,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "noImplicitAny": true,
-    "strict": true
+    "noImplicitAny": true
   },
   "exclude": ["node_modules"]
 }
