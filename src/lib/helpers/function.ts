@@ -1,6 +1,5 @@
-function insertText(that, params) {
+function insertText($vm: HTMLTextAreaElement, params): string {
   const { prefix, str = '', subfix = '' } = params
-  const $vm = that.$vm
   const value = $vm.value
   if ($vm.selectionStart || $vm.selectionStart === 0) {
     const start = $vm.selectionStart
@@ -28,13 +27,12 @@ function insertText(that, params) {
       $vm.selectionEnd = end + prefix.length
     }
 
-    that.props.onChange($vm.value)
-
     $vm.focus()
     if (restoreTop >= 0) {
       $vm.scrollTop = restoreTop
     }
   }
+  return $vm.value
 }
 
 export {

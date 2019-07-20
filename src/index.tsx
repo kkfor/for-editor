@@ -2,13 +2,12 @@ import * as React from 'react'
 import classNames from 'classnames'
 import marked from './lib/helpers/marked'
 import keydownListen from './lib/helpers/keydownListen'
+import ToolbarLeft from './components/toolbar_left'
+import ToolbarRight from './components/toolbar_right'
+import { insertText } from './lib/helpers/function'
 import 'highlight.js/styles/tomorrow.css'
 import './lib/fonts/iconfont.css'
 import './lib/css/index.scss'
-import ToolbarLeft from './components/toolbar_left'
-import ToolbarRight from './components/toolbar_right'
-import { toolbarLeftClick } from './lib/toolbar_click/toolbar_left_click'
-import { toolbarRightClick } from './lib/toolbar_click/toolbar_right_click'
 import { CONFIG } from './lib'
 
 interface Toolbar {
@@ -53,6 +52,10 @@ interface S {
   value: string
   words: {
     placeholder?: string
+    h1?: string
+    h2?: string
+    h3?: string
+    h4?: string
   }
 }
 
@@ -93,7 +96,7 @@ class MdEditor extends React.Component<P, S> {
 
   componentDidMount() {
     const { value } = this.props
-    keydownListen(this)
+    // keydownListen(this)
     this.reLineNum(value)
     this.initLanguage()
   }
@@ -121,7 +124,10 @@ class MdEditor extends React.Component<P, S> {
   }
 
   // 输入框改变
-  public handleChange= (e: React.ChangeEvent<HTMLTextAreaElement>) => {}
+  handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value
+    this.props.onChange(value)
+  }
 
   // 保存记录
   saveHistory(value: string) {
@@ -153,16 +159,139 @@ class MdEditor extends React.Component<P, S> {
     this.props.onSave(this.$vm.current!.value)
   }
 
+  // 撤销
+  undo() {
+    let { history, historyIndex } = this.state
+    historyIndex = historyIndex - 1
+    if (historyIndex < 0) return
+    this.props.onChange(history[historyIndex])
+    this.setState({
+      historyIndex
+    })
+  }
+
+  // 重做
+  redo() {
+    let { history, historyIndex } = this.state
+    historyIndex = historyIndex + 1
+    if (historyIndex >= history.length) return
+    this.props.onChange(history[historyIndex])
+    this.setState({
+      historyIndex
+    })
+  }
+
   // 菜单点击
   toolBarLeftClick = (type: string): void => {
-    toolbarLeftClick(type, this)
+    const { words } = this.state
+    const insertTextObj = {
+      h1: {
+        prefix: '# ',
+        subfix: '',
+        str: words.h1
+      },
+      h2: {
+        prefix: '## ',
+        subfix: '',
+        str: words.h2
+      },
+      h3: {
+        prefix: '### ',
+        subfix: '',
+        str: words.h3
+      },
+      h4: {
+        prefix: '#### ',
+        subfix: '',
+        str: words.h4
+      },
+      img: {
+        prefix: '![alt](',
+        subfix: ')',
+        str: 'url'
+      },
+      link: {
+        prefix: '[title](',
+        subfix: ')',
+        str: 'url'
+      },
+      code: {
+        prefix: '```',
+        subfix: '\n\n```',
+        str: 'language'
+      },
+      tab: {
+        prefix: '  ',
+        subfix: '',
+        str: ''
+      }
+    }
+
+    if (insertTextObj.hasOwnProperty(type)) {
+      insertText(this.$vm.current, insertTextObj[type])
+    }
+
+    const otherLeftClick = {
+      undo: this.undo,
+      redo: this.redo,
+      save: this.save
+    }
+    if (otherLeftClick.hasOwnProperty(type)) {
+      otherLeftClick[type]()
+    }
   }
 
+  // 右侧菜单
   toolBarRightClick = (type: string): void => {
-    toolbarRightClick(type, this)
+    const toolbarRightPreviewClick = () => {
+      this.setState({
+        preview: !this.state.preview
+      })
+    }
+    const toolbarRightExpandClick = () => {
+      this.setState({
+        expand: !this.state.expand
+      })
+    }
+
+    const toolbarRightSubfieldClick = () => {
+      const { preview, subfield } = this.state
+      if (preview) {
+        if (subfield) {
+          this.setState({
+            subfield: false,
+            preview: false
+          })
+        } else {
+          this.setState({
+            subfield: true
+          })
+        }
+      } else {
+        if (subfield) {
+          this.setState({
+            subfield: false
+          })
+        } else {
+          this.setState({
+            preview: true,
+            subfield: true
+          })
+        }
+      }
+    }
+
+    const rightClick = {
+      preview: toolbarRightPreviewClick,
+      expand: toolbarRightExpandClick,
+      subfield: toolbarRightSubfieldClick
+    }
+    if (rightClick.hasOwnProperty(type)) {
+      rightClick[type]()
+    }
   }
 
-  public focusText = (): void => {
+  focusText = (): void => {
     this.$vm.current!.focus()
   }
 
@@ -215,6 +344,7 @@ class MdEditor extends React.Component<P, S> {
               toolbar={toolbar}
               words={words}
               onClick={(type) => this.toolBarLeftClick(type)}
+              {...this.props}
             />
             <ToolbarRight
               toolbar={toolbar}

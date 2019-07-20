@@ -22,7 +22,6 @@ class Toolbars extends React.Component<P, {}> {
     words: {}
   }
   
-  // 快捷插入
   onClick(type: string) {
     this.props.onClick(type)
   }
