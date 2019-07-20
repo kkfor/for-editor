@@ -10,7 +10,6 @@ import './lib/fonts/iconfont.css'
 import './lib/css/index.scss'
 import { CONFIG } from './lib'
 
-
 export interface IToolbar {
   h1?: boolean
   h2?: boolean
@@ -40,10 +39,16 @@ export interface IWords {
   code?: string
   save?: string
   preview?: string
-  'single_column'?: string
-  'double_column'?: string
-  'fullscreen_on'?: string
-  'fullscreen_off'?: string
+  singleColumn?: string
+  doubleColumn?: string
+  fullscreenOn?: string
+  fullscreenOff?: string
+}
+
+interface ILeft {
+  prefix: string
+  subfix: string
+  str: string
 }
 interface IP {
   value: string
@@ -242,7 +247,7 @@ class MdEditor extends React.Component<IP, IS> {
     }
 
     if (insertTextObj.hasOwnProperty(type)) {
-      if(this.$vm.current) {
+      if (this.$vm.current) {
         insertText(this.$vm.current, insertTextObj[type])
       }
     }

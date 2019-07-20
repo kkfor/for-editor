@@ -1,5 +1,6 @@
 module.exports = {
   rules: {
+    'no-unused-vars': 'off',
     /**
      * 接口名称必须已 I 开头
      * @category TypeScript
