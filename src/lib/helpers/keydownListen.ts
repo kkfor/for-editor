@@ -36,14 +36,13 @@ const KEY_CODE = {
   _SIX: 54
 }
 
-export default ins => {
-  const $vm = ins.$vm
+export default ($vm: HTMLTextAreaElement, func: any) => {
   $vm.addEventListener('keydown', e => {
     if (!(e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey) {
       switch (e.keyCode) {
         case KEY_CODE.TAB: {
           e.preventDefault()
-          ins.toolBarLeftClick('tab')
+          func('tab')
           break
         }
       }
@@ -53,19 +52,19 @@ export default ins => {
         case KEY_CODE.Z: {
           // Z
           e.preventDefault()
-          ins.toolBarLeftClick('undo')
+          func('undo')
           break
         }
         case KEY_CODE.Y: {
           // Y
           e.preventDefault()
-          ins.toolBarLeftClick('redo')
+          func('redo')
           break
         }
         case KEY_CODE.S: {
           // S
           e.preventDefault()
-          ins.toolBarLeftClick('save')
+          func('save')
           break
         }
       }

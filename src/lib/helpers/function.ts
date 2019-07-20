@@ -1,4 +1,4 @@
-function insertText($vm: HTMLTextAreaElement, params): string {
+function insertText($vm: HTMLTextAreaElement, params: any): string {
   const { prefix, str = '', subfix = '' } = params
   const value = $vm.value
   if ($vm.selectionStart || $vm.selectionStart === 0) {

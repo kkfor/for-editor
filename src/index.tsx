@@ -115,7 +115,9 @@ class MdEditor extends React.Component<IP, IS> {
 
   componentDidMount() {
     const { value } = this.props
-    // keydownListen(this)
+    keydownListen(this.$vm.current, (type: string) => {
+      this.toolBarLeftClick(type)
+    })
     this.reLineNum(value)
     this.initLanguage()
   }
@@ -174,12 +176,12 @@ class MdEditor extends React.Component<IP, IS> {
   }
 
   // 保存
-  save() {
+  save = () => {
     this.props.onSave(this.$vm.current!.value)
   }
 
   // 撤销
-  undo() {
+  undo = () => {
     let { history, historyIndex } = this.state
     historyIndex = historyIndex - 1
     if (historyIndex < 0) return
@@ -190,7 +192,7 @@ class MdEditor extends React.Component<IP, IS> {
   }
 
   // 重做
-  redo() {
+  redo = () => {
     let { history, historyIndex } = this.state
     historyIndex = historyIndex + 1
     if (historyIndex >= history.length) return
