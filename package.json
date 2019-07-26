@@ -50,6 +50,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^2.0.2",
     "eslint": "^6.1.0",
+    "eslint-config-for": "^0.0.1",
     "eslint-plugin-react": "^7.14.3",
     "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
