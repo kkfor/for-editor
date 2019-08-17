@@ -37,7 +37,7 @@
     display: none;
   }
 
-  .for-controlbar {
+  .for-toolbar {
     font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
     display: flex;
     justify-content: space-between;
@@ -49,7 +49,7 @@
     > ul {
       display: flex;
 
-      li {
+      > li {
         display: flex;
         align-items: center;
         padding: 4px 6px;
@@ -57,13 +57,57 @@
         border-radius: 4px;
         line-height: normal;
 
+        &.for-toolbar-img {
+          position: relative;
+
+          > ul {
+            position: absolute;
+            top: 100%;
+            left: -50px;
+            width: 140px;
+            margin-top: 4px;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0 2px 8px 0;
+            z-index: 99;
+            line-height: 2.8;
+            text-align: center;
+
+            li {
+              position: relative;
+
+              &:hover {
+                background: #e9e9e9;
+              }
+
+              &:first-child {
+                border-radius: 4px 4px 0 0;
+              }
+
+              &:last-child {
+                border-radius: 0 0 4px 4px;
+              }
+
+              input {
+                position: absolute;
+                opacity: 0;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
         &.for-active {
           background: #ddd;
         }
 
         &:hover {
           cursor: pointer;
-          background: #d8d8d8;
+          background: #e9e9e9;
         }
 
         i {
@@ -147,8 +191,7 @@
   }
 
   textarea {
-    font-family: 'Consolas', 'Source Sans Pro', 'Helvetica Neue', Arial,
-      sans-serif;
+    font-family: 'Consolas', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
     box-sizing: border-box;
     position: absolute;
     top: 0;

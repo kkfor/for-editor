@@ -65,6 +65,7 @@ interface IP {
   subfield: boolean
   toolbar: IToolbar
   language: string
+  addImg: (file: File) => void 
 }
 
 interface IS {
@@ -83,6 +84,7 @@ class MdEditor extends React.Component<IP, IS> {
     lineNum: true,
     onChange: () => {},
     onSave: () => {},
+    addImg: () => {},
     fontSize: '14px',
     disabled: false,
     preview: false,
@@ -265,6 +267,21 @@ class MdEditor extends React.Component<IP, IS> {
     }
   }
 
+  // 添加图片
+  addImg = (file: File) => {
+    this.props.addImg(file)
+  }
+  
+  img2Url = (pos: number, url: string) => {
+    const value = insertText(this.$vm.current, {
+      prefix: `[${pos}](${url})`,
+      subfix: '',
+      str: ''
+    })
+    this.props.onChange(value)
+
+  }
+
   // 右侧菜单
   toolBarRightClick = (type: string): void => {
     const toolbarRightPreviewClick = () => {
@@ -363,11 +380,12 @@ class MdEditor extends React.Component<IP, IS> {
       <div className={fullscreen} style={{ height, ...style }}>
         {/* 菜单栏 */}
         {Boolean(Object.keys(toolbar).length) && (
-          <div className="for-controlbar">
+          <div className="for-toolbar">
             <ToolbarLeft
               toolbar={toolbar}
               words={words}
               onClick={this.toolBarLeftClick}
+              addImg={this.addImg}
               {...this.props}
             />
             <ToolbarRight

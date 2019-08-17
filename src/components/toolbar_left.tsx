@@ -2,23 +2,69 @@ import * as React from 'react'
 import { IToolbar, IWords } from '../index'
 interface IP {
   onClick: (type: string) => void
+  addImg: (file: File) => void
   toolbar: IToolbar
   words: IWords
 }
 
-class Toolbars extends React.Component<IP, {}> {
+interface IS {
+  imgHidden: boolean
+}
+
+class Toolbars extends React.Component<IP, IS> {
   static defaultProps = {
     onClick: () => {},
     toolbar: {},
     words: {}
   }
 
+  private timer: number
+
+  constructor(props: IP) {
+    super(props)
+
+    this.state = {
+      imgHidden: false
+    }
+  }
+
   onClick(type: string) {
     this.props.onClick(type)
   }
 
+  imgClick() {
+    this.setState({
+      imgHidden: !this.state.imgHidden
+    })
+  }
+
+  imgMouseOver() {
+    window.clearTimeout(this.timer)
+    this.setState({
+      imgHidden: false
+    })
+  }
+
+  imgMouseOut() {
+    this.timer = window.setTimeout(() => {
+      this.setState({
+        imgHidden: true
+      })
+    }, 150)
+  }
+
+  addImgUrl() {
+
+  }
+
+  addImgFile(e: any) {
+    this.props.addImg(e.target.files[0])
+    e.target.value = ''
+  }
+
   render() {
     const { toolbar, words } = this.props
+    const { imgHidden } = this.state
     return (
       <ul>
         {toolbar.undo && (
@@ -52,8 +98,15 @@ class Toolbars extends React.Component<IP, {}> {
           </li>
         )}
         {toolbar.img && (
-          <li onClick={() => this.onClick('img')} title={words.img}>
+          <li className="for-toolbar-img" onMouseOver={() => this.imgMouseOver()} onMouseOut={() => this.imgMouseOut()} title={words.img}>
             <i className="foricon for-image" />
+            <ul style={imgHidden ? {display: 'none'} : {}}>
+              <li onClick={() => this.addImgUrl()}>添加图片链接</li>
+              <li>
+                上传图片
+                <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onChange={(e) => this.addImgFile(e)}/>
+              </li>
+            </ul>
           </li>
         )}
         {toolbar.link && (

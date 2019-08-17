@@ -11,6 +11,7 @@ class App extends Component {
       value: '',
       mobile: false
     }
+    this.$vm = React.createRef()
   }
 
   componentDidMount() {
@@ -47,6 +48,11 @@ class App extends Component {
     console.log('触发保存事件', value)
   }
 
+  addImg($file) {
+    console.log(this.$vm.current.img2Url(1, '234'))
+    console.log($file)
+  }
+
   render() {
     const { value, mobile } = this.state
 
@@ -69,6 +75,7 @@ class App extends Component {
         <div className={styles.editor}>
           {mobile && (
             <Editor
+              ref={this.$vm}
               height="500px"
               toolbar={{
                 h1: true,
@@ -85,9 +92,11 @@ class App extends Component {
           )}
           {!mobile && (
             <Editor
+              ref={this.$vm}
               language="en"
               height="700px"
               value={value}
+              addImg={($file) => this.addImg($file)}
               onChange={value => this.handleChange(value)}
               onSave={value => this.handleSave(value)}
             />
