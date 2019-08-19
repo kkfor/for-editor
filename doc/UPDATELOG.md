@@ -1,5 +1,8 @@
+- 2019-08-19 v0.3.1
+  - 添加图片上传功能 [#32](https://github.com/kkfor/for-editor/issues/32)
+  - 优化代码
 - 2019-07-05 v0.3.0
-  - 添加d.ts声明文件，修复bug [#27](https://github.com/kkfor/for-editor/issues/26)
+  - 添加d.ts声明文件，修复bug [#27](https://github.com/kkfor/for-editor/issues/27)
 - 2019-07-03 v0.2.9
   - 修复bug [#26](https://github.com/kkfor/for-editor/issues/26)
 - 2019-07-03 v0.2.8
