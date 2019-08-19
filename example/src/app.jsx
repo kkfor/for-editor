@@ -49,7 +49,7 @@ class App extends Component {
   }
 
   addImg($file) {
-    console.log(this.$vm.current.img2Url(1, '234'))
+    this.$vm.current.$img2Url($file.name, 'file_url')
     console.log($file)
   }
 

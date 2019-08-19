@@ -65,7 +65,7 @@ interface IP {
   subfield: boolean
   toolbar: IToolbar
   language: string
-  addImg: (file: File) => void 
+  addImg: (file: File, index: number) => void 
 }
 
 interface IS {
@@ -268,18 +268,17 @@ class MdEditor extends React.Component<IP, IS> {
   }
 
   // 添加图片
-  addImg = (file: File) => {
-    this.props.addImg(file)
+  addImg = (file: File, index: number) => {
+    this.props.addImg(file, index)
   }
   
-  img2Url = (pos: number, url: string) => {
+  $img2Url = (name: number, url: string) => {
     const value = insertText(this.$vm.current, {
-      prefix: `[${pos}](${url})`,
+      prefix: `[${name}](${url})`,
       subfix: '',
       str: ''
     })
     this.props.onChange(value)
-
   }
 
   // 右侧菜单

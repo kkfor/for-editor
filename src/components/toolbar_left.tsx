@@ -2,13 +2,14 @@ import * as React from 'react'
 import { IToolbar, IWords } from '../index'
 interface IP {
   onClick: (type: string) => void
-  addImg: (file: File) => void
+  addImg: (file: File, index: number) => void
   toolbar: IToolbar
   words: IWords
 }
 
 interface IS {
   imgHidden: boolean
+  imgList: File[]
 }
 
 class Toolbars extends React.Component<IP, IS> {
@@ -24,7 +25,8 @@ class Toolbars extends React.Component<IP, IS> {
     super(props)
 
     this.state = {
-      imgHidden: false
+      imgHidden: false,
+      imgList: []
     }
   }
 
@@ -58,7 +60,13 @@ class Toolbars extends React.Component<IP, IS> {
   }
 
   addImgFile(e: any) {
-    this.props.addImg(e.target.files[0])
+    let { imgList } = this.state
+    const index = imgList.length
+    imgList.push(e.target.files[0])
+    this.setState({
+      imgList
+    })
+    this.props.addImg(e.target.files[0], index)
     e.target.value = ''
   }
 
