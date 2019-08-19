@@ -14,5 +14,7 @@
   "singleColumn": "单栏",
   "doubleColumn": "双栏",
   "fullscreenOn": "全屏编辑",
-  "fullscreenOff": "退出全屏"
+  "fullscreenOff": "退出全屏",
+  "addImgLink": "添加图片链接",
+  "addImg": "上传图片"
 }

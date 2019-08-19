@@ -43,6 +43,8 @@ export interface IWords {
   doubleColumn?: string
   fullscreenOn?: string
   fullscreenOff?: string
+  addImgLink?: string
+  addImg?: string
 }
 
 interface ILeft {

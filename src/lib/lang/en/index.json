@@ -14,5 +14,7 @@
   "singleColumn": "Single Column",
   "doubleColumn": "Double Columns",
   "fullscreenOn": "FullScreen ON",
-  "fullscreenOff": "FullScreen OFF"
+  "fullscreenOff": "FullScreen OFF",
+  "addImgLink": "Add Image Link",
+  "addImg": "Upload Image"
 }

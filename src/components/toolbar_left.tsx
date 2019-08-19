@@ -106,12 +106,12 @@ class Toolbars extends React.Component<IP, IS> {
           </li>
         )}
         {toolbar.img && (
-          <li className="for-toolbar-img" onMouseOver={() => this.imgMouseOver()} onMouseOut={() => this.imgMouseOut()} title={words.img}>
+          <li className="for-toolbar-img" onMouseOver={() => this.imgMouseOver()} onMouseOut={() => this.imgMouseOut()}>
             <i className="foricon for-image" />
             <ul style={imgHidden ? {display: 'none'} : {}}>
-              <li onClick={() => this.addImgUrl()}>添加图片链接</li>
+              <li onClick={() => this.addImgUrl()}>{words.addImgLink}</li>
               <li>
-                上传图片
+                {words.addImg}
                 <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onChange={(e) => this.addImgFile(e)}/>
               </li>
             </ul>
