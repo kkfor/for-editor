@@ -96,6 +96,45 @@ toolbar: {
 | -------- | ------------- | ------- | ------------------------------------------- |
 | onChange | String: value | -       | Edit area change callback event             |
 | onSave   | String: value | -       | Ctrl+s and click save button callback event |
+| addImg   | File: file    | -       | upload image callback event                 |
+
+##### upload image
+
+```js
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      value: ''
+    }
+    this.$vm = React.createRef()
+  }
+
+  handleChange(value) {
+    this.setState({
+      value
+    })
+  }
+
+  addImg($file) {
+    this.$vm.current.$img2Url($file.name, 'file_url')
+    console.log($file)
+  }
+
+  render() {
+    const { value } = this.state
+
+    return (
+      <Editor
+        ref={this.$vm}
+        value={value}
+        addImg={($file) => this.addImg($file)}
+        onChange={(value) => this.handleChange(value)}
+      />
+    )
+  }
+}
+```
 
 #### hot key
 
@@ -113,4 +152,3 @@ toolbar: {
 # Licence
 
 for-editor is [MIT Licence](./LICENSE).
-

@@ -7,7 +7,6 @@
 - [demo](https://md.kkfor.com)
 - [github](https://github.com/kkfor/for-editor)
 
-
 ### 安装
 
 ```js
@@ -94,10 +93,49 @@ toolbar: {
 
 #### 事件
 
-| name     | type        | default | description    |
-| -------- | ----------- | ------- | -------------- |
-| onChange | function(e) | -       | 内容改变时回调 |
-| onSave   | function(e) | -       | 保存时回调     |
+| name     | params 参数   | default | description    |
+| -------- | ------------- | ------- | -------------- |
+| onChange | String: value | -       | 内容改变时回调 |
+| onSave   | String: value | -       | 保存时回调     |
+| addImg   | File: file    | -       | 添加图片时回调 |
+
+##### 图片上传
+
+```js
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      value: '',
+    }
+    this.$vm = React.createRef()
+  }
+
+  handleChange(value) {
+    this.setState({
+      value
+    })
+  }
+
+  addImg($file) {
+    this.$vm.current.$img2Url($file.name, 'file_url')
+    console.log($file)
+  }
+
+  render() {
+    const { value } = this.state
+
+    return (
+      <Editor
+        ref={this.$vm}
+        value={value}
+        addImg={($file) => this.addImg($file)}
+        onChange={value => this.handleChange(value)}
+      />
+    )
+  }
+}
+```
 
 #### 快捷键
 

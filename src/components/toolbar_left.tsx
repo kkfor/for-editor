@@ -25,7 +25,7 @@ class Toolbars extends React.Component<IP, IS> {
     super(props)
 
     this.state = {
-      imgHidden: false,
+      imgHidden: true,
       imgList: []
     }
   }
@@ -56,7 +56,7 @@ class Toolbars extends React.Component<IP, IS> {
   }
 
   addImgUrl() {
-
+    this.props.onClick('img')
   }
 
   addImgFile(e: any) {
