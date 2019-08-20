@@ -276,7 +276,7 @@ class MdEditor extends React.Component<IP, IS> {
   
   $img2Url = (name: number, url: string) => {
     const value = insertText(this.$vm.current, {
-      prefix: `[${name}](${url})`,
+      prefix: `![${name}](${url})`,
       subfix: '',
       str: ''
     })
