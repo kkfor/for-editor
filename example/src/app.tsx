@@ -1,17 +1,26 @@
 import React, { Component } from 'react'
 import Editor from '../../src/index'
 // import Editor from '../../dist'
-import styles from './app.module.scss'
-import value from '../static/help.md'
+import * as styles from './app.module.scss'
+import * as value from '../static/help.md'
 
-class App extends Component {
-  constructor() {
-    super()
+interface IS {
+  value: string
+  mobile: boolean
+}
+
+
+class App extends Component<{}, IS> {
+
+  private $vm = React.createRef<Editor>()
+
+  constructor(props: any) {
+    super(props)
+
     this.state = {
       value: '',
       mobile: false
     }
-    this.$vm = React.createRef()
   }
 
   componentDidMount() {
@@ -38,17 +47,17 @@ class App extends Component {
     }
   }
 
-  handleChange(value) {
+  handleChange(value: string) {
     this.setState({
       value
     })
   }
 
-  handleSave(value) {
+  handleSave(value: string) {
     console.log('触发保存事件', value)
   }
 
-  addImg($file) {
+  addImg($file: File) {
     this.$vm.current.$img2Url($file.name, 'file_url')
     console.log($file)
   }

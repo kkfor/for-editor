@@ -79,6 +79,7 @@ module.exports = {
         test: /\.module\.(sass|scss)$/,
         use: [
           require.resolve('style-loader'),
+          require.resolve('css-modules-typescript-loader'),
           {
             loader: require.resolve('css-loader'),
             options: {

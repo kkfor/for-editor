@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = merge(webpackBaseConfig, {
   mode: 'development',
   devtool: 'cheap-module-source-map',
-  entry: ['./example/index.js'],
+  entry: ['./example/index.tsx'],
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'index.js'

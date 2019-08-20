@@ -53,9 +53,9 @@ interface ILeft {
   str: string
 }
 interface IP {
-  value: string
+  value?: string
   lineNum?: number
-  onChange: (value: string) => void
+  onChange?: (value: string) => void
   onSave?: (value: string) => void
   placeholder?: string
   fontSize?: string
