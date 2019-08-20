@@ -54,20 +54,20 @@ interface ILeft {
 }
 interface IP {
   value: string
-  lineNum: number
+  lineNum?: number
   onChange: (value: string) => void
-  onSave: (value: string) => void
-  placeholder: string
-  fontSize: string
-  disabled: boolean
-  style: object
-  height: string
-  preview: boolean
-  expand: boolean
-  subfield: boolean
-  toolbar: IToolbar
-  language: string
-  addImg: (file: File, index: number) => void 
+  onSave?: (value: string) => void
+  placeholder?: string
+  fontSize?: string
+  disabled?: boolean
+  style?: object
+  height?: string
+  preview?: boolean
+  expand?: boolean
+  subfield?: boolean
+  toolbar?: IToolbar
+  language?: string
+  addImg?: (file: File, index: number) => void 
 }
 
 interface IS {
