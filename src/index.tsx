@@ -274,7 +274,7 @@ class MdEditor extends React.Component<IP, IS> {
     this.props.addImg(file, index)
   }
   
-  $img2Url = (name: number, url: string) => {
+  $img2Url = (name: string, url: string) => {
     const value = insertText(this.$vm.current, {
       prefix: `![${name}](${url})`,
       subfix: '',
