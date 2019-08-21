@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Editor from '../../src/index'
 // import Editor from '../../dist'
 import * as styles from './app.module.scss'
-import * as value from '../static/help.md'
+import value from '../static/help.md'
 
 interface IS {
   value: string
