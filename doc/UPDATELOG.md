@@ -1,4 +1,4 @@
-- 2019-08-20 v0.3.2
+- 2019-08-20 v0.3.4
   - 修复typescrit定义问题 [#36](https://github.com/kkfor/for-editor/issues/35)
 - 2019-08-20 v0.3.2
   - 修复图片上传bug
