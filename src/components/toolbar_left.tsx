@@ -122,6 +122,11 @@ class Toolbars extends React.Component<IP, IS> {
             <i className="foricon for-link" />
           </li>
         )}
+        {toolbar.youtube && (
+          <li onClick={() => this.onClick('youtube')} title={words.youtube}>
+            {words.addYoutubeLink}
+          </li>
+        )}
         {toolbar.code && (
           <li onClick={() => this.onClick('code')} title={words.code}>
             <i className="foricon for-code" />

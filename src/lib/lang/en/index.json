@@ -7,6 +7,7 @@
   "h3": "Header 3",
   "h4": "Header 4",
   "img": "Image Link",
+  "youtube": "Youtube Link",
   "link": "Link",
   "code": "Code",
   "save": "Save",
@@ -16,5 +17,6 @@
   "fullscreenOn": "FullScreen ON",
   "fullscreenOff": "FullScreen OFF",
   "addImgLink": "Add Image Link",
-  "addImg": "Upload Image"
+  "addImg": "Upload Image",
+  "addYoutubeLink": "Add Youtube Link"
 }

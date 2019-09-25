@@ -79,6 +79,7 @@ toolbar: {
   h4: true, // h4
   img: true, // 图片
   link: true, // 链接
+  youtube: true, // 添加Youtube链接
   code: true, // 代码块
   preview: true, // 预览
   expand: true, // 全屏

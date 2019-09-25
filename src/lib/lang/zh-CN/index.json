@@ -7,6 +7,7 @@
   "h3": "三级标题",
   "h4": "四级标题",
   "img": "添加图片链接",
+  "youtube": "添加Youtube链接",
   "link": "链接",
   "code": "代码块",
   "save": "保存",
@@ -16,5 +17,6 @@
   "fullscreenOn": "全屏编辑",
   "fullscreenOff": "退出全屏",
   "addImgLink": "添加图片链接",
-  "addImg": "上传图片"
+  "addImg": "上传图片",
+  "addYoutubeLink": "添加Youtube链接"
 }
