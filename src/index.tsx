@@ -16,6 +16,7 @@ export interface IToolbar {
   h3?: boolean
   h4?: boolean
   img?: boolean
+  youtube?: boolean
   link?: boolean
   code?: boolean
   preview?: boolean
@@ -35,6 +36,7 @@ export interface IWords {
   undo?: string
   redo?: string
   img?: string
+  youtube?: string
   link?: string
   code?: string
   save?: string
@@ -45,6 +47,7 @@ export interface IWords {
   fullscreenOff?: string
   addImgLink?: string
   addImg?: string
+  addYoutubeLink?: string
 }
 
 interface ILeft {
@@ -239,6 +242,11 @@ class MdEditor extends React.Component<IP, IS> {
         prefix: '[title](',
         subfix: ')',
         str: 'url'
+      },
+      youtube: {
+        prefix: '[![alt](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID/0.jpg)](',
+        subfix: ' "title")',
+        str: 'http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID'
       },
       code: {
         prefix: '```',

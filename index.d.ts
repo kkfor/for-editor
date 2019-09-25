@@ -5,6 +5,7 @@ export interface IToolbar {
     h3?: boolean
     h4?: boolean
     img?: boolean
+    youtube?: boolean
     link?: boolean
     code?: boolean
     preview?: boolean
@@ -23,6 +24,7 @@ export interface IWords {
     undo?: string
     redo?: string
     img?: string
+    youtube?: string
     link?: string
     code?: string
     save?: string
@@ -33,6 +35,7 @@ export interface IWords {
     fullscreenOff?: string
     addImgLink?: string
     addImg?: string
+    addYoutubeLink?: string
 }
 interface IP {
     value?: string

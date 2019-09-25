@@ -77,6 +77,7 @@ toolbar: {
   h3: true,
   h4: true,
   img: true,
+  youtube: true,
   link: true,
   code: true,
   preview: true,
