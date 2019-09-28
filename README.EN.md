@@ -53,6 +53,7 @@ ReactDOM.render(<App />, document.getElementById('root'))
 | lineNum     | Boolean | true                        | Show lineNum                                                                                           |
 | style       | Object  | -                           | editor styles                                                                                          |
 | height      | String  | 600px                       | editor height                                                                                          |
+| previewerStyle| Object| -                           | previewer styles                                                                                       |
 | preview     | Boolean | false                       | preview switch                                                                                         |
 | expand      | Boolean | false                       | fullscreen switch                                                                                      |
 | subfield    | Boolean | false                       | true: Double columns - Edit preview same screen(notice: preview: true), Single Columns - otherwise not |

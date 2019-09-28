@@ -61,6 +61,7 @@ interface IP {
   fontSize?: string
   disabled?: boolean
   style?: object
+  previewerStyle?: object
   height?: string
   preview?: boolean
   expand?: boolean
@@ -347,7 +348,7 @@ class MdEditor extends React.Component<IP, IS> {
 
   render() {
     const { preview, expand, subfield, lineIndex, words } = this.state
-    const { value, placeholder, fontSize, disabled, height, style, toolbar } = this.props
+    const { value, placeholder, fontSize, disabled, height, style, previewerStyle, toolbar } = this.props
     const editorClass = classNames({
       'for-editor-edit': true,
       'for-panel': true,
@@ -427,6 +428,7 @@ class MdEditor extends React.Component<IP, IS> {
             <div
               ref={this.$scrollPreview}
               className="for-preview for-markdown-preview"
+              style={{ ...previewerStyle }}
               dangerouslySetInnerHTML={{ __html: marked(value) }}
             />
           </div>

@@ -55,6 +55,7 @@ ReactDOM.render(<App />, document.getElementById('root'))
 | style       | Object  | -           | 编辑器样式                         |
 | height      | String  | 600px       | 编辑器高度                         |
 | preview     | Boolean | false       | 预览模式                           |
+| previewerStyle| Object| -           | 预览器样式                         |
 | expand      | Boolean | false       | 全屏模式                           |
 | subfield    | Boolean | false       | 双栏模式(预览模式激活下有效)       |
 | language    | String  | zh-CN       | 语言(支持 zh-CN:中文简体, en:英文) |
