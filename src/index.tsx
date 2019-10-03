@@ -67,7 +67,7 @@ interface IP {
   subfield?: boolean
   toolbar?: IToolbar
   language?: string
-  addImg?: (file: File, index: number) => void 
+  addImg?: (file: File, index: number) => void
 }
 
 interface IS {
@@ -84,9 +84,9 @@ interface IS {
 class MdEditor extends React.Component<IP, IS> {
   static defaultProps = {
     lineNum: true,
-    onChange: () => {},
-    onSave: () => {},
-    addImg: () => {},
+    onChange: () => { },
+    onSave: () => { },
+    addImg: () => { },
     fontSize: '14px',
     disabled: false,
     preview: false,
@@ -127,7 +127,7 @@ class MdEditor extends React.Component<IP, IS> {
   }
 
   componentDidUpdate(preProps: IP) {
-    const { value } = this.props
+    const { value, preview, expand, subfield } = this.props
     const { history, historyIndex } = this.state
     if (preProps.value !== value) {
       this.reLineNum(value)
@@ -137,6 +137,15 @@ class MdEditor extends React.Component<IP, IS> {
       this.currentTimeout = window.setTimeout(() => {
         this.saveHistory(value)
       }, 500)
+    }
+    if (subfield !== preProps.subfield && this.state.subfield !== subfield) {
+      this.setState({ subfield });
+    }
+    if (preview !== preProps.preview && this.state.preview !== preview) {
+      this.setState({ preview });
+    }
+    if (expand !== preProps.expand && this.state.expand !== expand) {
+      this.setState({ expand });
     }
   }
 
@@ -273,7 +282,7 @@ class MdEditor extends React.Component<IP, IS> {
   addImg = (file: File, index: number) => {
     this.props.addImg(file, index)
   }
-  
+
   $img2Url = (name: string, url: string) => {
     const value = insertText(this.$vm.current, {
       prefix: `![${name}](${url})`,
