@@ -1,3 +1,5 @@
+- 2019-12-11 v0.3.5
+  - 修复双栏，预览，全屏bug [#45](https://github.com/kkfor/for-editor/pull/45)
 - 2019-08-20 v0.3.4
   - 修复typescrit定义问题 [#36](https://github.com/kkfor/for-editor/issues/35)
 - 2019-08-20 v0.3.2
