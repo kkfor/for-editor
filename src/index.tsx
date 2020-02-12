@@ -160,7 +160,7 @@ class MdEditor extends React.Component<IP, IS> {
   // 输入框改变
   handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const value = e.target.value
-    this.props.onChange(value)
+    this.props.onChange(value, e)
   }
 
   // 保存记录
