@@ -37,7 +37,7 @@ export interface IWords {
 interface IP {
     value?: string
     lineNum?: number
-    onChange?: (value: string) => void
+    onChange?: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void
     onSave?: (value: string) => void
     placeholder?: string
     fontSize?: string
