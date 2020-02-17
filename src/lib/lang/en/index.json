@@ -19,6 +19,7 @@
   "link": "Link",
   "innercode": "Inner Code",
   "code": "Code",
+  "katex": "KaTeX",
   "save": "Save",
   "preview": "Preview",
   "singleColumn": "Single Column",

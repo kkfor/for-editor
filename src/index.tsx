@@ -8,6 +8,7 @@ import { insertText } from './lib/helpers/function'
 import 'highlight.js/styles/tomorrow.css'
 import './lib/fonts/iconfont.css'
 import './lib/css/index.scss'
+import './lib/fonts/katex.css'
 import { CONFIG } from './lib'
 
 export interface IToolbar {
@@ -26,6 +27,8 @@ export interface IToolbar {
   // 行内代码
   innercode?: boolean
   code?: boolean
+  // Katex支持
+  katex?: boolean
   preview?: boolean
   expand?: boolean
   undo?: boolean
@@ -59,6 +62,8 @@ export interface IWords {
   // 行内代码
   innercode?: string
   code?: string
+  // katex
+  katex?: string
   save?: string
   preview?: string
   singleColumn?: string
@@ -320,6 +325,11 @@ class MdEditor extends React.Component<IP, IS> {
         prefix: '```',
         subfix: '\n\n```',
         str: 'language'
+      },
+      katex: {
+        prefix: '\n\n$$\n',
+        subfix: '\n$$\n',
+        str: 'a^2 + b^2 = c^2'
       },
       tab: {
         prefix: '  ',

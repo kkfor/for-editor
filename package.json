@@ -37,6 +37,7 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@types/classnames": "^2.2.9",
+    "@types/katex": "^0.11.0",
     "@types/marked": "^0.6.5",
     "@types/react": "^16.8.16",
     "@types/react-dom": "^16.8.4",
@@ -73,6 +74,7 @@
   },
   "dependencies": {
     "highlight.js": "^9.13.1",
+    "katex": "^0.11.1",
     "marked": "^0.6.2"
   }
 }

@@ -30,11 +30,12 @@ export const CONFIG: ICONFIG = {
     link: true,
     innercode: true,
     code: true,
+    katex: true,
     preview: true,
     expand: true,
     undo: true,
     redo: true,
     save: true,
-    subfield: true
+    subfield: true,
   }
 }

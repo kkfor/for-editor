@@ -1,4 +1,5 @@
 import marked from 'marked'
+import katex from 'katex'
 import Hljs from './highlight'
 
 marked.setOptions({
@@ -17,8 +18,30 @@ marked.setOptions({
 
 const renderer = new marked.Renderer()
 
+// latex解析
+const latexParse = (latex: string) => {
+  let html: string = katex.renderToString(latex, {
+    displayMode: true,
+    leqno: false,
+    fleqn: false,
+    throwOnError: false,
+    strict: 'warn',
+    trust: false,
+    output: 'html'
+  })
+  return html
+}
+
 // 段落解析
-const paragraphParse = (text: string) => `<p>${text}</p>`
+const paragraphParse = (text: string) => {
+  if (text.substr(0, 2) === '$$' && text.substr(-2, 2) === '$$') {
+    let len: number = text.length - 4
+    let latex: string = String.raw`${text.substr(2, len)}`
+    return latexParse(latex)
+  } else {
+    return `<p>${text}</p>`
+  }
+}
 
 // 链接解析
 const linkParse = (href: string, title: string, text: string) => {

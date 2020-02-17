@@ -163,7 +163,11 @@ class Toolbars extends React.Component<IP, IS> {
         )}
 
         {/* 表格 */}
-        {toolbar.table && <li onClick={() => this.onClick('table')} title={words.table}>表格</li>}
+        {toolbar.table && (
+          <li onClick={() => this.onClick('table')} title={words.table}>
+            表格
+          </li>
+        )}
 
         {toolbar.img && (
           <li
@@ -200,7 +204,11 @@ class Toolbars extends React.Component<IP, IS> {
             <i className="foricon for-code" />
           </li>
         )}
-        {/* 挖个坑，添加latex支持 */}
+        {toolbar.katex && (
+          <li onClick={() => this.onClick('katex')} title={words.katex}>
+            KaTeX
+          </li>
+        )}
         {toolbar.save && (
           <li onClick={() => this.onClick('save')} title={`${words.save} (ctrl+s)`}>
             <i className="foricon for-save" />
