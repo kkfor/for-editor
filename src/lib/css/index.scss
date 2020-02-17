@@ -57,7 +57,7 @@
         border-radius: 4px;
         line-height: normal;
 
-        &.for-toolbar-img {
+        &.for-toolbar-img, &.for-toolbar-para {
           position: relative;
 
           > ul {

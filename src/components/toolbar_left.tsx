@@ -10,6 +10,7 @@ interface IP {
 interface IS {
   imgHidden: boolean
   imgList: File[]
+  paraHidden: boolean
 }
 
 class Toolbars extends React.Component<IP, IS> {
@@ -20,18 +21,35 @@ class Toolbars extends React.Component<IP, IS> {
   }
 
   private timer: number
+  private paraTimer: number
 
   constructor(props: IP) {
     super(props)
 
     this.state = {
       imgHidden: true,
-      imgList: []
+      imgList: [],
+      paraHidden: true
     }
   }
 
   onClick(type: string) {
     this.props.onClick(type)
+  }
+
+  paraMouseOver() {
+    window.clearTimeout(this.paraTimer)
+    this.setState({
+      paraHidden: false
+    })
+  }
+
+  paraMouseOut() {
+    this.paraTimer = window.setTimeout(() => {
+      this.setState({
+        paraHidden: true
+      })
+    }, 150)
   }
 
   imgClick() {
@@ -73,6 +91,7 @@ class Toolbars extends React.Component<IP, IS> {
   render() {
     const { toolbar, words } = this.props
     const { imgHidden } = this.state
+    const { paraHidden } = this.state
     return (
       <ul>
         {toolbar.undo && (
@@ -105,14 +124,63 @@ class Toolbars extends React.Component<IP, IS> {
             H4
           </li>
         )}
+        {/* 引用 */}
+        {toolbar.quote && (
+          <li onClick={() => this.onClick('quote')} title={words.quote}>
+            >
+          </li>
+        )}
+        {/* 段落 */}
+        {toolbar.para && (
+          <li
+            className="for-toolbar-para"
+            onMouseOver={() => this.paraMouseOver()}
+            onMouseOut={() => this.paraMouseOut()}
+          >
+            文本
+            {/* 图标 */}
+            <ul style={paraHidden ? { display: 'none' } : {}}>
+              <li onClick={() => this.onClick('italic')} title={words.italic}>
+                {words.italic}
+              </li>
+              <li onClick={() => this.onClick('bold')} title={words.bold}>
+                {words.bold}
+              </li>
+              <li onClick={() => this.onClick('bolditalic')} title={words.bolditalic}>
+                {words.bolditalic}
+              </li>
+              <li onClick={() => this.onClick('delline')} title={words.delline}>
+                {words.delline}
+              </li>
+              <li onClick={() => this.onClick('underline')} title={words.underline}>
+                {words.underline}
+              </li>
+              <li onClick={() => this.onClick('keytext')} title={words.keytext}>
+                {words.keytext}
+              </li>
+            </ul>
+          </li>
+        )}
+
+        {/* 表格 */}
+        {toolbar.table && <li onClick={() => this.onClick('table')} title={words.table}>表格</li>}
+
         {toolbar.img && (
-          <li className="for-toolbar-img" onMouseOver={() => this.imgMouseOver()} onMouseOut={() => this.imgMouseOut()}>
+          <li
+            className="for-toolbar-img"
+            onMouseOver={() => this.imgMouseOver()}
+            onMouseOut={() => this.imgMouseOut()}
+          >
             <i className="foricon for-image" />
-            <ul style={imgHidden ? {display: 'none'} : {}}>
+            <ul style={imgHidden ? { display: 'none' } : {}}>
               <li onClick={() => this.addImgUrl()}>{words.addImgLink}</li>
               <li>
                 {words.addImg}
-                <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onChange={(e) => this.addImgFile(e)}/>
+                <input
+                  type="file"
+                  accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"
+                  onChange={(e) => this.addImgFile(e)}
+                />
               </li>
             </ul>
           </li>
@@ -122,11 +190,17 @@ class Toolbars extends React.Component<IP, IS> {
             <i className="foricon for-link" />
           </li>
         )}
+        {toolbar.innercode && (
+          <li onClick={() => this.onClick('innercode')} title={words.innercode}>
+            行内代码
+          </li>
+        )}
         {toolbar.code && (
           <li onClick={() => this.onClick('code')} title={words.code}>
             <i className="foricon for-code" />
           </li>
         )}
+        {/* 挖个坑，添加latex支持 */}
         {toolbar.save && (
           <li onClick={() => this.onClick('save')} title={`${words.save} (ctrl+s)`}>
             <i className="foricon for-save" />

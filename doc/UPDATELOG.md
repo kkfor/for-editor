@@ -1,3 +1,5 @@
+# 更新日志
+
 - 2019-12-11 v0.3.5
   - 修复双栏，预览，全屏bug [#45](https://github.com/kkfor/for-editor/pull/45)
 - 2019-08-20 v0.3.4

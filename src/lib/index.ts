@@ -11,6 +11,7 @@ export interface ICONFIG {
   toolbar: IToolbar
 }
 
+// 编辑栏设置
 export const CONFIG: ICONFIG = {
   language: {
     'zh-CN': zhCN,
@@ -23,7 +24,11 @@ export const CONFIG: ICONFIG = {
     h3: true,
     h4: true,
     img: true,
+    para: true,
+    table: true,
+    quote: true,
     link: true,
+    innercode: true,
     code: true,
     preview: true,
     expand: true,
