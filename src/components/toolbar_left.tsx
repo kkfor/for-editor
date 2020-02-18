@@ -204,6 +204,12 @@ class Toolbars extends React.Component<IP, IS> {
             <i className="foricon for-code" />
           </li>
         )}
+        {/* 折叠语法 */}
+        {toolbar.collapse && (
+          <li onClick={() => this.onClick('collapse')} title={words.collapse}>
+            折叠
+          </li>
+        )}
         {toolbar.katex && (
           <li onClick={() => this.onClick('katex')} title={words.katex}>
             KaTeX

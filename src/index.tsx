@@ -27,6 +27,8 @@ export interface IToolbar {
   // 行内代码
   innercode?: boolean
   code?: boolean
+  // 折叠面板
+  collapse?: boolean
   // Katex支持
   katex?: boolean
   preview?: boolean
@@ -62,6 +64,8 @@ export interface IWords {
   // 行内代码
   innercode?: string
   code?: string
+  // 折叠面板
+  collapse?: string
   // katex
   katex?: string
   save?: string
@@ -304,7 +308,8 @@ class MdEditor extends React.Component<IP, IS> {
       table: {
         prefix: '',
         subfix: '',
-        str: '| title      | description     |\n| ---------- | --------------- |\n| for-editor | markdown editor |\n'
+        str:
+          '| title      | description     |\n| ---------- | --------------- |\n| for-editor | markdown editor |\n'
       },
       img: {
         prefix: '![alt](',
@@ -325,6 +330,11 @@ class MdEditor extends React.Component<IP, IS> {
         prefix: '```',
         subfix: '\n\n```',
         str: 'language'
+      },
+      collapse: {
+        prefix: '\n<details>\n<summary>title</summary>\n\n',
+        subfix: '\n</details>\n',
+        str: 'content'
       },
       katex: {
         prefix: '\n\n$$\n',

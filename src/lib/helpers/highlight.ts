@@ -1,5 +1,6 @@
 const Hljs = require('highlight.js/lib/highlight')
 
+// 语言高亮注册
 Hljs.registerLanguage('css', require('highlight.js/lib/languages/css'))
 Hljs.registerLanguage('json', require('highlight.js/lib/languages/json'))
 Hljs.registerLanguage('less', require('highlight.js/lib/languages/less'))

@@ -19,6 +19,7 @@
   "link": "链接",
   "innercode": "行内代码",
   "code": "代码块",
+  "collapse": "折叠块",
   "katex": "KaTeX",
   "save": "保存",
   "preview": "预览",

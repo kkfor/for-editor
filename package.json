@@ -73,8 +73,10 @@
     "webpack-merge": "^4.1.5"
   },
   "dependencies": {
+    "@types/mermaid": "^8.2.1",
     "highlight.js": "^9.13.1",
     "katex": "^0.11.1",
-    "marked": "^0.6.2"
+    "marked": "^0.6.2",
+    "mermaid": "^8.4.7"
   }
 }

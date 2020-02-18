@@ -30,6 +30,7 @@ export const CONFIG: ICONFIG = {
     link: true,
     innercode: true,
     code: true,
+    collapse: true,
     katex: true,
     preview: true,
     expand: true,

@@ -1,6 +1,7 @@
 import marked from 'marked'
 import katex from 'katex'
 import Hljs from './highlight'
+import mermaided from './mermaided'
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -10,10 +11,7 @@ marked.setOptions({
   pedantic: false,
   sanitize: false,
   smartLists: true,
-  smartypants: false,
-  highlight(code: string) {
-    return Hljs.highlightAuto(code).value
-  }
+  smartypants: false
 })
 
 const renderer = new marked.Renderer()
@@ -51,6 +49,21 @@ const linkParse = (href: string, title: string, text: string) => {
       }>${text}</a>`
 }
 
+// 重写code引入mermaid
+const codeParse = (code: string, language: string) => {
+  if (language === 'mermaid') {
+    if (code.length === 0) return
+    else {
+      // 如何返回一个处理好的DOM字符串？？
+      let dom: string = mermaided(code).toString()
+      return dom
+    }
+  } else {
+    return `<pre><code class=language-${language}>${Hljs.highlightAuto(code).value}</code></pre>`
+  }
+}
+
+renderer.code = codeParse
 renderer.paragraph = paragraphParse
 renderer.link = linkParse
 
