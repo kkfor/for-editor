@@ -127,7 +127,7 @@ class Toolbars extends React.Component<IP, IS> {
         {/* 引用 */}
         {toolbar.quote && (
           <li onClick={() => this.onClick('quote')} title={words.quote}>
-            >
+            <i className="foricon for-quote" />
           </li>
         )}
         {/* 段落 */}
@@ -137,8 +137,7 @@ class Toolbars extends React.Component<IP, IS> {
             onMouseOver={() => this.paraMouseOver()}
             onMouseOut={() => this.paraMouseOut()}
           >
-            文本
-            {/* 图标 */}
+            <i className="foricon for-text" />
             <ul style={paraHidden ? { display: 'none' } : {}}>
               <li onClick={() => this.onClick('italic')} title={words.italic}>
                 {words.italic}
@@ -165,7 +164,7 @@ class Toolbars extends React.Component<IP, IS> {
         {/* 表格 */}
         {toolbar.table && (
           <li onClick={() => this.onClick('table')} title={words.table}>
-            表格
+            <i className="foricon for-table" />
           </li>
         )}
 
@@ -196,7 +195,7 @@ class Toolbars extends React.Component<IP, IS> {
         )}
         {toolbar.innercode && (
           <li onClick={() => this.onClick('innercode')} title={words.innercode}>
-            行内代码
+            <i className="foricon for-inline-code" />
           </li>
         )}
         {toolbar.code && (
@@ -207,12 +206,12 @@ class Toolbars extends React.Component<IP, IS> {
         {/* 折叠语法 */}
         {toolbar.collapse && (
           <li onClick={() => this.onClick('collapse')} title={words.collapse}>
-            折叠
+            <i className="foricon for-collapse" />
           </li>
         )}
         {toolbar.katex && (
           <li onClick={() => this.onClick('katex')} title={words.katex}>
-            KaTeX
+            <i className="foricon for-katex" />
           </li>
         )}
         {toolbar.save && (
