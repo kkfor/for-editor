@@ -169,6 +169,7 @@ class MdEditor extends React.Component<IP, IS> {
         this.saveHistory(value)
       }, 500)
     }
+
     if (subfield !== preProps.subfield && this.state.subfield !== subfield) {
       this.setState({ subfield })
     }

@@ -52,11 +52,21 @@ const linkParse = (href: string, title: string, text: string) => {
 // 重写code引入mermaid
 const codeParse = (code: string, language: string) => {
   if (language === 'mermaid') {
-    if (code.length === 0) return
-    else {
-      // 如何返回一个处理好的DOM字符串？？
-      let dom: string = mermaided(code).toString()
-      return dom
+    // 干净flag提取
+    let cleanFlag = code
+      .replace(/[\r]/g, '')
+      .split(' ')[0]
+      .split('\n')[0]
+    if (code.length === 0) return ''
+    else if (
+      cleanFlag === 'graph' ||
+      cleanFlag === 'sequenceDiagram' ||
+      cleanFlag === 'classDiagram' ||
+      cleanFlag === 'stateDiagram' ||
+      cleanFlag === 'gantt' ||
+      cleanFlag === 'pie'
+    ) {
+      return mermaided(code, cleanFlag)
     }
   } else {
     return `<pre><code class=language-${language}>${Hljs.highlightAuto(code).value}</code></pre>`
