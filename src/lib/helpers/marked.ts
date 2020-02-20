@@ -67,6 +67,8 @@ const codeParse = (code: string, language: string) => {
       cleanFlag === 'pie'
     ) {
       return mermaided(code, cleanFlag)
+    } else {
+      return `<p>${code}</p>`
     }
   } else {
     return `<pre><code class=language-${language}>${Hljs.highlightAuto(code).value}</code></pre>`
