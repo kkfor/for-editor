@@ -334,7 +334,7 @@ class MdEditor extends React.Component<IP, IS> {
       },
       collapse: {
         prefix: '\n<details>\n<summary>title</summary>\n\n',
-        subfix: '\n</details>\n',
+        subfix: '\n</details>\n\n',
         str: 'content'
       },
       katex: {

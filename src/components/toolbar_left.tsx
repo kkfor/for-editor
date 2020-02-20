@@ -195,7 +195,7 @@ class Toolbars extends React.Component<IP, IS> {
         )}
         {toolbar.innercode && (
           <li onClick={() => this.onClick('innercode')} title={words.innercode}>
-            <i className="foricon for-inline-code" />
+            <i className="foricon for-inner-code" />
           </li>
         )}
         {toolbar.code && (
@@ -209,6 +209,10 @@ class Toolbars extends React.Component<IP, IS> {
             <i className="foricon for-collapse" />
           </li>
         )}
+        <li>
+          <i className="foricon for-render" />
+        </li>
+        {/* katex支持 */}
         {toolbar.katex && (
           <li onClick={() => this.onClick('katex')} title={words.katex}>
             <i className="foricon for-katex" />
