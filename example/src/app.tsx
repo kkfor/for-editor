@@ -86,13 +86,13 @@ class App extends Component<{}, IS> {
             <Editor
               ref={this.$vm}
               height="500px"
-              toolbar={{
-                h1: true,
-                h2: true,
-                h3: true,
-                save: true,
-                preview: true
-              }}
+              // toolbar={{
+              //   h1: true,
+              //   h2: true,
+              //   h3: true,
+              //   save: true,
+              //   preview: true
+              // }}
               value={value}
               subfield={false}
               onChange={value => this.handleChange(value)}

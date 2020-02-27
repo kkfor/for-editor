@@ -39,6 +39,7 @@
     "@types/classnames": "^2.2.9",
     "@types/katex": "^0.11.0",
     "@types/marked": "^0.6.5",
+    "@types/mermaid": "^8.2.1",
     "@types/react": "^16.8.16",
     "@types/react-dom": "^16.8.4",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
@@ -73,7 +74,6 @@
     "webpack-merge": "^4.1.5"
   },
   "dependencies": {
-    "@types/mermaid": "^8.2.1",
     "highlight.js": "^9.13.1",
     "katex": "^0.11.1",
     "marked": "^0.6.2",
