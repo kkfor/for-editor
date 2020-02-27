@@ -2,18 +2,18 @@
 
 > for-editor 是一个基于 react 的 markdown 语法编辑器
 
-### [English Documents](./README.EN.md)
+## [English Documents](./README.EN.md)
 
 - [demo](https://md.kkfor.com)
 - [github](https://github.com/kkfor/for-editor)
 
-### 安装
+## 安装
 
 ```js
 npm install for-editor -S
 ```
 
-### 使用
+## 使用
 
 ```js
 import React, { Component } from 'react'
@@ -43,9 +43,9 @@ class App extends Component {
 ReactDOM.render(<App />, document.getElementById('root'))
 ```
 
-### Api
+## Api
 
-#### 属性
+### 属性
 
 | name        | type    | default     | description                        |
 | ----------- | ------- | ----------- | ---------------------------------- |
@@ -91,7 +91,7 @@ toolbar: {
 }
 ```
 
-#### 事件
+### 事件
 
 | name     | params 参数   | default | description    |
 | -------- | ------------- | ------- | -------------- |
@@ -99,7 +99,7 @@ toolbar: {
 | onSave   | String: value | -       | 保存时回调     |
 | addImg   | File: file    | -       | 添加图片时回调 |
 
-##### 图片上传
+#### 图片上传
 
 ```js
 class App extends Component {
@@ -137,7 +137,7 @@ class App extends Component {
 }
 ```
 
-#### 快捷键
+### 快捷键
 
 | name   | description  |
 | ------ | ------------ |
@@ -146,10 +146,11 @@ class App extends Component {
 | ctrl+z | 上一步       |
 | ctrl+y | 下一步       |
 
-### 更新
+## 更新
 
 - [Update Log](./doc/UPDATELOG.md)
+- [Herb Branch](./doc/HERBBRANCH.md)
 
-### Licence
+## Licence
 
 for-editor is [MIT Licence](./LICENSE).
