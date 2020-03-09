@@ -522,6 +522,7 @@ class MdEditor extends React.Component<IP, IS> {
           {/* 预览区 */}
           <div className={previewClass} ref={this.$blockPreview}>
             <div
+              id="for-preview"
               ref={this.$scrollPreview}
               className="for-preview for-markdown-preview"
               dangerouslySetInnerHTML={{ __html: marked(value) }}

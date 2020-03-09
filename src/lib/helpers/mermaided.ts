@@ -39,14 +39,14 @@ mermaid.mermaidAPI.initialize({
   }
 })
 
-// 这个方法要手动触发渲染不然会报错
-const mermaided = (code: string, name: string): string => {
+// mermaid莫名其妙会加上在id前面加上d!!!是render的问题
+const mermaided = (code: string): string => {
   let rendered = ''
   try {
-    mermaid.mermaidAPI.render(name, code, (html) => {
+    mermaid.mermaidAPI.render('for-preview', code, (html) => {
       rendered = html
     })
-  } catch(e) {
+  } catch (e) {
     rendered = `<p>${code}</p>`
   }
   return rendered

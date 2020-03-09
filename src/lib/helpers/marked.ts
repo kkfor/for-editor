@@ -49,12 +49,10 @@ const linkParse = (href: string, title: string, text: string) => {
       }>${text}</a>`
 }
 
-// 重写code引入mermaid
 const codeParse = (code: string, language: string) => {
   if (language === 'mermaid') {
-    // 干净flag提取
     let cleanFlag = code
-      .replace(/[\r]/g, '')
+      .replace(/[\r\n]/g, '')
       .split(' ')[0]
       .split('\n')[0]
     if (code.length === 0) return ''
@@ -66,7 +64,11 @@ const codeParse = (code: string, language: string) => {
       cleanFlag === 'gantt' ||
       cleanFlag === 'pie'
     ) {
-      return mermaided(code, cleanFlag)
+      // let test: Array<String> = []
+      // test.push(code)
+      // // eslint-disable-next-line no-console
+      // console.log(test)
+      return mermaided(code)
     } else {
       return `<p>${code}</p>`
     }
