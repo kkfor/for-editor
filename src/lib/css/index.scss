@@ -144,6 +144,10 @@
         > .for-mobile {
             display: none;
         }
+        > .for-right-mobile {
+            display: none;
+        }
+
         @media screen and (max-width: "900px") {
             > .for-pc {
                 display: none;
