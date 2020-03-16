@@ -56,7 +56,8 @@
 
         > .for-pc,
         .for-mobile,
-        .for-common {
+        .for-right-pc,
+        .for-right-mobile {
             > ul {
                 display: -webkit-box;
                 display: flex;
@@ -137,7 +138,7 @@
         > .for-pc {
             display: block;
         }
-        > .for-common {
+        > .for-right-pc {
             display: block;
         }
         > .for-mobile {
@@ -148,6 +149,12 @@
                 display: none;
             }
             > .for-mobile {
+                display: block;
+            }
+            > .for-right-pc {
+                display: none;
+            }
+            > .for-right-mobile {
                 display: block;
             }
         }

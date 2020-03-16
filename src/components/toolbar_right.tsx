@@ -36,45 +36,77 @@ class Toolbars extends React.Component<IP, {}> {
       'for-active': subfield
     })
     return (
-      <div className="for-common">
-        <ul>
-          {toolbar.expand && (
-            <li
-              className={expandActive}
-              onClick={() => this.onClick('expand')}
-              title={expandActive ? words.fullscreenOff : words.fullscreenOn}
-            >
-              {expandActive ? (
-                <i className="foricon for-contract" />
-              ) : (
-                <i className="foricon for-expand" />
-              )}
-            </li>
-          )}
-          {toolbar.preview && (
-            <li
-              className={previewActive}
-              onClick={() => this.onClick('preview')}
-              title={words.preview}
-            >
-              {previewActive ? (
-                <i className="foricon for-eye-off" />
-              ) : (
-                <i className="foricon for-eye" />
-              )}
-            </li>
-          )}
-          {toolbar.subfield && (
-            <li
-              className={subfieldActive}
-              onClick={() => this.onClick('subfield')}
-              title={subfieldActive ? words.singleColumn : words.doubleColumn}
-            >
-              <i className="foricon for-subfield" />
-            </li>
-          )}
-        </ul>
-      </div>
+      <>
+        <div className="for-right-pc">
+          <ul>
+            {toolbar.expand && (
+              <li
+                className={expandActive}
+                onClick={() => this.onClick('expand')}
+                title={expandActive ? words.fullscreenOff : words.fullscreenOn}
+              >
+                {expandActive ? (
+                  <i className="foricon for-contract" />
+                ) : (
+                  <i className="foricon for-expand" />
+                )}
+              </li>
+            )}
+            {toolbar.preview && (
+              <li
+                className={previewActive}
+                onClick={() => this.onClick('preview')}
+                title={words.preview}
+              >
+                {previewActive ? (
+                  <i className="foricon for-eye-off" />
+                ) : (
+                  <i className="foricon for-eye" />
+                )}
+              </li>
+            )}
+            {toolbar.subfield && (
+              <li
+                className={subfieldActive}
+                onClick={() => this.onClick('subfield')}
+                title={subfieldActive ? words.singleColumn : words.doubleColumn}
+              >
+                <i className="foricon for-subfield" />
+              </li>
+            )}
+          </ul>
+        </div>
+        <div className="for-right-mobile">
+          <ul>
+            {toolbar.expand && (
+              <li
+                className={expandActive}
+                onClick={() => this.onClick('expand')}
+                title={expandActive ? words.fullscreenOff : words.fullscreenOn}
+              >
+                {expandActive ? (
+                  <i className="foricon for-contract" />
+                ) : (
+                  <i className="foricon for-expand" />
+                )}
+              </li>
+            )}
+            {toolbar.preview && (
+              <li
+                className={previewActive}
+                onClick={() => this.onClick('preview')}
+                title={words.preview}
+              >
+                {previewActive ? (
+                  <i className="foricon for-eye-off" />
+                ) : (
+                  <i className="foricon for-eye" />
+                )}
+              </li>
+            )}
+          </ul>
+        </div>
+      </>
     )
   }
 }
