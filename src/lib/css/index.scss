@@ -1,6 +1,9 @@
 .for-container {
     font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+    display: -webkit-box;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
     flex-direction: column;
     height: 600px;
     border: 1px solid #ddd;
@@ -39,21 +42,29 @@
 
     .for-toolbar {
         font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+        display: -webkit-box;
         display: flex;
+        -webkit-box-pack: justify;
         justify-content: space-between;
         padding: 0 6px;
         border-bottom: 1px solid #ddd;
         color: #555;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
         user-select: none;
 
         > .for-pc,
         .for-mobile,
         .for-common {
             > ul {
+                display: -webkit-box;
                 display: flex;
 
                 > li {
+                    display: -webkit-box;
                     display: flex;
+                    -webkit-box-align: center;
                     align-items: center;
                     padding: 4px 6px;
                     margin: 8px 4px;
@@ -78,6 +89,7 @@
                             z-index: 99;
                             line-height: 2.8;
                             text-align: center;
+                            list-style: none;
 
                             li {
                                 position: relative;
@@ -142,7 +154,9 @@
     }
 
     .for-editor {
+        display: -webkit-box;
         display: flex;
+        -webkit-box-pack: justify;
         justify-content: space-between;
         height: 100%;
         color: #2c3e50;
@@ -151,11 +165,14 @@
 
         .for-panel {
             height: 100%;
+            -webkit-box-flex: 0;
             flex: 0 0 100%;
             overflow: auto;
+            -webkit-transition: all 0.2s linear 0s;
             transition: all 0.2s linear 0s;
 
             &.for-active {
+                -webkit-box-flex: 0;
                 flex: 0 0 50%;
             }
 
@@ -174,9 +191,11 @@
 
             &.for-edit-preview {
                 width: 0;
+                -webkit-box-flex: 0;
                 flex: 0 0 0;
             }
             .for-editor-block {
+                display: -webkit-box;
                 display: flex;
                 min-height: 100%;
             }
@@ -196,6 +215,7 @@
             }
 
             .for-editor-content {
+                -webkit-box-flex: 1;
                 flex: 1;
                 position: relative;
                 height: 100%;
