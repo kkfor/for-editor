@@ -1,5 +1,30 @@
 # 更新日志
 
+- 2020-04-06 v0.3.7
+  - `for-editor-herb`建立，`npm`包发布，修改源码若干 `1.0.0 --> 1.0.1 --> 1.0.2`
+- 2020-02-27
+  - 完善响应式布局 [3a90ea60ca82b6eb790503d4efcd81b8d805e566](https://github.com/HerbertHe/for-editor/commit/3a90ea60ca82b6eb790503d4efcd81b8d805e566)
+
+- 2020-02-20
+  - 图标更新 [5eec53ecc24eb6cb9ead35070a7a98863ce2914a](https://github.com/HerbertHe/for-editor/commit/5eec53ecc24eb6cb9ead35070a7a98863ce2914a)
+  - 处理`mermaid`渲染异常 [3282b333eea726715ae5f5cc320ca155eb482a35](https://github.com/HerbertHe/for-editor/commit/3282b333eea726715ae5f5cc320ca155eb482a35)
+
+- 2020-02-19
+  - 更新图标, 生成dist [3b25f9f4987e8faddd347487cf80816bd8ff790e](https://github.com/HerbertHe/for-editor/commit/3b25f9f4987e8faddd347487cf80816bd8ff790e)
+  - 重写`mermaid`解析逻辑 [ffa952c9230112596d2ffb9df1d7f20ea9a9f5f2](https://github.com/HerbertHe/for-editor/commit/ffa952c9230112596d2ffb9df1d7f20ea9a9f5f2)
+
+- 2020-02-18
+  - 新增`折叠块`引入`mermaid` [0a57b82c54e3d918d639fefddb939828539d0eaf](https://github.com/HerbertHe/for-editor/commit/0a57b82c54e3d918d639fefddb939828539d0eaf)
+
+- 2020-02-17
+  - 生成dist [2032aeaa877c7213916fcd407d4f5bee980d330f](https://github.com/HerbertHe/for-editor/commit/2032aeaa877c7213916fcd407d4f5bee980d330f)
+  - 引入`KaTeX`渲染`TeX` [6754db8f3143dfaa555f11cb088743ffce4186bf](https://github.com/HerbertHe/for-editor/commit/6754db8f3143dfaa555f11cb088743ffce4186bf)
+  - 添加左工具栏功能`文本/段落` `表格` `行内代码` [46fb2f4daa09b723fe2784d36b373f2d4ed0c003](https://github.com/HerbertHe/for-editor/commit/46fb2f4daa09b723fe2784d36b373f2d4ed0c003)
+
+- [分支基于 881399ddfd11609eab7a436085749f5b6e6d5394](https://github.com/HerbertHe/for-editor/commit/881399ddfd11609eab7a436085749f5b6e6d5394)
+
+> 原更新记录如下
+
 - 2019-12-11 v0.3.5
   - 修复双栏，预览，全屏bug [#45](https://github.com/kkfor/for-editor/pull/45)
 - 2019-08-20 v0.3.4
