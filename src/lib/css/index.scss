@@ -1,5 +1,5 @@
 .for-container {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   display: flex;
   flex-direction: column;
   height: 600px;
@@ -138,7 +138,7 @@
 
     // 编辑区域
     .for-editor-edit {
-      line-height: 1.6;
+      line-height: 1.5;
       height: 100%;
 
       &.for-edit-preview {
@@ -184,7 +184,6 @@
   }
 
   textarea {
-    font-family: 'Consolas', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
     box-sizing: border-box;
     position: absolute;
     top: 0;
@@ -197,9 +196,10 @@
     resize: none;
     border: none;
     outline: none;
-    font-size: inherit;
     color: inherit;
     background: none;
+    font-family: inherit;
+    font-size: inherit;
     line-height: inherit;
   }
 
