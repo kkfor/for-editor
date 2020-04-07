@@ -32,10 +32,14 @@ body {
     height: 80px;
     line-height: 80px;
     padding: 0 20px;
-    margin-bottom: 30px;
     font-size: 18px;
     color: #fff;
-    background: linear-gradient(160deg, #852178, #019845);
+    background: linear-gradient(160deg, #204d5a, #8e1f1f);
+  }
+
+  .container {
+    padding: 30px;
+    // background: rgb(147, 88, 88);
   }
 
   .editor {

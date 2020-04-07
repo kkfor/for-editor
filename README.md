@@ -36,7 +36,22 @@ class App extends Component {
 
   render() {
     const { value } = this.state
-    return <Editor value={value} onChange={() => this.handleChange()} />
+
+    return (
+      <Editor
+        ref={this.$vm}
+        language="en"
+        style={{
+          height: '700px',
+          borderRadius: '12px',
+          boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 12px'
+        }}
+        value={value}
+        addImg={($file) => this.addImg($file)}
+        onChange={(value) => this.handleChange(value)}
+        onSave={(value) => this.handleSave(value)}
+      />
+    )
   }
 }
 
@@ -106,7 +121,7 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      value: '',
+      value: ''
     }
     this.$vm = React.createRef()
   }
@@ -130,7 +145,7 @@ class App extends Component {
         ref={this.$vm}
         value={value}
         addImg={($file) => this.addImg($file)}
-        onChange={value => this.handleChange(value)}
+        onChange={(value) => this.handleChange(value)}
       />
     )
   }

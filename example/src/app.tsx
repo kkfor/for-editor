@@ -76,40 +76,47 @@ class App extends Component<{}, IS> {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                GitHub
+                View on GitHub
               </a>
             </li>
           </ul>
         </div>
-        <div className={styles.editor}>
-          {mobile && (
-            <Editor
-              ref={this.$vm}
-              height="500px"
-              toolbar={{
-                h1: true,
-                h2: true,
-                h3: true,
-                save: true,
-                preview: true
-              }}
-              value={value}
-              subfield={false}
-              onChange={value => this.handleChange(value)}
-              onSave={value => this.handleSave(value)}
-            />
-          )}
-          {!mobile && (
-            <Editor
-              ref={this.$vm}
-              language="en"
-              height="700px"
-              value={value}
-              addImg={($file) => this.addImg($file)}
-              onChange={value => this.handleChange(value)}
-              onSave={value => this.handleSave(value)}
-            />
-          )}
+        <div className={styles.container}>
+          <div className={styles.editor}>
+            {mobile && (
+              <Editor
+                ref={this.$vm}
+                height="500px"
+                toolbar={{
+                  h1: true,
+                  h2: true,
+                  h3: true,
+                  save: true,
+                  preview: true
+                }}
+                value={value}
+                subfield={false}
+                onChange={value => this.handleChange(value)}
+                onSave={value => this.handleSave(value)}
+              />
+            )}
+            {!mobile && (
+              <Editor
+                ref={this.$vm}
+                language="en"
+                height= '200px'
+                style={{
+                  height: "700px",
+                  borderRadius: '12px',
+                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 12px'
+                }}
+                value={value}
+                addImg={($file) => this.addImg($file)}
+                onChange={value => this.handleChange(value)}
+                onSave={value => this.handleSave(value)}
+              />
+            )}
+          </div>
         </div>
       </div>
     )

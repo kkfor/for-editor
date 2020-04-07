@@ -84,9 +84,9 @@ interface IS {
 class MdEditor extends React.Component<IP, IS> {
   static defaultProps = {
     lineNum: true,
-    onChange: () => { },
-    onSave: () => { },
-    addImg: () => { },
+    onChange: () => {},
+    onSave: () => {},
+    addImg: () => {},
     fontSize: '14px',
     disabled: false,
     preview: false,
@@ -139,13 +139,13 @@ class MdEditor extends React.Component<IP, IS> {
       }, 500)
     }
     if (subfield !== preProps.subfield && this.state.subfield !== subfield) {
-      this.setState({ subfield });
+      this.setState({ subfield })
     }
     if (preview !== preProps.preview && this.state.preview !== preview) {
-      this.setState({ preview });
+      this.setState({ preview })
     }
     if (expand !== preProps.expand && this.state.expand !== expand) {
-      this.setState({ expand });
+      this.setState({ expand })
     }
   }
 
