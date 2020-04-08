@@ -2,6 +2,8 @@ import * as React from 'react'
 import classNames from 'classnames'
 import marked from './lib/helpers/marked'
 import keydownListen from './lib/helpers/keydownListen'
+import ToolBar from './components/toolbars'
+import tools from './config/tools'
 import ToolbarLeft from './components/toolbar_left'
 import ToolbarRight from './components/toolbar_right'
 import { insertText } from './lib/helpers/function'
@@ -386,27 +388,32 @@ class MdEditor extends React.Component<IP, IS> {
       return <ul className={lineNumStyles}>{list}</ul>
     }
 
+    const toolbarProps = {
+      tools: tools
+    }
+
     return (
       <div className={fullscreen} style={{ height, ...style }}>
         {/* 菜单栏 */}
         {Boolean(Object.keys(toolbar).length) && (
-          <div className="for-toolbar">
-            <ToolbarLeft
-              toolbar={toolbar}
-              words={words}
-              onClick={this.toolBarLeftClick}
-              addImg={this.addImg}
-              {...this.props}
-            />
-            <ToolbarRight
-              toolbar={toolbar}
-              words={words}
-              preview={preview}
-              expand={expand}
-              subfield={subfield}
-              onClick={this.toolBarRightClick}
-            />
-          </div>
+          <ToolBar {...toolbarProps}/>
+          // <div className="for-toolbar">
+          //   <ToolbarLeft
+          //     toolbar={toolbar}
+          //     words={words}
+          //     onClick={this.toolBarLeftClick}
+          //     addImg={this.addImg}
+          //     {...this.props}
+          //   />
+          //   <ToolbarRight
+          //     toolbar={toolbar}
+          //     words={words}
+          //     preview={preview}
+          //     expand={expand}
+          //     subfield={subfield}
+          //     onClick={this.toolBarRightClick}
+          //   />
+          // </div>
         )}
         {/* 内容区 */}
         <div className="for-editor" style={{ fontSize }}>
