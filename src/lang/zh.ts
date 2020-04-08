@@ -1,4 +1,4 @@
-{
+export default {
   "placeholder": "开始编辑...",
   "undo": "上一步",
   "redo": "下一步",

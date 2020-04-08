@@ -1,5 +1,5 @@
 function insertText($vm: HTMLTextAreaElement, params: any): string {
-  const { prefix, str = '', subfix = '' } = params
+  const { prefix, text = '', subfix = '' } = params
   const value = $vm.value
   if ($vm.selectionStart || $vm.selectionStart === 0) {
     const start = $vm.selectionStart
@@ -11,11 +11,11 @@ function insertText($vm: HTMLTextAreaElement, params: any): string {
       $vm.value =
         value.substring(0, start) +
         prefix +
-        str +
+        text +
         subfix +
         value.substring(end, value.length)
       $vm.selectionStart = start + prefix.length
-      $vm.selectionEnd = end + prefix.length + str.length
+      $vm.selectionEnd = end + prefix.length + text.length
     } else {
       $vm.value =
         value.substring(0, start) +

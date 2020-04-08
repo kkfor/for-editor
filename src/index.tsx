@@ -6,8 +6,8 @@ import ToolbarLeft from './components/toolbar_left'
 import ToolbarRight from './components/toolbar_right'
 import { insertText } from './lib/helpers/function'
 import 'highlight.js/styles/tomorrow.css'
-import './lib/fonts/iconfont.css'
-import './lib/css/index.scss'
+import './styles/fonts/iconfont.css'
+import './styles/index.scss'
 import { CONFIG } from './lib'
 
 export interface IToolbar {

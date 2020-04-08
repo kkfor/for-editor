@@ -1,4 +1,4 @@
-{
+export default {
   "placeholder": "Begin editing...",
   "undo": "Undo",
   "redo": "Redo",

@@ -1,5 +1,5 @@
-import zhCN from './lang/zh-CN/index.json'
-import en from './lang/en/index.json'
+import zhCN from '../lang/zh'
+import en from '../lang/en'
 import { IToolbar, IWords } from '../index'
 export interface ICONFIG {
   language: {
