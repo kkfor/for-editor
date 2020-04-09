@@ -1,6 +1,6 @@
-import zhCN from '../lang/zh'
-import en from '../lang/en'
-import { IToolbar, IWords } from '../index'
+import zhCN from '../language/zh'
+import en from '../language/en'
+import { IWords } from '../index'
 export interface ICONFIG {
   language: {
     'zh-CN': IWords
@@ -8,7 +8,7 @@ export interface ICONFIG {
     [key: string]: IWords
   }
   langList: string[]
-  toolbar: IToolbar
+  toolbar: any
 }
 
 export const CONFIG: ICONFIG = {

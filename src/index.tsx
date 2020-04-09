@@ -3,30 +3,13 @@ import classNames from 'classnames'
 import marked from './lib/helpers/marked'
 import keydownListen from './lib/helpers/keydownListen'
 import ToolBar from './components/toolbars'
-import tools from './config/tools'
-import ToolbarLeft from './components/toolbar_left'
-import ToolbarRight from './components/toolbar_right'
+import defaultProps from './config/props'
+import languages from './language'
 import { insertText } from './lib/helpers/function'
 import 'highlight.js/styles/tomorrow.css'
 import './styles/fonts/iconfont.css'
 import './styles/index.scss'
 import { CONFIG } from './lib'
-
-export interface IToolbar {
-  h1?: boolean
-  h2?: boolean
-  h3?: boolean
-  h4?: boolean
-  img?: boolean
-  link?: boolean
-  code?: boolean
-  preview?: boolean
-  expand?: boolean
-  undo?: boolean
-  redo?: boolean
-  save?: boolean
-  subfield?: boolean
-}
 
 export interface IWords {
   placeholder?: string
@@ -49,11 +32,6 @@ export interface IWords {
   addImg?: string
 }
 
-interface ILeft {
-  prefix: string
-  subfix: string
-  str: string
-}
 interface IP {
   value?: string
   lineNum?: number
@@ -67,7 +45,7 @@ interface IP {
   preview?: boolean
   expand?: boolean
   subfield?: boolean
-  toolbar?: IToolbar
+  toolbar?: any
   language?: string
   addImg?: (file: File, index: number) => void
 }
@@ -84,20 +62,9 @@ interface IS {
 }
 
 class MdEditor extends React.Component<IP, IS> {
-  static defaultProps = {
-    lineNum: true,
-    onChange: () => {},
-    onSave: () => {},
-    addImg: () => {},
-    fontSize: '14px',
-    disabled: false,
-    preview: false,
-    expand: false,
-    subfield: false,
-    style: {},
-    toolbar: CONFIG.toolbar,
-    language: 'zh-CN'
-  }
+
+  static defaultProps = defaultProps
+  
   private $vm = React.createRef<HTMLTextAreaElement>()
   private $scrollEdit = React.createRef<HTMLDivElement>()
   private $scrollPreview = React.createRef<HTMLDivElement>()
@@ -388,34 +355,20 @@ class MdEditor extends React.Component<IP, IS> {
       return <ul className={lineNumStyles}>{list}</ul>
     }
 
+
+    const editor = this
+    const language = languages[defaultProps.language]
+    const tools = toolbar.filter(item => defaultProps.toolbar.indexOf(item) > -1 )
+
     const toolbarProps = {
-      tools: tools
+      editor,
+      tools,
+      language
     }
 
     return (
       <div className={fullscreen} style={{ height, ...style }}>
-        {/* 菜单栏 */}
-        {Boolean(Object.keys(toolbar).length) && (
-          <ToolBar {...toolbarProps}/>
-          // <div className="for-toolbar">
-          //   <ToolbarLeft
-          //     toolbar={toolbar}
-          //     words={words}
-          //     onClick={this.toolBarLeftClick}
-          //     addImg={this.addImg}
-          //     {...this.props}
-          //   />
-          //   <ToolbarRight
-          //     toolbar={toolbar}
-          //     words={words}
-          //     preview={preview}
-          //     expand={expand}
-          //     subfield={subfield}
-          //     onClick={this.toolBarRightClick}
-          //   />
-          // </div>
-        )}
-        {/* 内容区 */}
+        <ToolBar {...toolbarProps}/>
         <div className="for-editor" style={{ fontSize }}>
           {/* 编辑区 */}
           <div

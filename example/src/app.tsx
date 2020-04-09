@@ -9,9 +9,7 @@ interface IS {
   mobile: boolean
 }
 
-
 class App extends Component<{}, IS> {
-
   private $vm = React.createRef<Editor>()
 
   constructor(props: any) {
@@ -87,33 +85,34 @@ class App extends Component<{}, IS> {
               <Editor
                 ref={this.$vm}
                 height="500px"
-                toolbar={{
-                  h1: true,
-                  h2: true,
-                  h3: true,
-                  save: true,
-                  preview: true
-                }}
+                toolbar={['undo']}
+                // toolbar={{
+                //   h1: true,
+                //   h2: true,
+                //   h3: true,
+                //   save: true,
+                //   preview: true
+                // }}
                 value={value}
                 subfield={false}
-                onChange={value => this.handleChange(value)}
-                onSave={value => this.handleSave(value)}
+                onChange={(value) => this.handleChange(value)}
+                onSave={(value) => this.handleSave(value)}
               />
             )}
             {!mobile && (
               <Editor
                 ref={this.$vm}
                 language="en"
-                height= '200px'
+                // toolbar={['undo']}
                 style={{
-                  height: "700px",
+                  height: '700px',
                   borderRadius: '12px',
                   boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 12px'
                 }}
                 value={value}
                 addImg={($file) => this.addImg($file)}
-                onChange={value => this.handleChange(value)}
-                onSave={value => this.handleSave(value)}
+                onChange={(value) => this.handleChange(value)}
+                onSave={(value) => this.handleSave(value)}
               />
             )}
           </div>
