@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 export interface IToolbar {
     h1?: boolean
     h2?: boolean
