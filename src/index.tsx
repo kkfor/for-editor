@@ -55,7 +55,7 @@ interface ILeft {
 interface IP {
   value?: string
   lineNum?: number
-  onChange?: (value: string) => void
+  onChange?: (value: string, event?: React.ChangeEvent<HTMLTextAreaElement>) => void
   onSave?: (value: string) => void
   placeholder?: string
   fontSize?: string
@@ -159,8 +159,8 @@ class MdEditor extends React.Component<IP, IS> {
 
   // 输入框改变
   handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    const value = e.target.value
-    this.props.onChange(value)
+    const value = e.target.value;
+    this.props.onChange(value, e);
   }
 
   // 保存记录
