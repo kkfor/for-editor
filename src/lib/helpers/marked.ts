@@ -1,5 +1,6 @@
 import marked from 'marked'
 import Hljs from './highlight'
+import createPurify from 'dompurify'
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -15,6 +16,7 @@ marked.setOptions({
   }
 })
 
+const purify = createPurify()
 const renderer = new marked.Renderer()
 
 // 段落解析
@@ -34,5 +36,5 @@ renderer.link = linkParse
 export default (content: string) => {
   if (typeof content !== 'string') return ''
 
-  return marked(content, { renderer })
+  return purify.sanitize(marked(content, { renderer }))
 }
